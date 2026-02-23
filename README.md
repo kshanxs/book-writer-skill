@@ -35,6 +35,12 @@
 npx skills add kshanxs/book-writer-skill
 ```
 
+To get the latest version later on, just run:
+
+```bash
+npx skills update kshanxs/book-writer-skill
+```
+
 ---
 
 ## 💬 How to Use
