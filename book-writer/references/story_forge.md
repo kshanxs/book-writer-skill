@@ -139,7 +139,17 @@ Accept partial answers. If nothing is provided, mark as TBD.
 
 ---
 
-### Step 6 — Style & Scope (Optional)
+### Step 6 — Dialogue Language (Optional)
+
+Ask:
+
+> "Any specific local language or dialect you want to weave into the dialogue when appropriate? (Like Hinglish, Marathi, French, etc.) Or just standard English?"
+
+Accept their preference or "skip".
+
+---
+
+### Step 7 — Style & Scope (Optional)
 
 Only ask this if conversation is flowing naturally. If the user seems in a hurry, skip it:
 
@@ -147,7 +157,7 @@ Only ask this if conversation is flowing naturally. If the user seems in a hurry
 
 ---
 
-### Step 7 — GitHub Visibility (Optional)
+### Step 8 — GitHub Visibility (Optional)
 
 Only ask if the user hasn't mentioned GitHub yet:
 
@@ -157,7 +167,7 @@ Store the answer as one of: `public`, `private`, `none`.
 
 ---
 
-### Step 8 — Summary & Approval
+### Step 9 — Summary & Approval
 
 Present a concise project brief:
 
@@ -171,6 +181,7 @@ Historical Mode: [Yes / No]
 Premise: [one line or TBD]
 Protagonist: [name/description or TBD]
 Setting: [or TBD]
+Dialogue Language: [language or English]
 Style: [or TBD]
 GitHub: [public / private / none]
 

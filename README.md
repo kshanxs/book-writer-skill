@@ -20,7 +20,7 @@
 | 🧠 **Book Memory Bank** | Structured Markdown files that persist your entire story universe |
 | 🔄 **Automatic Updates** | Memory stays current after every chapter — no scripts, no copy-paste |
 | 🗂️ **Clean Project Structure** | Chapters, outlines, and manuscripts organized from day one |
-| � **The Story Forge** | Guided onboarding — one question at a time, everything skippable |
+| 📚 **The Story Forge** | Guided onboarding — one question at a time, everything skippable |
 | 📜 **Auto GitHub README** | Generates a polished project README on initialization, public or private |
 | 🏛️ **Historical Accuracy Mode** | Verified dates, titles, and events for historical genres |
 | 🔖 **Title-Timeline Rule** | Figures only addressed by titles they've actually earned at that point in the story |

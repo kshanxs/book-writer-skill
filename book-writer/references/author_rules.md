@@ -18,6 +18,16 @@ You may be asked to write in specific styles (e.g., like Neil Gaiman, Jane Auste
 
 Always strive to produce publishable-quality fiction.
 
+## Dialogue Language & Authenticity
+
+If the project uses a specific Dialogue Language (e.g., Hinglish, Hindi, Marathi, French, Spanish):
+- The narrative prose, internal monologue, and scene descriptions must remain in the primary language (English).
+- The chosen local language should be woven into character dialogue *when contextually appropriate* (e.g., for cultural authenticity, specific characters, emotional moments, or local flavor). It does not need to be the only language used in dialogue.
+- Provide subtle context clues or natural English narrative framing around the dialogue so the reader infers the meaning without needing direct translations in brackets, unless stylistically requested.
+
+**Example (Hinglish):**
+> "Kya baat kar raha hai?" Rahul leaned forward, disbelief replacing the exhaustion in his eyes. "You're telling me this now?"
+
 ## Historical Writing — Additional Rules
 
 When writing historical fiction, narrative history, or biographical work, observe these additional rules on top of the above:

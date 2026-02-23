@@ -60,6 +60,10 @@ What genre best fits your book?
 
 **You:** *"William Dalrymple. Around 12 chapters."*
 
+**AI:** *"Any specific local language or dialect you want to weave into the dialogue when appropriate? (Like Hinglish, Marathi, French, etc.)"*
+
+**You:** *"Marathi, occasionally."*
+
 **AI:**
 ```
 Here's your project brief:
@@ -70,6 +74,7 @@ Genre:    Historical Fiction
 Mode:     Historical Accuracy ON
 Premise:  Rise of the Maratha Empire through Bajirao I
 Lead:     Bajirao — appointed Peshwa at 19, tactical genius
+Language: Marathi (dialogue)
 Style:    William Dalrymple
 Chapters: ~12
 GitHub:   Not set
