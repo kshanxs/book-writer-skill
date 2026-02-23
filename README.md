@@ -6,7 +6,7 @@
 
 [![Install](https://img.shields.io/badge/install-npx%20skills%20add-blue?style=flat-square)](https://github.com/kshanxs/book-writer-skill)
 [![License](https://img.shields.io/badge/license-MIT-green?style=flat-square)](./LICENSE)
-[![Docs](https://img.shields.io/badge/docs-USAGE.md-orange?style=flat-square)](./book-writer/USAGE.md)
+[![Docs](https://img.shields.io/badge/docs-USAGE.md-orange?style=flat-square)](./book-writer/docs/USAGE.md)
 
 </div>
 
@@ -50,8 +50,7 @@ Just talk naturally. Start with:
 
 The AI guides you through setup one question at a time. Every question is skippable. After initialization, it never asks setup questions again — just say what you want to do.
 
-**→ See [CONVERSATION_GUIDE.md](./book-writer/CONVERSATION_GUIDE.md) for full example dialogues**
-**→ See [USAGE.md](./book-writer/USAGE.md) for the complete reference guide**
+**→ See [USAGE.md](./book-writer/docs/USAGE.md) for the full guide with example dialogues**
 
 ---
 
@@ -100,8 +99,8 @@ YourBookProject/
 ```
 book-writer/
 ├── SKILL.md                     # Core skill instructions
-├── USAGE.md                     # 📖 Complete usage reference
-├── CONVERSATION_GUIDE.md        # 💬 Example dialogues — how to talk to the AI
+├── docs/
+│   └── USAGE.md                 # 📖 Usage guide with full example dialogues
 ├── references/
 │   ├── author_rules.md          # Writing persona, quality standards & historical rules
 │   ├── book_memory_protocol.md  # Memory bank update rules & checklist

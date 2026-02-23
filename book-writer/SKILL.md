@@ -41,5 +41,4 @@ This skill relies on the following reference documents to guide the AI's behavio
 - `references/memory_update_prompts.md`: Contains criteria and expected templates for auditing and updating the memory bank when significant story changes occur.
 - `references/story_forge.md`: **The Story Forge** — governs the one-time onboarding conversation for new book projects. Run only at initialization; never repeat.
 - `references/readme_template.md`: Template for generating the project `README.md` after initialization.
-- `USAGE.md`: Human-readable guide for users on how to work with this skill.
-- `CONVERSATION_GUIDE.md`: Rich example dialogues showing how to communicate with the AI at every stage — brainstorming characters, historical accuracy, chapter writing, and memory bank updates.
+- `docs/USAGE.md`: Human-readable guide with real example dialogues for every stage of using this skill.
