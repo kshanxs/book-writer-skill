@@ -139,6 +139,40 @@ Accept partial answers. If nothing is provided, mark as TBD.
 
 ---
 
+### Step 5b — Emotional Core (Optional)
+
+Only ask if conversation is flowing naturally. If the user seems in a hurry, skip it:
+
+> "What's the deeper emotional truth this story explores? What should readers *feel* when they close the book? (This is your North Star — the thing that makes this story matter beyond its plot. Say 'skip' if you're not sure yet.)"
+
+Accept whatever they give — a feeling, a question, a single word. Store as "North Star" in the project brief. If skipped, mark as TBD.
+
+**Examples of good North Stars:**
+- "The weight of watching something you love disappear."
+- "What it means to hold power you never asked for."
+- "Can loyalty survive ambition?"
+
+---
+
+### Step 5c — Narrative Structure (Optional)
+
+Only ask if the user hasn't already described their structure:
+
+> "Do you have a narrative structure in mind? Pick one or describe your own — or say 'skip':"
+
+```
+1. Three-Act Structure     — Setup → Confrontation → Resolution
+2. Hero's Journey          — Ordinary World → Call → Ordeal → Return
+3. Literary Arc            — Character-driven, subtle progression, internal journey
+4. Multi-Timeline          — Parallel timelines, converging narratives
+5. Episodic                — Loosely connected chapters around a theme
+6. Other — describe it
+```
+
+Accept any answer. Store the choice. If skipped, the AI will infer structure from the story as it develops.
+
+---
+
 ### Step 6 — Dialogue Language (Optional)
 
 Ask:

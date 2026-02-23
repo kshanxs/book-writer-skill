@@ -26,7 +26,7 @@ echo Cleanup complete.
 echo.
 
 echo Step 2: Creating Word reference template...
-powershell -ExecutionPolicy Bypass -File "%~dp0\prepare_word_template.ps1"
+powershell -File "%~dp0\prepare_word_template.ps1"
 if %ERRORLEVEL% NEQ 0 (
     echo Error creating Word template. Please make sure Microsoft Word is installed.
     pause
@@ -36,7 +36,7 @@ echo Word template created successfully.
 echo.
 
 echo Step 3: Running PowerShell script to combine chapters...
-powershell -ExecutionPolicy Bypass -File "%~dp0\combine_chapters.ps1"
+powershell -File "%~dp0\combine_chapters.ps1"
 if %ERRORLEVEL% NEQ 0 (
     echo Error running PowerShell script. Please check the script and try again.
     pause

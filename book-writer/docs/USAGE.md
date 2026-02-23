@@ -241,6 +241,98 @@ The AI reads the scene's register and chooses automatically. But you can always 
 
 ---
 
+## Book Size Planning
+
+When initializing a new book, you can specify the scope:
+
+| Format | Words | Chapters | Best For |
+|---|---|---|---|
+| **MVB** | 15–20K | 5–7 | Lead magnet, quick authority builder |
+| **Short Book** | 25–40K | 8–12 | Positioning, thought leadership |
+| **Full Book** | 50–80K | 15–20 | Traditional publishing, comprehensive guide |
+| **Literary Novel** | 60–100K | 15–30+ | Character-driven fiction |
+
+**You:** *"Let's plan a short book — around 10 chapters."*
+
+> AI adjusts word count targets, chapter structure, and pacing accordingly.
+
+---
+
+## Chapter Craft — Openings & Closings
+
+The AI uses chapter opening and closing formulas adapted to your genre:
+
+**Fiction openings:** In-medias-res (drop into mid-scene), observation (a telling detail), or a question that creates tension.
+
+**Non-fiction openings:** Story open, question open, statistic open, or bold claim.
+
+**Closings:** Unresolved hooks (fiction), emotional landings (fiction), action bridges (non-fiction), summary bridges (non-fiction).
+
+**You:** *"Open Chapter 4 with a bold claim."*
+
+> AI writes an opening that hooks immediately, calibrated to your style guide.
+
+---
+
+## Character & World Tables
+
+Rich structured profiles can be built for characters and worlds:
+
+**You:** *"Let's build out a full character profile for Mastani."*
+
+> AI creates a 19-field character table:
+> | Field | Details |
+> |---|---|
+> | NAME | Mastani |
+> | ROLES | Love interest, political catalyst |
+> | PERSONALITY | Fierce, graceful, unapologetic |
+> | INTERNAL CONFLICT | Torn between two worlds — Hindu court and Muslim heritage |
+> | CHARACTER ARC | From outsider to the figure who defines Bajirao's legacy |
+> | ... | ... |
+
+**You:** *"Build a worldbuilding table for the Maratha court."*
+
+> AI creates a 10-category world table covering atmosphere, physical details, emotional geography, and the soul of the world.
+
+---
+
+## Chapter Review & Revision
+
+**You:** *"Review and polish Chapter 6."*
+
+> AI reads the draft, its outline, adjacent chapters, and all context files. Reviews in order: Language → Emotion → Dialogue → Pacing → Continuity. Uses the revision checklist to check quality. Revises gently — never overwrites your intent.
+
+**You:** *"That chapter feels too fast. Can you slow down the middle section?"*
+
+> AI adjusts pacing while preserving your voice and the scene's emotional core.
+
+---
+
+## Continuity Diagnostics
+
+**You:** *"Run a continuity check."*
+
+> AI reads all chapters, memory bank, and outlines. Generates a diagnostic report:
+
+```
+Continuity Diagnostic Report — Generated: Feb 2026
+
+✓ Timeline consistent across Chapters 1–8
+✓ Character behavior aligned with profiles
+
+⚠ Chapter 5, Scene 2: Bajirao is called "Peshwa Bajirao"
+  but scene is set in 1717, before his 1720 appointment.
+  → Question: Should this be corrected to "Bajirao"?
+
+⚠ Chapter 7: Nizam-ul-Mulk references the Palkhed battle,
+  which hasn't happened yet in the timeline.
+  → Question: Is this foreshadowing, or a continuity slip?
+```
+
+> Report saved to `Research/continuity_diagnostic_report.md`. Issues are framed as questions — you decide what needs fixing.
+
+---
+
 ## The Memory Bank
 
 The AI maintains context files in `book-memory-bank/` — it reads them at the start of every session and updates them automatically after writing. You never manage them manually.
@@ -275,13 +367,17 @@ A `README.md` is generated in your project root on initialization — title, bad
 | `"Let's start building a new book"` | Runs The Story Forge onboarding |
 | `"Just initialize now"` | Skips all questions, starts immediately |
 | `"Here's my outline: ./path"` | Draft import — AI extracts and skips answered questions |
-| `"Let's build out [character]"` | Character brainstorming conversation |
+| `"Let's build out [character]"` | Character brainstorming with structured profile table |
+| `"Build a worldbuilding table"` | Structured world profile creation |
 | `"[FICTION] ..."` | Mark an invented element in historical genres |
 | `"Write chapter [N]"` | Writes the chapter |
 | `"Outline chapter [N]"` | Writes the chapter outline |
 | `"Write the master outline"` | Creates `Outlines/Master_Outline.md` |
+| `"Plan a [MVB/short/full] book"` | Sets book scope and adjusts targets |
+| `"Review chapter [N]"` / `"Polish chapter [N]"` | Runs structured chapter review |
 | `"Compile the book"` | AI merges all chapters and saves to `Manuscript/` |
 | `"Update memory bank"` | Full audit and update of all memory files |
+| `"Check continuity"` / `"Run continuity check"` | Cross-chapter consistency diagnostic |
 | `"Check for consistency"` | Flags contradictions across memory bank |
 | `"What chapter are we on?"` | AI reports current progress |
 | `"In this scene, [speaker] calls him just '[name]'"` | Override address register for a scene |
@@ -294,3 +390,31 @@ A `README.md` is generated in your project root on initialization — title, bad
 - **Partial answers are fine** — say what you know; add more later
 - **Change your mind freely** — just tell the AI the new version, it updates the memory bank
 - **For historical books** — providing your primary sources upfront helps the AI flag uncertainties accurately
+- **Chapter review is non-destructive** — the AI never adds new plot or removes your intentional choices
+
+---
+
+## Complete Features List
+
+Everything this skill can do, at a glance:
+
+| Category | Features |
+|---|---|
+| **Initialization** | One-time Story Forge onboarding, fast-track mode, draft import, genre auto-detection |
+| **Genre Support** | Literary fiction, historical, fantasy (epic/mythological/dark/historical), sci-fi (hard/space opera/dystopian/cyberpunk), thriller, horror, romance, adventure, mystery, biographical, YA, children's, short stories |
+| **Historical** | Title/honorific timeline rules, `[FICTION]` marking, contextual address by speaker relationship, fact-checking with dispute flags |
+| **Dialogue** | Multi-language support — Hinglish, Hindi, Marathi, French, Spanish, Italian, German, and more woven into dialogue naturally |
+| **Planning** | Book size options (MVB/Short/Full/Novel), narrative structure selection, emotional core (North Star) discovery, synopsis templates, timeline mapping |
+| **Characters** | 19-field structured character profiles, historical title timelines, address variant tracking, psychological profiles, relationship mapping |
+| **Worldbuilding** | 10-category world tables, sensory details, emotional geography, historical setting extensions |
+| **Conflict** | External/internal/thematic conflict mapping with stakes, opposition, and growth tracking |
+| **Outlining** | Master outline, chapter-by-chapter beat sheets, chapter goals, emotional arcs, hooks |
+| **Writing** | Chapter opening/closing formulas (6 types), structure templates (fiction & non-fiction), read-aloud rhythm, engagement techniques |
+| **Quality** | Anti-AI writing rules, Hype Test, revision checklists (story/prose/voice/character/continuity/engagement), DO/DON'T lists |
+| **Review** | Structured chapter review (Language → Emotion → Dialogue → Pacing → Continuity), gentle revision with preserved authorial voice |
+| **Continuity** | Cross-chapter diagnostic reports, timeline/character/worldbuilding/emotional/thematic checks, question-based flagging |
+| **Memory** | Automatic Book Memory Bank — projectbrief, story structure, characters/world, active context, progress, style guide |
+| **Updates** | Auto-triggered after chapters, outlines, or on-demand; comprehensive audit with file-by-file change reports |
+| **Compilation** | Auto-combine chapters into manuscript, cross-platform scripts (bash/PowerShell) |
+| **Documentation** | Auto-generated README with badges, progress tracking, scope table, character list, sources |
+
