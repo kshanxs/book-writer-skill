@@ -1,59 +1,87 @@
-# book-writer
+# 📖 book-writer
 
-A skill for AI coding assistants that turns them into a world-class fiction author with an automated **Book Memory Bank** — maintaining full story context (characters, plot, world-building) across sessions automatically.
+> A skill for AI assistants that combines world-class fiction writing with an automated **Book Memory Bank** — keeping your characters, plot, and world-building perfectly consistent across every session.
 
-## What It Does
+---
 
-- ✍️ **Writes like a master author** — literary prose, realistic dialogue, genre-appropriate style
-- 📚 **Maintains a Book Memory Bank** — structured Markdown files that persist story context between sessions
-- 🔄 **Auto-updates memory** — no scripts, no copy-paste; just write and the AI keeps everything consistent
-- 🗂️ **Organises your project** — chapters, outlines, and manuscripts in a clean, consistent structure
+## ✨ Features
 
-## Installation
+| | |
+|---|---|
+| ✍️ **Master Author Voice** | Literary prose, cinematic dialogue, and genre-aware style |
+| 🧠 **Book Memory Bank** | Structured Markdown files that persist your entire story universe |
+| 🔄 **Automatic Updates** | Memory stays current after every chapter — no scripts, no copy-paste |
+| 🗂️ **Clean Project Structure** | Chapters, outlines, and manuscripts organized from day one |
+
+---
+
+## 🚀 Installation
 
 ```bash
 npx skills add kshanxs/book-writer-skill
 ```
 
-## Usage
+---
 
-Trigger phrases that activate this skill:
+## 💬 Usage
 
-- `"Start a new book project"` / `"initialize memory bank"`
-- `"Write chapter 1"` / `"outline the next chapter"`
-- `"Update memory bank"`
-- `"Check for consistency issues"`
+Just talk to your AI assistant naturally. Trigger phrases include:
 
-## What's Inside
+```
+"Start a new book project"
+"Initialize the memory bank"
+"Write chapter 3"
+"Outline the next chapter"
+"Update memory bank"
+"Check for consistency issues"
+```
+
+---
+
+## 📁 Project Structure
+
+Once initialized, your book project will look like this:
+
+```
+YourBookProject/
+│
+├── Chapters/                    # Your actual chapter files
+│   └── Chapter01.md
+│
+├── Outlines/                    # Planning documents
+│   ├── Master_Outline.md
+│   └── Chapter_Outlines/
+│
+├── Manuscript/                  # Final assembled output
+│
+└── book-memory-bank/            # Auto-maintained by the AI
+    ├── Core/
+    │   ├── projectbrief.md      # High-level concept & goals
+    │   ├── story_structure.md   # Narrative patterns & themes
+    │   ├── world_and_characters.md
+    │   ├── activeContext.md     # Current session focus
+    │   └── progress.md          # Completion tracking
+    └── Style/
+        └── style_guide.md
+```
+
+---
+
+## 🔍 What's Inside the Skill
 
 ```
 book-writer/
 ├── SKILL.md                        # Core skill instructions
 ├── references/
-│   ├── author_rules.md             # Writing persona & style guide
-│   ├── book_memory_protocol.md     # Memory bank update rules
-│   └── memory_update_prompts.md    # Prompts for memory updates
+│   ├── author_rules.md             # Writing persona & quality standards
+│   ├── book_memory_protocol.md     # Memory bank update rules & checklist
+│   └── memory_update_prompts.md    # Ready-to-use update prompts
 └── assets/
     └── book-memory-bank/           # Template directory (copied to your project)
-        ├── Core/                   # projectbrief, story_structure, characters, etc.
-        ├── Style/                  # style_guide.md
-        └── Production/             # Scripts for manuscript generation
 ```
 
-## Memory Bank Structure
+---
 
-The memory bank is automatically copied to your project on initialization and kept up to date after every chapter:
+## 📄 License
 
-```
-YourBookProject/
-├── Chapters/          # Your actual chapter files
-├── Outlines/          # Master outline + chapter outlines
-├── Manuscript/        # Assembled output
-└── book-memory-bank/  # Context files (auto-maintained by the AI)
-    ├── Core/
-    └── Style/
-```
-
-## License
-
-MIT
+MIT © [Shubhanshu](https://github.com/kshanxs)
