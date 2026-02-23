@@ -5,7 +5,8 @@
 $scriptDir = $PSScriptRoot
 $projectRoot = (Get-Item $scriptDir).Parent.Parent.Parent.FullName
 $chaptersDir = Join-Path -Path $projectRoot -ChildPath "Chapters"  # Path to directory containing chapter files
-$outputFile = Join-Path -Path $projectRoot -ChildPath "Complete_Manuscript.md"  # Path for output file
+$manuscriptDir = Join-Path -Path $projectRoot -ChildPath "Manuscript"
+$outputFile = Join-Path -Path $manuscriptDir -ChildPath "COMBINED.md"  # Path for output file
 $frontMatterFile = Join-Path -Path $projectRoot -ChildPath "Front_Matter.md"  # Optional front matter file (title page, etc.)
 $backMatterFile = Join-Path -Path $projectRoot -ChildPath "Back_Matter.md"  # Optional back matter file (about author, etc.)
 $chapterPrefix = "Chapter"  # Filename prefix for chapter files
@@ -25,6 +26,12 @@ function Create-CompleteManuscript {
     if (-not (Test-Path $chaptersDir)) {
         Write-Log "Error: Chapters directory not found at $chaptersDir" "Red"
         exit 1
+    }
+
+    # Create Manuscript directory if it doesn't exist
+    if (-not (Test-Path $manuscriptDir)) {
+        Write-Log "Creating Manuscript directory at $manuscriptDir" "Cyan"
+        New-Item -ItemType Directory -Force -Path $manuscriptDir | Out-Null
     }
 
     # Get all chapter files and sort them numerically

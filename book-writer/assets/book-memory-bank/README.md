@@ -70,7 +70,6 @@ YourBookProject/              # Root project directory
 │       └── Chapter01_Outline.md
 |── AI Generation/             # ACTUAL AI Generation
 │   ├── cover_prompts.md       # ACTUAL cover prompts   
-├── Manuscript/                # Generated output files
 └── book-memory-bank/          # Memory bank files (context only)
     ├── README.md              # Memory bank documentation (this file)   
     |── system_prompt.md       # Suggested system prompt - in Cline, go to Settings and paste the content of that into "Custom Prompt" 
@@ -99,8 +98,10 @@ YourBookProject/              # Root project directory
         │
         │
         └── Scripts/            # Automation tools
-            ├── combine_chapters.ps1 # Merge chapters into one document            
-            ├── generate_docx.bat # Create Word document
+            ├── combine_chapters.ps1 # Merge chapters into one document (Windows)
+            ├── combine_chapters.sh  # Merge chapters into one document (Mac/Linux)
+            ├── generate_docx.bat    # Create Word document (Windows)
+            ├── generate_docx.sh     # Create Word document (Mac/Linux)
             └── prepare_word_template.ps1 # Setup Word formatting
 ```
 
@@ -112,7 +113,6 @@ YourBookProject/              # Root project directory
 2. **Book Content** (project root): The actual manuscript and planning documents
    - Chapters/ - Your actual chapter content
    - Outlines/ - Your actual planning documents
-   - Manuscript/ - Complete book files
 
 ## Core Files
 
@@ -211,8 +211,8 @@ The system supports three primary workflows:
 4. Continue with the next chapter based on the updated memory bank
 
 ### Publishing Preparation Workflow
-1. Run Production/Scripts/combine_chapters.ps1 to assemble the complete book
-2. Use Production/Scripts/generate_docx.bat to create a properly formatted Word document
+1. Run `Production/Scripts/combine_chapters.ps1` (Windows) or `.sh` (Mac/Linux) to assemble the complete book. This will create a `Manuscript/` directory with `COMBINED.md`.
+2. Use `Production/Scripts/generate_docx.bat` (Windows) or `.sh` (Mac/Linux) to create a properly formatted Word document
 
 ## Example Usage
 

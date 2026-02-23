@@ -28,7 +28,13 @@ When the user asks to outline or write chapters:
 3. Write outlines in the `Outlines/Chapter_Outlines/` directory.
 4. Write chapters in the `Chapters/` directory.
 
-### 3. Memory Updating Protocol (CRITICAL)
+### 3. Compilation
+If the user asks YOU (the AI) to compile or combine the book (rather than running the included scripts themselves):
+1. Determine the user's OS. If Mac/Linux, attempt to run the provided bash script `book-memory-bank/Production/Scripts/combine_chapters.sh`. If Windows, run `combine_chapters.ps1`.
+2. If the script fails or is unavailable, create the `Manuscript/` directory in the project root if it does not already exist.
+3. Read all files from `Chapters/` in numerical order, combine them into a single file, and save it inside the `Manuscript/` folder (e.g., `Manuscript/Complete_Manuscript.md`).
+
+### 4. Memory Updating Protocol (CRITICAL)
 Maintaining the Book Memory Bank is essential for consistency. You must seamlessly and *automatically* update the memory bank whenever substantive writing is done. No scripts or manual user steps should be required.
 1. Consult `references/book_memory_protocol.md` for the strict rules on how and when to update the memory bank files.
 2. Consult `references/memory_update_prompts.md` for specific criteria on what changes should trigger file modifications (e.g., character traits, plot developments, world-building).

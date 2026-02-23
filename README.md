@@ -22,7 +22,7 @@
 | 🗂️ **Clean Project Structure** | Chapters, outlines, and manuscripts organized from day one |
 | 📚 **The Story Forge** | Guided onboarding — one question at a time, everything skippable |
 | 📜 **Auto GitHub README** | Generates a polished project README on initialization, public or private |
-| 🏛️ **Historical Accuracy Mode** | Verified dates, titles, and events for historical genres |
+| 🏛️ **Historical Authenticity** | Verified dates, titles, and events for historical genres |
 | 🔖 **Title-Timeline Rule** | Figures only addressed by titles they've actually earned at that point in the story |
 | 📄 **Draft Import** | Paste or link existing notes — AI skips questions already answered |
 | 🎭 **15 Genre Options** | Literary, Fantasy, Sci-Fi, Historical, Thriller, Horror, Romance, and more |
@@ -60,9 +60,9 @@ The AI guides you through setup one question at a time. Every question is skippa
 
 ---
 
-## 🏛️ Historical Mode
+## 🏛️ Historical Genres
 
-Activates automatically when you choose a historical genre or mention real figures. The AI:
+Applies automatically when you choose a historical genre or mention real figures. The AI:
 
 - Keeps all dates, battles, titles, and biographical facts historically correct
 - Only addresses figures by titles they've earned at the scene's point in time (*Shivaji* before 1674 → *Chhatrapati Shivaji Maharaj* after coronation)
@@ -85,8 +85,7 @@ YourBookProject/
 │   ├── Master_Outline.md
 │   └── Chapter_Outlines/
 │
-├── Manuscript/                  # Final assembled output
-│
+
 └── book-memory-bank/            # Auto-maintained by the AI
     ├── Core/
     │   ├── projectbrief.md      # High-level concept & goals
@@ -111,7 +110,7 @@ book-writer/
 │   ├── author_rules.md          # Writing persona, quality standards & historical rules
 │   ├── book_memory_protocol.md  # Memory bank update rules & checklist
 │   ├── memory_update_prompts.md # Ready-to-use update prompts
-│   ├── story_forge.md           # The Story Forge — onboarding (15 genres, historical mode)
+│   ├── story_forge.md           # The Story Forge — onboarding (15 genres)
 │   └── readme_template.md       # Template for auto-generating project README
 └── assets/
     └── book-memory-bank/        # Template directory copied to your project on init
@@ -129,7 +128,7 @@ book-writer/
 | `"Outline chapter 3"` | Creates the chapter outline |
 | `"Update memory bank"` | Full audit and update after a writing session |
 | `"Check for consistency"` | Flags contradictions across memory bank |
-| `"[FICTION] ..."` | Marks an invented element in historical mode |
+| `"[FICTION] ..."` | Marks an invented element in historical genres |
 
 ---
 

@@ -18,8 +18,9 @@ echo Starting process...
 echo.
 
 echo Step 1: Cleaning up old files...
-if exist "%~dp0..\..\..\Complete_Manuscript.md" del "%~dp0..\..\..\Complete_Manuscript.md"
-if exist "%~dp0..\..\..\Complete_Manuscript.docx" del "%~dp0..\..\..\Complete_Manuscript.docx"
+if not exist "%~dp0..\..\..\Manuscript" mkdir "%~dp0..\..\..\Manuscript"
+if exist "%~dp0..\..\..\Manuscript\COMBINED.md" del "%~dp0..\..\..\Manuscript\COMBINED.md"
+if exist "%~dp0..\..\..\Manuscript\BOOK.docx" del "%~dp0..\..\..\Manuscript\BOOK.docx"
 if exist "%~dp0\reference.docx" del "%~dp0\reference.docx"
 echo Cleanup complete.
 echo.
@@ -53,9 +54,9 @@ if %ERRORLEVEL% NEQ 0 (
     exit /b 1
 )
 echo Pandoc found. Converting markdown to DOCX...
-pandoc -s "%~dp0..\..\..\Complete_Manuscript.md" -o "%~dp0..\..\..\Complete_Manuscript.docx" --from markdown --to docx --reference-doc="%~dp0\reference.docx"
+pandoc -s "%~dp0..\..\..\Manuscript\COMBINED.md" -o "%~dp0..\..\..\Manuscript\BOOK.docx" --from markdown --to docx --reference-doc="%~dp0\reference.docx"
 if %ERRORLEVEL% NEQ 0 (
-    echo Error converting to DOCX. Please check if Complete_Manuscript.md exists.
+    echo Error converting to DOCX. Please check if Manuscript\COMBINED.md exists.
     pause
     exit /b 1
 )
@@ -63,7 +64,7 @@ echo Conversion to DOCX completed successfully.
 echo.
 
 echo Step 5: Opening DOCX file in Microsoft Word...
-start "" "%~dp0..\..\..\Complete_Manuscript.docx"
+start "" "%~dp0..\..\..\Manuscript\BOOK.docx"
 if %ERRORLEVEL% NEQ 0 (
     echo Error opening DOCX file. Please open it manually.
 )

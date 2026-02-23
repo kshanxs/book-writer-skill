@@ -112,7 +112,7 @@ FICTION
 Accept any answer — a number, a genre name, a mix (e.g., "historical fantasy"), or a free description.
 
 **If the user picks 2, 3, 11, or mentions real historical figures/events, or describes a real era:**
-→ Activate **Historical Accuracy Mode** (see section below).
+→ Apply **Historical Genre Features** (see section below).
 
 **If the user picks a genre with subgenres (4–8) and hasn't specified one:**
 → Ask ONE follow-up: *"Any particular subgenre — [list the subgenres for that number]? Or just say 'general' to keep it broad."*
@@ -177,7 +177,7 @@ Here's what we've got so far:
 Title: [title or TBD]
 Author: [name or TBD]
 Genre: [genre]
-Historical Mode: [Yes / No]
+
 Premise: [one line or TBD]
 Protagonist: [name/description or TBD]
 Setting: [or TBD]
@@ -192,9 +192,9 @@ On approval → run Workflow 1 initialization (copy memory bank, fill Core files
 
 ---
 
-## Historical Accuracy Mode
+## Historical Genre Features
 
-**Activated when:** genre is historical, narrative history, biographical, or historical fantasy — OR the user mentions real historical figures or events.
+**Applies when:** genre is historical, narrative history, biographical, or historical fantasy — OR the user mentions real historical figures or events.
 
 ### Rules
 - All dates, names, battle outcomes, and biographical facts default to historically recorded values.

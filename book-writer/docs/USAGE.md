@@ -48,7 +48,7 @@ What genre best fits your book?
 
 **You:** *"2 — Historical Fiction."*
 
-**AI:** *"Historical Accuracy Mode is now on. All dates, titles, and events default to the historical record. You can mark invented elements with `[FICTION]` anytime. What's the story about?"*
+**AI:** *"Historical genre features are now active. All dates, titles, and events default to the historical record. You can mark invented elements with `[FICTION]` anytime. What's the story about?"*
 
 **You:** *"The rise of the Maratha Empire — seen through the eyes of Bajirao I."*
 
@@ -71,7 +71,7 @@ Here's your project brief:
 Title:    (working title TBD)
 Author:   Shubhanshu
 Genre:    Historical Fiction
-Mode:     Historical Accuracy ON
+
 Premise:  Rise of the Maratha Empire through Bajirao I
 Lead:     Bajirao — appointed Peshwa at 19, tactical genius
 Language: Marathi (dialogue)
@@ -137,9 +137,9 @@ After initialization, develop any character through conversation:
 
 ---
 
-## Historical Accuracy Mode
+## Historical Genre Features
 
-Activates automatically when your genre is historical or you mention real figures.
+Applies automatically when your genre is historical or you mention real figures.
 
 - All dates, battles, titles, and facts default to what history records
 - The AI flags uncertain or disputed facts and asks how you'd like to handle them
@@ -276,10 +276,11 @@ A `README.md` is generated in your project root on initialization — title, bad
 | `"Just initialize now"` | Skips all questions, starts immediately |
 | `"Here's my outline: ./path"` | Draft import — AI extracts and skips answered questions |
 | `"Let's build out [character]"` | Character brainstorming conversation |
-| `"[FICTION] ..."` | Mark an invented element in historical mode |
+| `"[FICTION] ..."` | Mark an invented element in historical genres |
 | `"Write chapter [N]"` | Writes the chapter |
 | `"Outline chapter [N]"` | Writes the chapter outline |
 | `"Write the master outline"` | Creates `Outlines/Master_Outline.md` |
+| `"Compile the book"` | AI merges all chapters and saves to `Manuscript/` |
 | `"Update memory bank"` | Full audit and update of all memory files |
 | `"Check for consistency"` | Flags contradictions across memory bank |
 | `"What chapter are we on?"` | AI reports current progress |

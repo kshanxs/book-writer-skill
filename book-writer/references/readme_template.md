@@ -39,7 +39,7 @@ This template is used by the AI to generate a `README.md` in the user's book pro
 
 **{{BOOK_TITLE}}** {{PREMISE_PARAGRAPH}}
 
-<!-- If historical mode is active, add this block: -->
+<!-- If writing in a historical genre, add this block: -->
 <!-- > *This is a work of narrative history. All dates, events, and biographical facts are grounded in historical record. Fictional elements, where present, are clearly marked.* -->
 
 > *"{{OPENING_QUOTE}}"*
@@ -106,7 +106,7 @@ Remove this section if no key events were defined -->
 
 <!-- If a style reference was given:
 The prose aims for the register of **{{STYLE_REFERENCE}}** — {{STYLE_DESCRIPTION}}.
-If historical mode: Historical claims are hedged where evidence is uncertain. [FICTION] elements are marked in the memory bank. -->
+If historical genre: Historical claims are hedged where evidence is uncertain. [FICTION] elements are marked in the memory bank. -->
 
 ---
 
@@ -170,7 +170,7 @@ This book is actively being written. The repository serves as the living manuscr
 | `{{PROJECT_ROOT_NAME}}` | Name of the project directory |
 | `{{FIGURES_TABLE_ROWS}}` | Gate Step 5 characters; include life dates if historical |
 | `{{KEY_EVENTS_LIST}}` | Historical events or plot beats from gate/draft |
-| `{{WRITING_APPROACH_PARAGRAPH}}` | Gate Step 6 style reference + historical mode note |
+| `{{WRITING_APPROACH_PARAGRAPH}}` | Gate Step 6 style reference + historical genre note |
 | `{{PROGRESS_TABLE_ROWS}}` | One row per chapter, all start as ❌ Not yet written |
 | `{{SOURCES_SECTION}}` | Gate Step 1 draft sources or user-mentioned sources |
 | `{{START_DATE}}` | Current month + year at time of initialization |
