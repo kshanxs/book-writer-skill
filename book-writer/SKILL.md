@@ -5,12 +5,13 @@ description: |
   - Writing books, novels, fiction, non-fiction, or any long-form manuscript
   - Creating characters, outlining chapters, building worlds
   - Drafting, reviewing, or revising chapters
+  - Writing children's books, picture books, rhyming stories, or songs for ages 2–9
   - "initialize memory bank", "update memory bank", "start a new book", "let's start building"
-  - Planning book structure (MVB, short book, full book, literary novel)
+  - Planning book structure (MVB, short book, full book, literary novel, picture book)
   - Checking continuity or consistency across chapters
   - Any request involving book chapters, manuscripts, or story development
 
-  Provides specialized guidelines to write like a master author while maintaining an automated book memory bank to preserve context across sessions.
+  Provides specialized guidelines to write like a master author while maintaining an automated book memory bank to preserve context across sessions. Includes children's book writing, parallel chapter workflows, and multi-genre support.
 ---
 
 # Book Writer
@@ -38,6 +39,10 @@ This skill combines capabilities from multiple specialized writing disciplines:
 - **Anti-AI Writing Rules** — Hype test, voice authenticity checks, DO/DON'T quick-scan lists
 - **Continuity Diagnostics** — Cross-chapter consistency checks generating question-based diagnostic reports
 - **Automated Memory Updates** — Triggered after chapter completion, outline creation, or on-demand
+- **Chapter Titles Guide** — Auto-generated `chapter-titles-guide.md` mapping every chapter title to its meaning and story connection. Adapts to flat chapters, multi-part books, and multi-book projects
+- **Parallel Chapter Workflows** — Draft and review multiple chapters simultaneously via background agents, with sequential fallback
+- **Children's Book Craft** — Age-based writing guidelines (2–9), rhyming/meter techniques, illustration notes, phonics/vocabulary, values framework, and children's revision checklist
+- **Project Completion Summary** — Final verification checklist of all created files and next steps
 - **Compilation** — Combine all chapters into a single manuscript file via scripts or AI
 - **README Generation** — Auto-generated project README with progress tracking and badges
 
@@ -59,8 +64,11 @@ When the user asks to outline or write chapters:
 1. Always start by reading ALL memory bank files (`book-memory-bank/Core/`, `book-memory-bank/Style/`, and any existing master outline) to regain context.
 2. Adopt the instructions in `references/author_rules.md` for generating high-quality narrative prose, realistic dialogue, and engaging scenes.
 3. Consult `references/chapter_craft.md` for chapter structure templates, opening/closing formulas, and engagement techniques appropriate to the book type.
-4. Write outlines in the `Outlines/Chapter_Outlines/` directory.
-5. Write chapters in the `Chapters/` directory.
+4. **For children's books (ages 2–9):** Also consult `references/childrens_book_craft.md` for age-appropriate vocabulary, rhyming/meter, illustration notes, and educational integration.
+5. Write outlines in the `Outlines/Chapter_Outlines/` directory.
+6. **After all chapter outlines are created**, auto-generate a `chapter-titles-guide.md` inside the `Outlines/` directory (see [Chapter Titles Guide](#chapter-titles-guide) below).
+7. Write chapters in the `Chapters/` directory.
+8. **For multi-chapter drafting**, consult `references/parallel_workflows.md` and offer parallel (background agents) or sequential drafting.
 
 ### 3. Compilation
 If the user asks YOU (the AI) to compile or combine the book (rather than running the included scripts themselves):
@@ -90,6 +98,127 @@ When the user asks to "check continuity", "run continuity check", or "check for 
 3. Generate a diagnostic report saved to `Research/continuity_diagnostic_report.md`.
 4. Use question-based language — flag issues, don't impose fixes.
 
+### 7. Parallel Chapter Drafting & Review
+When multiple chapters need drafting or reviewing:
+1. Consult `references/parallel_workflows.md` for the full workflow.
+2. **Drafting:** Draft Chapter 1 manually for approval, then offer parallel (background agents) or sequential for remaining chapters.
+3. **Review:** After all chapters are drafted, offer parallel or sequential review.
+4. Always ask the user which approach they prefer before launching.
+
+### 8. Complete & Present
+After all chapters are drafted, reviewed, and continuity-checked:
+1. Present a final verification summary listing all created files:
+   - Foundation files (Characters, Worldbuilding, Synopsis, Timeline, Conflict, Style)
+   - Chapter outlines and chapter titles guide
+   - Drafted and reviewed chapters
+   - Continuity diagnostic report
+2. Suggest next steps (address continuity issues, refine chapters, compile manuscript).
+3. Offer ongoing help: revise chapters, brainstorm scenes, refine arcs.
+
+## Chapter Titles Guide
+
+**After chapter outlines are finalized, auto-generate a `chapter-titles-guide.md` inside the `Outlines/` directory.**
+
+This file maps every chapter's title to its deeper meaning and story connection — a quick-reference for the author to see how titles work as a cohesive system across the book. No separate user approval is needed.
+
+**Template:** Use `assets/book-memory-bank/Core/Templates/chapter_titles_guide_template.md` as the base. Pick the structure that matches the project (flat chapters, parts, or multi-book) and fill all `{{TOKENS}}`.
+
+### Dynamic Structure Rules
+
+The guide adapts its layout based on the project's structure:
+
+**1. Single book, no parts (flat chapters):**
+```markdown
+# [Book Title] — Chapter Titles: Meaning & Story Connection
+
+| # | Title | Meaning | Story Connection |
+|---|-------|---------|-----------------|
+| **1** | *[Title]* | [Why this title — symbolism, wordplay, dual meanings] | [What happens, key turning points, how title connects to events] |
+| **2** | *[Title]* | ... | ... |
+[...all chapters]
+
+---
+
+## Title Pattern
+[1-3 sentences analyzing how the titles evolve thematically across the book.]
+```
+
+**2. Single book with parts:**
+```markdown
+# [Book Title] — Chapter Titles: Meaning & Story Connection
+
+---
+
+## PART I: [PART NAME] ([time period or theme])
+
+| # | Title | Meaning | Story Connection |
+|---|-------|---------|-----------------|
+| **Prologue** | *[Title]* | ... | ... |
+| **1** | *[Title]* | ... | ... |
+[...chapters in this part]
+
+---
+
+## PART II: [PART NAME] ([time period or theme])
+
+| # | Title | Meaning | Story Connection |
+|---|-------|---------|-----------------|
+| **N** | *[Title]* | ... | ... |
+[...chapters in this part]
+
+---
+
+[...repeat for all parts]
+
+---
+
+## Title Pattern
+[Analysis of how titles shift across parts — e.g. "Part I titles are grounded and concrete; Part III titles are transcendent, mirroring the book's progression."]
+```
+
+**3. Multi-book project:**
+```markdown
+# [Series/Project Name] — Chapter Titles Guide
+
+---
+
+## Book 1: [Book Title]
+
+### PART I: [PART NAME]
+
+| # | Title | Meaning | Story Connection |
+|---|-------|---------|-----------------|
+[...chapters]
+
+### PART II: [PART NAME]
+[...]
+
+#### Title Pattern (Book 1)
+[Pattern analysis for this book]
+
+---
+
+## Book 2: [Book Title]
+[...same structure]
+
+#### Title Pattern (Book 2)
+[Pattern analysis for this book]
+
+---
+
+## Series Title Pattern
+[Cross-book analysis — how titling conventions evolve or contrast across books.]
+```
+
+### Column Guidelines
+
+| Column | What to write |
+|--------|---------------|
+| **#** | Chapter number (bold), or **Prologue** / **Epilogue** / **Interlude** |
+| **Title** | Chapter title in *italics*, or *(Untitled)* if unnamed |
+| **Meaning** | The layered meaning behind the title — symbolism, dual meanings, wordplay, cultural references. Explain ALL layers. |
+| **Story Connection** | What actually happens in this chapter and how the title ties to events, character arcs, and turning points. Be specific. |
+
 ## References
 This skill relies on the following reference documents to guide the AI's behavior:
 - `references/author_rules.md`: Provides the artistic identity, style guidelines, and quality standards for fiction writing. Includes dialogue language handling, historical title/honorific rules, and contextual address rules.
@@ -100,4 +229,6 @@ This skill relies on the following reference documents to guide the AI's behavio
 - `references/chapter_craft.md`: Chapter-level writing techniques — opening/closing formulas, book size options, chapter structure templates, reader engagement techniques, drafting best practices.
 - `references/revision_checklist.md`: Comprehensive quality checklist for chapters — story, prose, voice, characters, continuity, engagement, historical accuracy checks, and DO/DON'T quick-scan list.
 - `references/character_worldbuilding_tables.md`: Structured table templates for character profiles (19 fields), worldbuilding (10 categories), conflict mapping, synopsis structure, and timeline tracking.
+- `references/childrens_book_craft.md`: **Children's Book Craft** — age-based writing guidelines (2–9), rhyming/meter techniques, illustration notes, phonics/vocabulary, educational integration, values framework, and children's revision checklist.
+- `references/parallel_workflows.md`: **Parallel Workflows** — simultaneous chapter drafting and review via background agents. Includes task templates, sequential fallbacks, and design principles.
 - `docs/USAGE.md`: Human-readable guide with real example dialogues for every stage of using this skill.
