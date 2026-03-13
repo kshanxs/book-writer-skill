@@ -2,7 +2,7 @@
 
 # ✦ book-writer — Features & Reference ✦
 
-**v1.5** · *Complete feature list, command reference, and skill architecture*
+**v1.6** · *Complete feature list, command reference, and skill architecture*
 
 </div>
 
@@ -199,6 +199,12 @@ book-writer/
 ---
 
 ## 📝 Changelog
+
+### v1.6
+- ✦ **Advanced Prompt Instructions** — Strict Grammar & Punctuation rules (Em dashes, semicolons, Oxford commas).
+- ✦ **Number Formatting Rules** — Clear distinction between prose vs data numbers.
+- ✦ **Enhanced Voice & Tone Rules** — Strict POV shifts and implicit internal monologue rules.
+- ✦ **Spinoff Architecture** — Rules for maintaining canon consistency for spinoffs.
 
 ### v1.5
 - ✦ **Children's Book Craft** — Age-based writing, rhyming/meter, illustration notes, phonics, values framework

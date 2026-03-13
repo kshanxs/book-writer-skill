@@ -10,7 +10,7 @@
 
 <br>
 
-[![Version](https://img.shields.io/badge/version-1.5-8957e5?style=for-the-badge&labelColor=161b22)](./book-writer/docs/FEATURES.md)
+[![Version](https://img.shields.io/badge/version-1.6-8957e5?style=for-the-badge&labelColor=161b22)](./book-writer/docs/FEATURES.md)
 [![Install](https://img.shields.io/badge/⚡_Install-npx_skills_add-0d1117?style=for-the-badge&labelColor=161b22)](https://github.com/kshanxs/book-writer-skill)
 [![License](https://img.shields.io/badge/License-MIT-2ea043?style=for-the-badge&labelColor=161b22)](./LICENSE)
 [![Docs](https://img.shields.io/badge/Docs-USAGE.md-f78166?style=for-the-badge&labelColor=161b22)](./book-writer/docs/USAGE.md)

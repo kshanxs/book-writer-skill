@@ -35,13 +35,15 @@ This skill combines capabilities from multiple specialized writing disciplines:
 - **Synopsis & Timeline Templates** — Beginning/middle/end narrative beats; chronological event tracking
 - **Chapter Craft** — Opening/closing formulas, structure templates, engagement techniques for fiction and non-fiction
 - **Book Size Planning** — MVB (15–20K words), Short (25–40K), Full (50–80K), Literary Novel (60–100K)
-- **Revision Checklists** — Comprehensive quality gates: story, prose, voice, characters, continuity, engagement
+- **Revision Checklists** — Comprehensive quality gates: story, prose, voice, punctuation, characters, continuity, engagement
+- **Punctuation Standards** — Mark-by-mark rules for em dashes, commas, periods, colons, semicolons, ellipses, and exclamation points; quick-reference table and per-chapter review checklist
 - **Anti-AI Writing Rules** — Hype test, voice authenticity checks, DO/DON'T quick-scan lists
 - **Continuity Diagnostics** — Cross-chapter consistency checks generating question-based diagnostic reports
 - **Automated Memory Updates** — Triggered after chapter completion, outline creation, or on-demand
 - **Chapter Titles Guide** — Auto-generated `chapter-titles-guide.md` mapping every chapter title to its meaning and story connection. Adapts to flat chapters, multi-part books, and multi-book projects
 - **Parallel Chapter Workflows** — Draft and review multiple chapters simultaneously via background agents, with sequential fallback
 - **Children's Book Craft** — Age-based writing guidelines (2–9), rhyming/meter techniques, illustration notes, phonics/vocabulary, values framework, and children's revision checklist
+- **Spinoff Support** — Start a new story in the same world or with shared characters; Spinoff Forge onboarding, inheritance model, directory convention, shared canon rules, and cross-reference protocol
 - **Project Completion Summary** — Final verification checklist of all created files and next steps
 - **Compilation** — Combine all chapters into a single manuscript file via scripts or AI
 - **README Generation** — Auto-generated project README with progress tracking and badges
@@ -86,10 +88,11 @@ Maintaining the Book Memory Bank is essential for consistency. You must seamless
 When the user asks to review, revise, or polish a chapter:
 1. Read the chapter draft, its outline, adjacent chapters (for continuity), and all context files (Style, Characters, Worldbuilding).
 2. Consult `references/revision_checklist.md` for the quality gates and review focus areas.
-3. Review in this order: Language → Emotion → Dialogue → Pacing → Continuity.
-4. Apply revision principles: preserve voice above all, revise gently, clarify emotion without explaining, respect ambiguity.
-5. **Never** introduce new scenes, events, or characters during review. **Never** resolve conflicts the author left open intentionally.
-6. Save revised version and announce changes.
+3. Consult `references/punctuation_guide.md` and run the punctuation checklist against the draft.
+4. Review in this order: Language → Emotion → Dialogue → Pacing → Punctuation → Continuity.
+5. Apply revision principles: preserve voice above all, revise gently, clarify emotion without explaining, respect ambiguity.
+6. **Never** introduce new scenes, events, or characters during review. **Never** resolve conflicts the author left open intentionally.
+7. Save revised version and announce changes.
 
 ### 6. Continuity Check
 When the user asks to "check continuity", "run continuity check", or "check for consistency":
@@ -114,6 +117,17 @@ After all chapters are drafted, reviewed, and continuity-checked:
    - Continuity diagnostic report
 2. Suggest next steps (address continuity issues, refine chapters, compile manuscript).
 3. Offer ongoing help: revise chapters, brainstorm scenes, refine arcs.
+
+### 9. Starting a Spinoff
+When the user mentions "spinoff", "companion book", "same world, different story", "side story", or asks to write a story about a secondary character from an existing project:
+1. **Read `references/spinoff_guide.md` in full** before doing anything else.
+2. Run the **Spinoff Forge** — the lightweight onboarding conversation defined in that file. Ask one question at a time; everything is skippable.
+3. After approval, **initialize the spinoff directory structure** inside the parent project root:
+   - Create `<spinoff-name>/book-memory-bank/` with Core and Style subdirectories
+   - Fork or create memory bank files per the Inheritance Model in `references/spinoff_guide.md`
+   - Copy shared characters and world sections from the parent's `world_and_characters.md`, marked with `[FROM: ParentTitle]`
+4. At the start of every subsequent spinoff session, read the spinoff's memory bank **and** the parent's `world_and_characters.md`.
+5. After every spinoff chapter, run the **Cross-Reference Protocol** to flag potential canon conflicts before saving.
 
 ## Chapter Titles Guide
 
@@ -231,4 +245,6 @@ This skill relies on the following reference documents to guide the AI's behavio
 - `references/character_worldbuilding_tables.md`: Structured table templates for character profiles (19 fields), worldbuilding (10 categories), conflict mapping, synopsis structure, and timeline tracking.
 - `references/childrens_book_craft.md`: **Children's Book Craft** — age-based writing guidelines (2–9), rhyming/meter techniques, illustration notes, phonics/vocabulary, educational integration, values framework, and children's revision checklist.
 - `references/parallel_workflows.md`: **Parallel Workflows** — simultaneous chapter drafting and review via background agents. Includes task templates, sequential fallbacks, and design principles.
+- `references/punctuation_guide.md`: **Punctuation Guide** — mark-by-mark rules for every punctuation mark used in novel writing (em dash, comma, period, colon, semicolon, ellipsis, exclamation point), with usage examples, a quick-reference table, and a per-chapter review checklist.
+- `references/spinoff_guide.md`: **Spinoff Guide** — definitions (spinoff vs. sequel vs. companion), the Spinoff Forge onboarding conversation, directory convention, inheritance model (shared/forked/fresh files), shared canon rules, and cross-reference protocol for keeping parent and spinoff consistent.
 - `docs/USAGE.md`: Human-readable guide with real example dialogues for every stage of using this skill.

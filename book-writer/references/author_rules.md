@@ -18,17 +18,54 @@ You may be asked to write in specific styles (e.g., like Neil Gaiman, Jane Auste
 
 Always strive to produce publishable-quality fiction.
 
-## Dialogue Language & Authenticity
+## 1. Grammar & Punctuation Rules
 
-If the project uses a specific Dialogue Language (e.g., Hinglish, Hindi, Marathi, French, Spanish):
-- The narrative prose, internal monologue, and scene descriptions must remain in the primary language (English).
-- The chosen local language should be woven into character dialogue *when contextually appropriate* (e.g., for cultural authenticity, specific characters, emotional moments, or local flavor). It does not need to be the only language used in dialogue.
-- Provide subtle context clues or natural English narrative framing around the dialogue so the reader infers the meaning without needing direct translations in brackets, unless stylistically requested.
+Punctuation must serve readability and rhythm — it should feel invisible to the reader. Apply these rules during every draft and revision:
+
+- **Em dashes (—)**: Use em dashes sparingly and strictly for instances of dialogue interruption, sharp thought shifts, or strong dramatic emphasis. For all other pauses or structural connections, replace unnecessary em dashes with appropriate punctuation (commas, colons, semicolons) for improved clarity, rhythm, and professionalism.
+- **Semicolons (;)**: Use semicolons sparingly—only for elegant compound sentences where the ideas are inextricably linked. Do not use them as a crutch.
+- **Ellipses (…)**: Use ellipses only for genuine trailing off in speech or thought.
+- **Commas (,)**: Always use the Oxford comma.
+
+**The core rule:** Let strong writing speak for itself. Prefer clear sentence construction and varied sentence length over heavy punctuation.
+
+## 2. Number Formatting
+
+**Core Rule: Prose uses words; Data uses numerals.**
+
+- **Narrative Prose:** Spell out counts, durations, distances, and heights (e.g., three strides, forty seconds, thirty metres).
+- **Technical/AI Readouts:** Use numerals for distance, height, altitude, speed, and health status in AI context (e.g., 22,000 metres, Heart rate: 94).
+- **Temperatures:** Always use numerals with the unit (e.g., -12°C).
+- **Percentages & Years:** Always use numerals (e.g., 73%, 2721).
+- **Dialogue:** Spell out numbers under ten in non-data speech (e.g., "Give me two minutes."). For AI voices reporting data in dialogue, use numerals (e.g., "4 hostiles.").
+
+## 3. Voice, Tone & Perspective (Third-Person Limited)
+
+- **Narrative Voice:** Literary but cinematic. Keep it emotionally taut but never melodramatic.
+- **POV Shifts:** Strict third-person limited. Shift POV only between chapters or with a clean scene break (`---`). No head-hopping within a paragraph or scene.
+- **Internal Monologue:** Weave thoughts directly into the narrative prose. Do NOT italicize internal monologue; the reader should feel the character's mind seamlessly.
+- **Action vs. Emotion:** In action scenes, use short, visceral sentences that focus on physical instinct. In emotional scenes, show restraint—let silence, subtext, and small gestures carry the weight. What characters don't say matters more.
+
+## 4. General Formatting
+
+- **Scene Breaks:** Use exactly three dashes (`---`) centered on their own line. (Do not use `***`).
+- **Emphasis:** Use italics for foreign language phrases, inner emphasis, and specific names (e.g., ship/station names). Never use bold text in narrative prose.
+- **Special Text:** Format AI system messages or holographic readouts using monospace (or describe them narratively without special markdown).
+
+## 5. Multilingual Dialogue Formatting
+
+For cultural authenticity (e.g., Hinglish, Hindi, German, Sanskrit), weave local languages into dialogue naturally.
+
+- **Rule:** Do NOT use bracketed translations. Provide subtle context clues in the surrounding English narrative framing so the reader infers the meaning seamlessly.
 
 **Example (Hinglish):**
 > "Kya baat kar raha hai?" Rahul leaned forward, disbelief replacing the exhaustion in his eyes. "You're telling me this now?"
 
-## Historical Writing — Additional Rules
+## 6. Spinoff & Consistency Architecture
+
+**Spinoff Rules:** When writing a spinoff of a parent book, follow the inheritance model for memory files. Ensure canon consistency between the parent project and the spinoff by referencing the core world-building and character baselines before introducing divergent arcs.
+
+## 7. Historical Writing — Additional Rules
 
 When writing historical fiction, narrative history, or biographical work, observe these additional rules on top of the above:
 

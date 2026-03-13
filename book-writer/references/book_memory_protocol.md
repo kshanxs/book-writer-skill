@@ -284,3 +284,73 @@ Scope: Chapters [range checked]
 **After creating report:**
 > "Continuity check complete. Report saved to Research/continuity_diagnostic_report.md. Found [N] potential issues for your review. These are questions, not problems — you decide what needs addressing."
 
+---
+
+## Spinoff Memory Bank
+
+For spinoff projects, the memory bank lives inside the spinoff's own subdirectory (`<spinoff-name>/book-memory-bank/`). The parent's memory bank is **never modified directly** during a spinoff session — cross-updates require explicit author approval.
+
+### Spinoff Directory Layout
+
+```
+<project-root>/
+  book-memory-bank/                    ← parent (read-only in spinoff sessions)
+  <spinoff-name>/
+    book-memory-bank/
+      Core/
+        projectbrief.md                ← FRESH
+        story_structure.md             ← FRESH
+        world_and_characters.md        ← FORKED (inherited + new sections)
+        activeContext.md               ← FRESH
+        progress.md                    ← FRESH
+      Style/
+        style_guide.md                 ← FORKED or FRESH
+    Chapters/
+    Outlines/
+      Chapter_Outlines/
+      Master_Outline.md
+    Research/
+    Manuscript/
+```
+
+### Session Reading Protocol
+
+At the start of every spinoff session:
+1. Read ALL files in `<spinoff-name>/book-memory-bank/Core/`.
+2. Read the parent's `book-memory-bank/Core/world_and_characters.md` for shared characters and world facts.
+3. If a specific continuity question arises, read additional parent files as needed.
+
+### Inheritance Rules
+
+| File | Rule |
+|------|------|
+| `world_and_characters.md` | Forked — copy shared sections from parent, mark `[FROM: ParentTitle]`; add spinoff-only content below |
+| `style_guide.md` | Forked (copy parent) or Fresh (author's choice at initialization) |
+| `projectbrief.md` | Fresh — include a "Connected Projects" entry pointing to parent |
+| All other Core files | Fresh |
+
+### Cross-Update Protocol
+
+After every spinoff chapter:
+1. Check for **contradictions** with the parent's `world_and_characters.md`. If found, flag before saving:
+   > *"⚠️ Canon Alert: [Character/fact] in this chapter may conflict with the parent project. Review before finalizing."*
+2. Check if any spinoff event **adds new canon** (new world facts, character fates). If yes, note in the spinoff's `activeContext.md`:
+
+```markdown
+## Proposed Parent Canon Additions
+- [Spinoff Ch. X]: [What was established]. Suggest adding to parent's world_and_characters.md.
+```
+
+3. **Do not modify parent memory bank files** without explicit author approval.
+
+### Comprehensive Update Checklist (Spinoff)
+
+For every spinoff chapter or outline completion:
+- ☐ `<spinoff-name>/book-memory-bank/Core/projectbrief.md`
+- ☐ `<spinoff-name>/book-memory-bank/Core/story_structure.md`
+- ☐ `<spinoff-name>/book-memory-bank/Core/world_and_characters.md`
+- ☐ `<spinoff-name>/Outlines/Master_Outline.md`
+- ☐ `<spinoff-name>/book-memory-bank/Style/style_guide.md`
+- ☐ `<spinoff-name>/book-memory-bank/Core/activeContext.md` — ALWAYS updated
+- ☐ `<spinoff-name>/book-memory-bank/Core/progress.md`
+- ☐ Spinoff's `activeContext.md` **Proposed Parent Canon Additions** section

@@ -31,7 +31,23 @@ Run this gate ONLY when ONE of these triggers occurs AND the memory bank does no
 
 ## The Gate Flow
 
-### Step 0 — Fast-Track Check
+### Step 0a — Spinoff Check
+
+**Before anything else**, check if the user's request is a spinoff / companion book / same-world new story.
+
+Spinoff trigger phrases:
+- "spinoff" / "spin-off"
+- "companion book"
+- "same world, different story" / "same universe"
+- "story about [secondary character]"
+- "prequel" (if cast or premise differs substantially)
+- "side story"
+
+If **any** trigger is present → **Stop this gate. Read `references/spinoff_guide.md` in full and follow the Spinoff Forge instead.** Do not run any steps below.
+
+---
+
+### Step 0b — Fast-Track Check
 
 Before asking anything, check if the user's initial message already contains enough information to start. If yes, skip to Step 6 (summary).
 

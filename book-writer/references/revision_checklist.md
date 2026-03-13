@@ -33,6 +33,21 @@ Use this checklist after drafting a chapter (or set of chapters) to ensure quali
 - [ ] Emphasis is earned through careful development, not manufactured
 - [ ] Writing sounds like teaching/storytelling, not performing
 
+## Punctuation
+
+*(See `references/punctuation_guide.md` for the full rule set.)*
+
+- [ ] Em dashes (—) are used only for interruption, sharp thought shifts, or indispensable emphasis — not as general connectors
+- [ ] No more than 1–2 em dashes per page
+- [ ] Ellipses (…) appear only in dialogue or internal monologue during emotionally charged moments — not in narrative prose
+- [ ] Short, impactful sentences use periods, not ellipses, for dramatic effect
+- [ ] Commas are not overloaded — long comma chains are restructured into shorter sentences
+- [ ] Semicolons connect only two genuinely related independent clauses
+- [ ] Colons introduce something of weight: an explanation, a list, or a revelation
+- [ ] Exclamation points are rare; urgency is conveyed through verb choice and sentence rhythm
+- [ ] Punctuation overall feels invisible — it guides the reader without announcing itself
+
+
 ## Character Consistency
 
 - [ ] Characters behave consistently with established profiles
