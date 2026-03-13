@@ -12,6 +12,7 @@ Use this checklist after drafting a chapter (or set of chapters) to ensure quali
 - [ ] The chapter advances at least one of: plot, character arc, theme, or worldbuilding
 - [ ] Emotional resonance — the reader should *feel* something by the end
 - [ ] Appropriate pacing — no rushing, no dragging
+- [ ] Tension is managed properly — a proper cycle of action (high tension) and reflection/reaction (low tension) prevents pacing from flatlining
 - [ ] Stakes are clear — the reader knows what's at risk
 
 ## Prose & Language
@@ -113,6 +114,32 @@ Use this checklist after drafting a chapter (or set of chapters) to ensure quali
 
 ---
 
+## Scene Tension & Pacing Analysis
+
+When reviewing a chapter, conduct a **Tension Map** analysis to evaluate pacing:
+1. Break the chapter down into named or numbered scenes.
+2. Evaluate each scene with a **Tension Score (1–10)** based on emotional, physical, or psychological stakes.
+3. Ensure there is a dynamic wave — e.g., 3 → 8 → 4 → 9 → 2. If multiple scenes score 8+ in a row, the reader is exhausted. If they are all 2s, the reader is bored.
+4. Flag scenes to tighten (score feels too low for chapter position) or expand (score too high without a reaction beat).
+
+**Required Output Format:**
+
+```
+TENSION MAP — Chapter [X]: [Title]
+
+| Scene | Brief Description | Tension Score | Note |
+|-------|-------------------|---------------|------|
+| 1     | [e.g., Arrival at the fort] | 4 | Grounding beat — good |
+| 2     | [e.g., Confrontation with guard] | 7 | Escalates well |
+| 3     | [e.g., Retreat and regrouping] | 2 | Needed reaction beat |
+| 4     | [e.g., Discovery of betrayal] | 9 | Peak — strong |
+
+Pacing verdict: [1–2 sentences on the overall wave shape and whether it works]
+Recommendations: [Specific scenes to tighten or expand, if any]
+```
+
+---
+
 ## Review Focus Areas (For AI-Driven Review)
 
 When the AI reviews a chapter, it should focus on these areas in order:
@@ -132,3 +159,25 @@ When the AI reviews a chapter, it should focus on these areas in order:
 - Improve rhythm, not drama
 - **Never** introduce new scenes, events, or characters during review
 - **Never** resolve conflicts or ambiguity that the author left open intentionally
+
+---
+
+## Specialized Revision Passes
+
+When requested, the AI can execute highly focused revision passes on a chapter instead of a general review. 
+
+### 1. Dialogue Pass
+- **Focus:** Subtext, distinct character voices, and removing clunky exposition.
+- **Goal:** Ensure characters don't say exactly what they mean. Remove on-the-nose dialogue.
+
+### 2. Sensory Pass
+- **Focus:** Smell, texture, sound, taste, and visceral physical sensations.
+- **Goal:** Elevate a "flat" setting into a fully three-dimensional, immersive environment. 
+
+### 3. Prose Polish Pass
+- **Focus:** Sentence rhythm, eliminating weak verb-adverb combos, and tightening phrasing.
+- **Goal:** Make the prose invisible and highly impactful, strictly enforcing the grammar/punctuation rules.
+
+### 4. Tension & Pacing Pass
+- **Focus:** Sentence length and structural pacing. 
+- **Goal:** Make action scenes shorter and more visceral; give emotional scenes more breathing room and silence.

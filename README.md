@@ -6,11 +6,11 @@
 
 ### *The Complete AI Writing Studio*
 
-*Master-class fiction · Automated story memory · Children's books · Parallel workflows*
+*Master-class fiction · Automated story memory · Book-level pacing · Publishing toolkit*
 
 <br>
 
-[![Version](https://img.shields.io/badge/version-1.6-8957e5?style=for-the-badge&labelColor=161b22)](./book-writer/docs/FEATURES.md)
+[![Version](https://img.shields.io/badge/version-2.0-8957e5?style=for-the-badge&labelColor=161b22)](./book-writer/docs/FEATURES.md)
 [![Install](https://img.shields.io/badge/⚡_Install-npx_skills_add-0d1117?style=for-the-badge&labelColor=161b22)](https://github.com/kshanxs/book-writer-skill)
 [![License](https://img.shields.io/badge/License-MIT-2ea043?style=for-the-badge&labelColor=161b22)](./LICENSE)
 [![Docs](https://img.shields.io/badge/Docs-USAGE.md-f78166?style=for-the-badge&labelColor=161b22)](./book-writer/docs/USAGE.md)
@@ -58,14 +58,15 @@ The AI guides you through setup one question at a time. Every question is skippa
 |---|---|
 | ✍️ **Master Author Voice** | Literary prose, cinematic dialogue, 15+ genres |
 | 🧠 **Book Memory Bank** | Auto-maintained context — characters, plot, world, progress |
-| 🧒 **Children's Books** | Ages 2–9, rhyming/meter, illustration notes, phonics |
-| ⚡ **Parallel Workflows** | Draft & review multiple chapters simultaneously |
-| 📊 **Chapter Titles Guide** | Auto-generated title → meaning → story connection map |
-| 🔍 **Continuity Diagnostics** | Cross-chapter consistency checks |
+| 🧬 **Character Arc Matrix** | Chapter-by-chapter emotional progression tracking |
+| 🎭 **Thematic & Motif Tracker** | Core themes + evolving symbols mapped across chapters |
+| 📈 **Pacing Blueprint** | Book-level structural grid with tension curve before drafting |
+| 📊 **Scene Tension Map** | Per-chapter 1–10 pacing analysis with output table |
+| 🔬 **Specialized Revision Passes** | Dialogue, Sensory, Prose Polish, and Tension passes |
+| 📬 **Publishing Toolkit** | Blurb, synopsis, query letter, logline — from your memory bank |
 | 🏛️ **Historical Authenticity** | Title-timeline rules, verified facts, `[FICTION]` marking |
-| 📦 **Compilation** | Auto-combine chapters into manuscript |
 
-**→ [See all 30+ features](./book-writer/docs/FEATURES.md)**
+**→ [See all 40+ features and commands](./book-writer/docs/FEATURES.md)**
 
 ---
 
@@ -76,7 +77,10 @@ The AI guides you through setup one question at a time. Every question is skippa
 | `"Let's start building a new book"` | Runs The Story Forge onboarding |
 | `"Write chapter 3"` | Reads memory bank, writes the chapter |
 | `"Draft all remaining chapters in parallel"` | Launches background agents |
+| `"Do a Dialogue Pass on chapter 2"` | Focused revision pass on subtext & voice |
 | `"Review all chapters in parallel"` | Parallel review via background agents |
+| `"Write a query letter"` | Generates query letter from memory bank |
+| `"Write a back-cover blurb"` | Generates blurb from memory bank |
 | `"Check continuity"` | Cross-chapter diagnostic report |
 | `"Update memory bank"` | Full audit and update |
 | `"Compile the book"` | Merges all chapters into `Manuscript/` |
@@ -92,10 +96,10 @@ YourBookProject/
 ├── README.md                    ← Auto-generated
 ├── Chapters/                    ← Manuscript files
 ├── Outlines/                    ← Chapter outlines + titles guide
-├── Research/                    ← Continuity reports
+├── Research/                    ← Continuity reports + research tracker
 ├── Manuscript/                  ← Compiled output
 └── book-memory-bank/            ← Auto-maintained by AI
-    ├── Core/                    Characters, world, plot, progress
+    ├── Core/                    Characters, world, plot, pacing blueprint
     └── Style/                   Voice, tone, language rules
 ```
 

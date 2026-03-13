@@ -300,11 +300,122 @@ Rich structured profiles can be built for characters and worlds:
 
 **You:** *"Review and polish Chapter 6."*
 
-> AI reads the draft, its outline, adjacent chapters, and all context files. Reviews in order: Language → Emotion → Dialogue → Pacing → Continuity. Uses the revision checklist to check quality. Revises gently — never overwrites your intent.
+> AI reads the draft, its outline, adjacent chapters, and all context files. Reviews in order: Language → Emotion → Dialogue → Pacing → Continuity. Uses the revision checklist. Revises gently — never overwrites your intent.
+
+**For Chapter 1 specifically:**
+> AI also runs the **Opening Chapter Checklist** — checking hook strength, protagonist establishment, reader promise, and whether the first page earns its place.
 
 **You:** *"That chapter feels too fast. Can you slow down the middle section?"*
 
 > AI adjusts pacing while preserving your voice and the scene's emotional core.
+
+---
+
+## Specialized Revision Passes
+
+Instead of a full review, request a **targeted pass** on a single aspect:
+
+| Say this | What it focuses on |
+|---|---|
+| `"Do a Dialogue Pass on chapter 3"` | Subtext, distinct voice, removing on-the-nose lines |
+| `"Do a Sensory Pass on chapter 4"` | Smell, texture, sound — makes settings fully immersive |
+| `"Do a Prose Polish on chapter 5"` | Rhythm, weak verbs, tightening — strictly enforces style rules |
+| `"Do a Tension Pass on chapter 6"` | Sentence length and structural pacing — action vs. reaction beats |
+
+---
+
+## Scene Tension Map
+
+During any chapter review, the AI evaluates the pacing wave:
+
+**You:** *"Review Chapter 7 and do a tension map."*
+
+> ```
+> TENSION MAP — Chapter 7: The River Crossing
+>
+> | Scene | Brief Description         | Score | Note                    |
+> |-------|--------------------------|-------|-------------------------|
+> | 1     | Camp at dawn             |   3   | Grounding beat — good   |
+> | 2     | Confrontation with scout |   7   | Escalates well          |
+> | 3     | Crossing begins          |   8   | High — sustains tension |
+> | 4     | Ambush                   |  10   | Peak — strong           |
+> | 5     | Retreat to shore         |   4   | Needed reaction beat ✓  |
+>
+> Pacing verdict: Good wave shape. The peak at scene 4 is earned.
+> Recommendations: Scene 3 could be lightened slightly to give the ambush more contrast.
+> ```
+
+---
+
+## Book-Level Pacing Blueprint
+
+Pre-plan the structural arc of the entire book before writing chapters:
+
+**You:** *"Let's plan the pacing for the whole book."*
+
+> AI fills `Core/pacing_blueprint.md` with a structural beats grid (inciting incident, midpoint, all-is-lost, climax) mapped to chapter and word count targets, plus a book-level tension curve table.
+
+---
+
+## Scene Cards
+
+For precise scene-level planning before drafting:
+
+**You:** *"Create a scene card for Chapter 3, Scene 2 — the confrontation with Nizam's envoy."*
+
+> AI creates a structured card with: POV character, location, entering emotional state, Goal → Conflict → Outcome → Aftermath, story function, hook into next scene, and active motifs to weave in.
+
+---
+
+## Research Flag Tracker
+
+Flag uncertain facts inline while writing:
+
+```
+[NEED RESEARCH: Was the Bosphorus strait navigable in winter 1453?]
+```
+
+**You:** *"Log that research flag in the tracker."*
+
+> AI adds it to `Research/research_tracker.md` with an ID, chapter reference, and open status.
+
+**You:** *"Show me all open research items."*
+
+> AI reads and lists all unresolved flags.
+
+---
+
+## Beta Reader Feedback
+
+**You:** *"Log this beta feedback from Riya: Chapter 2 felt slow, Chapter 5 great, wants more of Mastani."*
+
+> AI adds entries to `beta_reader_log.md` by chapter with Type, Priority, and Status.
+
+**You:** *"What are the high-priority beta notes I haven't addressed yet?"*
+
+> AI returns all open, high-priority items.
+
+---
+
+## Publishing Toolkit
+
+Once the manuscript is complete, generate all submission assets from your memory bank:
+
+**You:** *"Write a back-cover blurb."*
+
+> AI writes a 150–200 word blurb using Hook → Setup → Stakes → Question formula, in your voice.
+
+**You:** *"Write a 1-page synopsis."*
+
+> AI writes a 500–700 word synopsis in present tense, third person — full story including the ending, characters in ALL CAPS on first mention.
+
+**You:** *"Write a query letter."*
+
+> AI writes a 250–350 word query letter: hook, pitch, book details + comp titles, bio placeholder, closing.
+
+**You:** *"Give me a logline."*
+
+> AI writes a single 25–30 word sentence: `[Protagonist with flaw] must [pursue goal] before [deadline/stakes], or [consequence].`
 
 ---
 
@@ -367,6 +478,8 @@ A `README.md` is generated in your project root on initialization — title, bad
 | `"Let's start building a new book"` | Runs The Story Forge onboarding |
 | `"Just initialize now"` | Skips all questions, starts immediately |
 | `"Here's my outline: ./path"` | Draft import — AI extracts and skips answered questions |
+| `"Let's plan the pacing for the whole book"` | Generates Book-Level Pacing Blueprint |
+| `"Create a scene card for Chapter N, Scene X"` | Atomic scene planning card |
 | `"Let's build out [character]"` | Character brainstorming with structured profile table |
 | `"Build a worldbuilding table"` | Structured world profile creation |
 | `"[FICTION] ..."` | Mark an invented element in historical genres |
@@ -375,10 +488,21 @@ A `README.md` is generated in your project root on initialization — title, bad
 | `"Write the master outline"` | Creates `Outlines/Master_Outline.md` |
 | `"Plan a [MVB/short/full] book"` | Sets book scope and adjusts targets |
 | `"Review chapter [N]"` / `"Polish chapter [N]"` | Runs structured chapter review |
+| `"Do a Dialogue Pass on chapter [N]"` | Subtext-focused revision pass |
+| `"Do a Sensory Pass on chapter [N]"` | Immersive detail-focused revision pass |
+| `"Do a Prose Polish on chapter [N]"` | Rhythm and tightening revision pass |
+| `"Do a Tension Pass on chapter [N]"` | Structural pacing revision pass |
+| `"Draft all remaining chapters in parallel"` | Launches background agents |
+| `"Review all chapters in parallel"` | Parallel review via background agents |
 | `"Compile the book"` | AI merges all chapters and saves to `Manuscript/` |
 | `"Update memory bank"` | Full audit and update of all memory files |
 | `"Check continuity"` / `"Run continuity check"` | Cross-chapter consistency diagnostic |
-| `"Check for consistency"` | Flags contradictions across memory bank |
+| `"Log beta feedback"` | Adds reader notes to Beta Reader Feedback Log |
+| `"Show open research items"` | Lists all unresolved `[NEED RESEARCH]` flags |
+| `"Write a back-cover blurb"` | Generates blurb from memory bank |
+| `"Write a 1-page synopsis"` | Generates synopsis for agent submission |
+| `"Write a query letter"` | Generates query letter from memory bank |
+| `"Give me a logline"` | 25–30 word high-concept sentence |
 | `"What chapter are we on?"` | AI reports current progress |
 | `"In this scene, [speaker] calls him just '[name]'"` | Override address register for a scene |
 
@@ -401,18 +525,22 @@ Everything this skill can do, at a glance:
 | Category | Features |
 |---|---|
 | **Initialization** | One-time Story Forge onboarding, fast-track mode, draft import, genre auto-detection |
-| **Genre Support** | Literary fiction, historical, fantasy (epic/mythological/dark/historical), sci-fi (hard/space opera/dystopian/cyberpunk), thriller, horror, romance, adventure, mystery, biographical, YA, children's, short stories |
+| **Genre Support** | Literary fiction, historical, fantasy, sci-fi, thriller, horror, romance, adventure, mystery, biographical, YA, children's, short stories |
 | **Historical** | Title/honorific timeline rules, `[FICTION]` marking, contextual address by speaker relationship, fact-checking with dispute flags |
-| **Dialogue** | Multi-language support — Hinglish, Hindi, Marathi, French, Spanish, Italian, German, and more woven into dialogue naturally |
-| **Planning** | Book size options (MVB/Short/Full/Novel), narrative structure selection, emotional core (North Star) discovery, synopsis templates, timeline mapping |
-| **Characters** | 19-field structured character profiles, historical title timelines, address variant tracking, psychological profiles, relationship mapping |
-| **Worldbuilding** | 10-category world tables, sensory details, emotional geography, historical setting extensions |
+| **Dialogue** | Multi-language support — Hinglish, Hindi, Marathi, French, Spanish, Italian, German and more woven naturally |
+| **Planning** | Book size options (MVB/Short/Full/Novel), Pacing Blueprint, narrative structure, emotional core discovery, synopsis templates, timeline mapping |
+| **Scene Planning** | Scene Card template — Goal-Conflict-Outcome-Aftermath engine for atomic scene-level planning |
+| **Characters** | 19-field structured profiles, Character Arc Matrix (chapter-by-chapter progression), historical title timelines, psychological profiles |
+| **Worldbuilding** | 10-category world tables, sensory details, emotional geography, Thematic & Motif Tracker |
 | **Conflict** | External/internal/thematic conflict mapping with stakes, opposition, and growth tracking |
-| **Outlining** | Master outline, chapter-by-chapter beat sheets, chapter goals, emotional arcs, hooks |
-| **Writing** | Chapter opening/closing formulas (6 types), structure templates (fiction & non-fiction), read-aloud rhythm, engagement techniques |
-| **Quality** | Anti-AI writing rules, Hype Test, revision checklists (story/prose/voice/character/continuity/engagement), DO/DON'T lists |
-| **Review** | Structured chapter review (Language → Emotion → Dialogue → Pacing → Continuity), gentle revision with preserved authorial voice |
-| **Continuity** | Cross-chapter diagnostic reports, timeline/character/worldbuilding/emotional/thematic checks, question-based flagging |
+| **Outlining** | Master outline, chapter beat sheets, chapter goals, emotional arcs, hooks, Chapter Titles Guide |
+| **Writing** | Chapter opening/closing formulas, structure templates, read-aloud rhythm, engagement techniques |
+| **Quality** | Anti-AI writing rules, Hype Test, revision checklists (story/prose/voice/character/continuity), Opening Chapter Checklist, Scene Tension Map |
+| **Review** | Structured chapter review (Language → Emotion → Dialogue → Pacing → Continuity), 4 Specialized Revision Passes |
+| **Continuity** | Cross-chapter diagnostic reports, timeline/character/worldbuilding checks, question-based flagging |
+| **Research** | Research Flag Tracker — structured `[NEED RESEARCH]` log with open/resolved status |
+| **Beta Readers** | Beta Reader Feedback Log — chapter-by-chapter notes with priority, type, and action tracking |
+| **Publishing** | Query letter, back-cover blurb, 1-page synopsis, logline — all auto-generated from memory bank |
 | **Memory** | Automatic Book Memory Bank — projectbrief, story structure, characters/world, active context, progress, style guide |
 | **Updates** | Auto-triggered after chapters, outlines, or on-demand; comprehensive audit with file-by-file change reports |
 | **Compilation** | Auto-combine chapters into manuscript, cross-platform scripts (bash/PowerShell) |

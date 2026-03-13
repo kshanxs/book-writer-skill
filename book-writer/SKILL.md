@@ -20,6 +20,28 @@ description: |
 
 This skill equips Claude with the capabilities of a world-class fiction author and a robust system for maintaining story context ("Book Memory Bank") across long writing sessions. With this skill, Claude acts as a creative collaborator while automatically keeping characters, plots, and world-building details consistent.
 
+## Context Efficiency Rule
+
+**CRITICAL — Read this before loading any files.**
+
+This skill has many reference files. Do NOT pre-load them all. Use **lazy loading** — only read a reference file when its specific feature is needed:
+
+| Only load this file... | When... |
+|------------------------|---------|
+| `references/author_rules.md` | Starting a session, drafting, or reviewing |
+| `references/chapter_craft.md` | Writing or outlining chapters |
+| `references/revision_checklist.md` | Reviewing or revising chapters |
+| `references/book_memory_protocol.md` | Updating memory bank or running continuity check |
+| `references/story_forge.md` | Only during initialization |
+| `references/childrens_book_craft.md` | Only for children's book projects |
+| `references/parallel_workflows.md` | Only when parallel drafting |
+| `references/spinoff_guide.md` | Only for spinoff projects |
+| `references/opening_chapter_checklist.md` | Only when reviewing Chapter 1 |
+| `references/query_letter_guide.md` | Only when user asks for blurb, synopsis, or query letter |
+| Template files | Only when generating the specific document |
+
+**Never load more than 3–4 reference files at once unless explicitly required by the task.**
+
 ## Features
 
 This skill combines capabilities from multiple specialized writing disciplines:
@@ -30,12 +52,16 @@ This skill combines capabilities from multiple specialized writing disciplines:
 - **Historical Genre Features** — Title/honorific timeline rules, `[FICTION]` marking, contextual address rules, fact-checking flags
 - **Dialogue Language Support** — Weave local languages (Hinglish, Hindi, Marathi, French, Spanish, etc.) into dialogue naturally
 - **Character Profiles** — Structured 19-field character tables with historical title timelines
+- **Character Arc Matrix** — Chapter-by-chapter tracking of emotional progression, internal lies, and paradigm shifts
 - **Worldbuilding Tables** — 10-category structured world profiles with sensory details
 - **Conflict Mapping** — External/internal/thematic conflict structure with stakes
+- **Thematic & Motif Tracker** — Matrix for tracking core themes and the evolution of recurring symbolic motifs
 - **Synopsis & Timeline Templates** — Beginning/middle/end narrative beats; chronological event tracking
 - **Chapter Craft** — Opening/closing formulas, structure templates, engagement techniques for fiction and non-fiction
 - **Book Size Planning** — MVB (15–20K words), Short (25–40K), Full (50–80K), Literary Novel (60–100K)
 - **Revision Checklists** — Comprehensive quality gates: story, prose, voice, punctuation, characters, continuity, engagement
+- **Scene Tension Mapping** — 1-10 scoring system to evaluate structural pacing and the action/reaction cycle
+- **Specialized Revision Passes** — Dedicated targeted reviews (Dialogue Pass, Sensory Pass, Prose Polish, Tension Pass)
 - **Punctuation Standards** — Mark-by-mark rules for em dashes, commas, periods, colons, semicolons, ellipses, and exclamation points; quick-reference table and per-chapter review checklist
 - **Anti-AI Writing Rules** — Hype test, voice authenticity checks, DO/DON'T quick-scan lists
 - **Continuity Diagnostics** — Cross-chapter consistency checks generating question-based diagnostic reports
@@ -43,6 +69,12 @@ This skill combines capabilities from multiple specialized writing disciplines:
 - **Chapter Titles Guide** — Auto-generated `chapter-titles-guide.md` mapping every chapter title to its meaning and story connection. Adapts to flat chapters, multi-part books, and multi-book projects
 - **Parallel Chapter Workflows** — Draft and review multiple chapters simultaneously via background agents, with sequential fallback
 - **Children's Book Craft** — Age-based writing guidelines (2–9), rhyming/meter techniques, illustration notes, phonics/vocabulary, values framework, and children's revision checklist
+- **Scene Card Template** — Atomic scene planning (Goal-Conflict-Outcome-Aftermath) before drafting
+- **Book-Level Pacing Blueprint** — Structural grid pre-planning tension curve and all major beats across the whole book
+- **Opening Chapter Checklist** — Dedicated scrutiny for Chapter 1: hook, protagonist, reader promise, exposition
+- **Research Flag Tracker** — Structured `[NEED RESEARCH]` log to prevent unverified facts from shipping in the manuscript
+- **Beta Reader Feedback Log** — Chapter-by-chapter feedback tracking with status and consolidated action items
+- **Query Letter & Publishing Toolkit** — Generate back-cover blurb, 1-page synopsis, query letter, and logline from the memory bank
 - **Spinoff Support** — Start a new story in the same world or with shared characters; Spinoff Forge onboarding, inheritance model, directory convention, shared canon rules, and cross-reference protocol
 - **Project Completion Summary** — Final verification checklist of all created files and next steps
 - **Compilation** — Combine all chapters into a single manuscript file via scripts or AI
@@ -57,9 +89,10 @@ When the user asks to start a new book project or "initialize the memory bank", 
 1. Copy the `assets/book-memory-bank/` directory to the root of the user's project workspace.
 2. Read `references/author_rules.md` to adopt the persona and style of a master fiction author.
 3. Help the user establish the foundational elements (concept, style, characters) by discussing the book's plan.
-4. Use `references/character_worldbuilding_tables.md` for structured character profiles and worldbuilding tables when building out characters and settings.
-5. Record these elements into the newly created `book-memory-bank/Core/` and `book-memory-bank/Style/` Markdown files.
-6. **Generate the project README.** Read `references/readme_template.md`, fill all `{{TOKEN}}` placeholders using answers from the brainstorming gate and the newly written memory bank files, and write the completed file as `README.md` in the project root. Do not ask the user to review it — just create it silently.
+4. Use `references/character_worldbuilding_tables.md` for structured character profiles and worldbuilding tables when building out characters and settings. Offer to create `character_arcs.md` and `themes_and_motifs.md` using the templates in `assets/book-memory-bank/Core/Templates/`.
+5. **Offer the Pacing Blueprint.** Ask if the user wants to pre-plan the book's structural arc now using `assets/book-memory-bank/Core/Templates/pacing_blueprint_template.md`. Save the completed file as `Core/pacing_blueprint.md`. Recommended for novels — skippable for short projects.
+6. Record these elements into the newly created `book-memory-bank/Core/` and `book-memory-bank/Style/` Markdown files.
+7. **Generate the project README.** Read `references/readme_template.md`, fill all `{{TOKEN}}` placeholders using answers from the brainstorming gate and the newly written memory bank files, and write the completed file as `README.md` in the project root. Do not ask the user to review it — just create it silently.
 
 ### 2. Writing & Outlining
 When the user asks to outline or write chapters:
@@ -88,11 +121,14 @@ Maintaining the Book Memory Bank is essential for consistency. You must seamless
 When the user asks to review, revise, or polish a chapter:
 1. Read the chapter draft, its outline, adjacent chapters (for continuity), and all context files (Style, Characters, Worldbuilding).
 2. Consult `references/revision_checklist.md` for the quality gates and review focus areas.
-3. Consult `references/punctuation_guide.md` and run the punctuation checklist against the draft.
-4. Review in this order: Language → Emotion → Dialogue → Pacing → Punctuation → Continuity.
-5. Apply revision principles: preserve voice above all, revise gently, clarify emotion without explaining, respect ambiguity.
-6. **Never** introduce new scenes, events, or characters during review. **Never** resolve conflicts the author left open intentionally.
-7. Save revised version and announce changes.
+3. **If reviewing Chapter 1**, also load `references/opening_chapter_checklist.md` and run its additional gates.
+4. Conduct a **Scene Tension Map** analysis to ensure proper structural pacing.
+5. Review in this order: Language → Emotion → Dialogue → Pacing → Continuity.
+6. Apply revision principles: preserve voice above all, revise gently, clarify emotion without explaining, respect ambiguity.
+7. **Never** introduce new scenes, events, or characters during review. **Never** resolve conflicts the author left open intentionally.
+8. Save revised version and announce changes.
+
+*(Users can request Specialized Revision Passes: Dialogue, Sensory, Prose Polish, or Tension & Pacing — see `references/revision_checklist.md`).*
 
 ### 6. Continuity Check
 When the user asks to "check continuity", "run continuity check", or "check for consistency":
@@ -110,7 +146,8 @@ When multiple chapters need drafting or reviewing:
 
 ### 8. Complete & Present
 After all chapters are drafted, reviewed, and continuity-checked:
-1. Present a final verification summary listing all created files:
+1. Scan all chapter files for `[NEED RESEARCH]` flags and cross-reference against `Research/research_tracker.md`. All open items must be resolved or explicitly flagged before the manuscript is finalized.
+2. Present a final verification summary listing all created files:
    - Foundation files (Characters, Worldbuilding, Synopsis, Timeline, Conflict, Style)
    - Chapter outlines and chapter titles guide
    - Drafted and reviewed chapters
@@ -131,107 +168,10 @@ When the user mentions "spinoff", "companion book", "same world, different story
 
 ## Chapter Titles Guide
 
-**After chapter outlines are finalized, auto-generate a `chapter-titles-guide.md` inside the `Outlines/` directory.**
+**After chapter outlines are finalized, auto-generate a `chapter-titles-guide.md` inside the `Outlines/` directory.** No separate user approval is needed.
 
-This file maps every chapter's title to its deeper meaning and story connection — a quick-reference for the author to see how titles work as a cohesive system across the book. No separate user approval is needed.
-
-**Template:** Use `assets/book-memory-bank/Core/Templates/chapter_titles_guide_template.md` as the base. Pick the structure that matches the project (flat chapters, parts, or multi-book) and fill all `{{TOKENS}}`.
-
-### Dynamic Structure Rules
-
-The guide adapts its layout based on the project's structure:
-
-**1. Single book, no parts (flat chapters):**
-```markdown
-# [Book Title] — Chapter Titles: Meaning & Story Connection
-
-| # | Title | Meaning | Story Connection |
-|---|-------|---------|-----------------|
-| **1** | *[Title]* | [Why this title — symbolism, wordplay, dual meanings] | [What happens, key turning points, how title connects to events] |
-| **2** | *[Title]* | ... | ... |
-[...all chapters]
-
----
-
-## Title Pattern
-[1-3 sentences analyzing how the titles evolve thematically across the book.]
-```
-
-**2. Single book with parts:**
-```markdown
-# [Book Title] — Chapter Titles: Meaning & Story Connection
-
----
-
-## PART I: [PART NAME] ([time period or theme])
-
-| # | Title | Meaning | Story Connection |
-|---|-------|---------|-----------------|
-| **Prologue** | *[Title]* | ... | ... |
-| **1** | *[Title]* | ... | ... |
-[...chapters in this part]
-
----
-
-## PART II: [PART NAME] ([time period or theme])
-
-| # | Title | Meaning | Story Connection |
-|---|-------|---------|-----------------|
-| **N** | *[Title]* | ... | ... |
-[...chapters in this part]
-
----
-
-[...repeat for all parts]
-
----
-
-## Title Pattern
-[Analysis of how titles shift across parts — e.g. "Part I titles are grounded and concrete; Part III titles are transcendent, mirroring the book's progression."]
-```
-
-**3. Multi-book project:**
-```markdown
-# [Series/Project Name] — Chapter Titles Guide
-
----
-
-## Book 1: [Book Title]
-
-### PART I: [PART NAME]
-
-| # | Title | Meaning | Story Connection |
-|---|-------|---------|-----------------|
-[...chapters]
-
-### PART II: [PART NAME]
-[...]
-
-#### Title Pattern (Book 1)
-[Pattern analysis for this book]
-
----
-
-## Book 2: [Book Title]
-[...same structure]
-
-#### Title Pattern (Book 2)
-[Pattern analysis for this book]
-
----
-
-## Series Title Pattern
-[Cross-book analysis — how titling conventions evolve or contrast across books.]
-```
-
-### Column Guidelines
-
-| Column | What to write |
-|--------|---------------|
-| **#** | Chapter number (bold), or **Prologue** / **Epilogue** / **Interlude** |
-| **Title** | Chapter title in *italics*, or *(Untitled)* if unnamed |
-| **Meaning** | The layered meaning behind the title — symbolism, dual meanings, wordplay, cultural references. Explain ALL layers. |
-| **Story Connection** | What actually happens in this chapter and how the title ties to events, character arcs, and turning points. Be specific. |
+→ **Full instructions and column guide:** `references/chapter_titles_guide.md`
+→ **Template:** `assets/book-memory-bank/Core/Templates/chapter_titles_guide_template.md`
 
 ## References
 This skill relies on the following reference documents to guide the AI's behavior:
@@ -245,6 +185,9 @@ This skill relies on the following reference documents to guide the AI's behavio
 - `references/character_worldbuilding_tables.md`: Structured table templates for character profiles (19 fields), worldbuilding (10 categories), conflict mapping, synopsis structure, and timeline tracking.
 - `references/childrens_book_craft.md`: **Children's Book Craft** — age-based writing guidelines (2–9), rhyming/meter techniques, illustration notes, phonics/vocabulary, educational integration, values framework, and children's revision checklist.
 - `references/parallel_workflows.md`: **Parallel Workflows** — simultaneous chapter drafting and review via background agents. Includes task templates, sequential fallbacks, and design principles.
-- `references/punctuation_guide.md`: **Punctuation Guide** — mark-by-mark rules for every punctuation mark used in novel writing (em dash, comma, period, colon, semicolon, ellipsis, exclamation point), with usage examples, a quick-reference table, and a per-chapter review checklist.
-- `references/spinoff_guide.md`: **Spinoff Guide** — definitions (spinoff vs. sequel vs. companion), the Spinoff Forge onboarding conversation, directory convention, inheritance model (shared/forked/fresh files), shared canon rules, and cross-reference protocol for keeping parent and spinoff consistent.
+- `references/punctuation_guide.md`: **Punctuation Guide** — mark-by-mark rules for every punctuation mark used in novel writing.
+- `references/spinoff_guide.md`: **Spinoff Guide** — definitions, Spinoff Forge onboarding, directory convention, inheritance model, and cross-reference protocol.
+- `references/opening_chapter_checklist.md`: **Opening Chapter Checklist** — dedicated quality gates for Chapter 1: hook, protagonist establishment, reader promise, and exposition checks.
+- `references/query_letter_guide.md`: **Query Letter & Publishing Toolkit** — generate back-cover blurb, 1-page synopsis, query letter, and logline from the memory bank.
+- `references/chapter_titles_guide.md`: **Chapter Titles Guide** — full instructions, dynamic structure rules (flat, parts, multi-book), and column guidelines for the auto-generated title reference.
 - `docs/USAGE.md`: Human-readable guide with real example dialogues for every stage of using this skill.

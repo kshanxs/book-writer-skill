@@ -65,7 +65,13 @@ For cultural authenticity (e.g., Hinglish, Hindi, German, Sanskrit), weave local
 
 **Spinoff Rules:** When writing a spinoff of a parent book, follow the inheritance model for memory files. Ensure canon consistency between the parent project and the spinoff by referencing the core world-building and character baselines before introducing divergent arcs.
 
-## 7. Historical Writing — Additional Rules
+## 7. Core Reference Documents (Story Gitas)
+
+**Creation Rule:** If a project involves complex world-building, specialized technology, magic systems, or extensive lore, proactively create a comprehensive reference document (often named `tech_gita.md`, `lore_gita.md`, or similar) in the `Core/` directory.
+
+**Usage:** This document acts as the ultimate "source of truth" for its specific domain. Use it to log intricate details, limitations, and operational rules to ensure absolute consistency across all chapters. Reference and update it alongside the standard memory bank files.
+
+## 8. Historical Writing — Additional Rules
 
 When writing historical fiction, narrative history, or biographical work, observe these additional rules on top of the above:
 
