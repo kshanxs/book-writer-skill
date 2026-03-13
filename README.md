@@ -10,10 +10,10 @@
 
 <br>
 
-[![Version](https://img.shields.io/badge/version-2.0-8957e5?style=for-the-badge&labelColor=161b22)](./book-writer/docs/FEATURES.md)
+[![Version](https://img.shields.io/badge/version-2.0-8957e5?style=for-the-badge&labelColor=161b22)](./docs/FEATURES.md)
 [![Install](https://img.shields.io/badge/⚡_Install-npx_skills_add-0d1117?style=for-the-badge&labelColor=161b22)](https://github.com/kshanxs/book-writer-skill)
 [![License](https://img.shields.io/badge/License-MIT-2ea043?style=for-the-badge&labelColor=161b22)](./LICENSE)
-[![Docs](https://img.shields.io/badge/Docs-USAGE.md-f78166?style=for-the-badge&labelColor=161b22)](./book-writer/docs/USAGE.md)
+[![Docs](https://img.shields.io/badge/Docs-USAGE.md-f78166?style=for-the-badge&labelColor=161b22)](./docs/USAGE.md)
 
 <br>
 
@@ -48,7 +48,7 @@ npx skills update kshanxs/book-writer-skill
 
 The AI guides you through setup one question at a time. Every question is skippable.
 
-**→ [Full usage guide with examples](./book-writer/docs/USAGE.md)**
+**→ [Full usage guide with examples](./docs/USAGE.md)**
 
 ---
 
@@ -66,7 +66,7 @@ The AI guides you through setup one question at a time. Every question is skippa
 | 📬 **Publishing Toolkit** | Blurb, synopsis, query letter, logline — from your memory bank |
 | 🏛️ **Historical Authenticity** | Title-timeline rules, verified facts, `[FICTION]` marking |
 
-**→ [See all 40+ features and commands](./book-writer/docs/FEATURES.md)**
+**→ [See all 40+ features and commands](./docs/FEATURES.md)**
 
 ---
 
@@ -85,7 +85,7 @@ The AI guides you through setup one question at a time. Every question is skippa
 | `"Update memory bank"` | Full audit and update |
 | `"Compile the book"` | Merges all chapters into `Manuscript/` |
 
-**→ [Full command reference](./book-writer/docs/FEATURES.md#-command-reference)**
+**→ [Full command reference](./docs/FEATURES.md#-command-reference)**
 
 ---
 

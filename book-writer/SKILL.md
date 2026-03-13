@@ -16,10 +16,6 @@ description: |
 
 # Book Writer
 
-## Overview
-
-This skill equips Claude with the capabilities of a world-class fiction author and a robust system for maintaining story context ("Book Memory Bank") across long writing sessions. With this skill, Claude acts as a creative collaborator while automatically keeping characters, plots, and world-building details consistent.
-
 ## Context Efficiency Rule
 
 **CRITICAL — Read this before loading any files.**
@@ -32,53 +28,19 @@ This skill has many reference files. Do NOT pre-load them all. Use **lazy loadin
 | `references/chapter_craft.md` | Writing or outlining chapters |
 | `references/revision_checklist.md` | Reviewing or revising chapters |
 | `references/book_memory_protocol.md` | Updating memory bank or running continuity check |
+| `references/memory_update_prompts.md` | Performing a comprehensive memory audit |
 | `references/story_forge.md` | Only during initialization |
+| `references/readme_template.md` | Only when generating the project README |
+| `references/character_worldbuilding_tables.md` | Building character profiles or worldbuilding tables |
 | `references/childrens_book_craft.md` | Only for children's book projects |
 | `references/parallel_workflows.md` | Only when parallel drafting |
+| `references/punctuation_guide.md` | Running a punctuation pass or prose polish |
 | `references/spinoff_guide.md` | Only for spinoff projects |
 | `references/opening_chapter_checklist.md` | Only when reviewing Chapter 1 |
 | `references/query_letter_guide.md` | Only when user asks for blurb, synopsis, or query letter |
 | Template files | Only when generating the specific document |
 
 **Never load more than 3–4 reference files at once unless explicitly required by the task.**
-
-## Features
-
-This skill combines capabilities from multiple specialized writing disciplines:
-
-- **Book Memory Bank** — Automatic context preservation across sessions (characters, plots, world, progress)
-- **The Story Forge** — One-time onboarding conversation with fast-track option, draft import, and genre detection
-- **Multi-Genre Mastery** — Literary fiction, historical, fantasy, sci-fi, thriller, romance, horror, YA, and more
-- **Historical Genre Features** — Title/honorific timeline rules, `[FICTION]` marking, contextual address rules, fact-checking flags
-- **Dialogue Language Support** — Weave local languages (Hinglish, Hindi, Marathi, French, Spanish, etc.) into dialogue naturally
-- **Character Profiles** — Structured 19-field character tables with historical title timelines
-- **Character Arc Matrix** — Chapter-by-chapter tracking of emotional progression, internal lies, and paradigm shifts
-- **Worldbuilding Tables** — 10-category structured world profiles with sensory details
-- **Conflict Mapping** — External/internal/thematic conflict structure with stakes
-- **Thematic & Motif Tracker** — Matrix for tracking core themes and the evolution of recurring symbolic motifs
-- **Synopsis & Timeline Templates** — Beginning/middle/end narrative beats; chronological event tracking
-- **Chapter Craft** — Opening/closing formulas, structure templates, engagement techniques for fiction and non-fiction
-- **Book Size Planning** — MVB (15–20K words), Short (25–40K), Full (50–80K), Literary Novel (60–100K)
-- **Revision Checklists** — Comprehensive quality gates: story, prose, voice, punctuation, characters, continuity, engagement
-- **Scene Tension Mapping** — 1-10 scoring system to evaluate structural pacing and the action/reaction cycle
-- **Specialized Revision Passes** — Dedicated targeted reviews (Dialogue Pass, Sensory Pass, Prose Polish, Tension Pass)
-- **Punctuation Standards** — Mark-by-mark rules for em dashes, commas, periods, colons, semicolons, ellipses, and exclamation points; quick-reference table and per-chapter review checklist
-- **Anti-AI Writing Rules** — Hype test, voice authenticity checks, DO/DON'T quick-scan lists
-- **Continuity Diagnostics** — Cross-chapter consistency checks generating question-based diagnostic reports
-- **Automated Memory Updates** — Triggered after chapter completion, outline creation, or on-demand
-- **Chapter Titles Guide** — Auto-generated `chapter-titles-guide.md` mapping every chapter title to its meaning and story connection. Adapts to flat chapters, multi-part books, and multi-book projects
-- **Parallel Chapter Workflows** — Draft and review multiple chapters simultaneously via background agents, with sequential fallback
-- **Children's Book Craft** — Age-based writing guidelines (2–9), rhyming/meter techniques, illustration notes, phonics/vocabulary, values framework, and children's revision checklist
-- **Scene Card Template** — Atomic scene planning (Goal-Conflict-Outcome-Aftermath) before drafting
-- **Book-Level Pacing Blueprint** — Structural grid pre-planning tension curve and all major beats across the whole book
-- **Opening Chapter Checklist** — Dedicated scrutiny for Chapter 1: hook, protagonist, reader promise, exposition
-- **Research Flag Tracker** — Structured `[NEED RESEARCH]` log to prevent unverified facts from shipping in the manuscript
-- **Beta Reader Feedback Log** — Chapter-by-chapter feedback tracking with status and consolidated action items
-- **Query Letter & Publishing Toolkit** — Generate back-cover blurb, 1-page synopsis, query letter, and logline from the memory bank
-- **Spinoff Support** — Start a new story in the same world or with shared characters; Spinoff Forge onboarding, inheritance model, directory convention, shared canon rules, and cross-reference protocol
-- **Project Completion Summary** — Final verification checklist of all created files and next steps
-- **Compilation** — Combine all chapters into a single manuscript file via scripts or AI
-- **README Generation** — Auto-generated project README with progress tracking and badges
 
 ## Workflows
 
@@ -152,8 +114,8 @@ After all chapters are drafted, reviewed, and continuity-checked:
    - Chapter outlines and chapter titles guide
    - Drafted and reviewed chapters
    - Continuity diagnostic report
-2. Suggest next steps (address continuity issues, refine chapters, compile manuscript).
-3. Offer ongoing help: revise chapters, brainstorm scenes, refine arcs.
+3. Suggest next steps (address continuity issues, refine chapters, compile manuscript).
+4. Offer ongoing help: revise chapters, brainstorm scenes, refine arcs.
 
 ### 9. Starting a Spinoff
 When the user mentions "spinoff", "companion book", "same world, different story", "side story", or asks to write a story about a secondary character from an existing project:
@@ -172,22 +134,3 @@ When the user mentions "spinoff", "companion book", "same world, different story
 
 → **Full instructions and column guide:** `references/chapter_titles_guide.md`
 → **Template:** `assets/book-memory-bank/Core/Templates/chapter_titles_guide_template.md`
-
-## References
-This skill relies on the following reference documents to guide the AI's behavior:
-- `references/author_rules.md`: Provides the artistic identity, style guidelines, and quality standards for fiction writing. Includes dialogue language handling, historical title/honorific rules, and contextual address rules.
-- `references/book_memory_protocol.md`: Outlines the architecture of the Book Memory Bank, explicit rules for maintaining context files, and the Continuity Diagnostic Report process.
-- `references/memory_update_prompts.md`: Contains criteria and expected templates for auditing and updating the memory bank when significant story changes occur.
-- `references/story_forge.md`: **The Story Forge** — governs the one-time onboarding conversation for new book projects. Includes genre selection, emotional core discovery, narrative structure choice, and dialogue language preference. Run only at initialization; never repeat.
-- `references/readme_template.md`: Template for generating the project `README.md` after initialization.
-- `references/chapter_craft.md`: Chapter-level writing techniques — opening/closing formulas, book size options, chapter structure templates, reader engagement techniques, drafting best practices.
-- `references/revision_checklist.md`: Comprehensive quality checklist for chapters — story, prose, voice, characters, continuity, engagement, historical accuracy checks, and DO/DON'T quick-scan list.
-- `references/character_worldbuilding_tables.md`: Structured table templates for character profiles (19 fields), worldbuilding (10 categories), conflict mapping, synopsis structure, and timeline tracking.
-- `references/childrens_book_craft.md`: **Children's Book Craft** — age-based writing guidelines (2–9), rhyming/meter techniques, illustration notes, phonics/vocabulary, educational integration, values framework, and children's revision checklist.
-- `references/parallel_workflows.md`: **Parallel Workflows** — simultaneous chapter drafting and review via background agents. Includes task templates, sequential fallbacks, and design principles.
-- `references/punctuation_guide.md`: **Punctuation Guide** — mark-by-mark rules for every punctuation mark used in novel writing.
-- `references/spinoff_guide.md`: **Spinoff Guide** — definitions, Spinoff Forge onboarding, directory convention, inheritance model, and cross-reference protocol.
-- `references/opening_chapter_checklist.md`: **Opening Chapter Checklist** — dedicated quality gates for Chapter 1: hook, protagonist establishment, reader promise, and exposition checks.
-- `references/query_letter_guide.md`: **Query Letter & Publishing Toolkit** — generate back-cover blurb, 1-page synopsis, query letter, and logline from the memory bank.
-- `references/chapter_titles_guide.md`: **Chapter Titles Guide** — full instructions, dynamic structure rules (flat, parts, multi-book), and column guidelines for the auto-generated title reference.
-- `docs/USAGE.md`: Human-readable guide with real example dialogues for every stage of using this skill.

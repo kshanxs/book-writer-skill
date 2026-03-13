@@ -181,34 +181,40 @@ YourBookProject/
 ## 🔍 Skill Architecture
 
 ```
-book-writer/
-├── SKILL.md                                ← Core instructions & 8 workflows
+book-writer-skill/          ← Repo root
 ├── docs/
-│   ├── USAGE.md                            ← Usage guide with examples
-│   └── FEATURES.md                         ← This file
-├── references/
-│   ├── author_rules.md                     ← Writing persona & historical rules
-│   ├── book_memory_protocol.md             ← Memory bank architecture & rules
-│   ├── memory_update_prompts.md            ← Update criteria & templates
-│   ├── story_forge.md                      ← Onboarding (15+ genres, North Star)
-│   ├── readme_template.md                  ← Auto-README template
-│   ├── chapter_craft.md                    ← Chapter formulas & engagement
-│   ├── revision_checklist.md               ← Quality gates & DO/DON'T lists
-│   ├── character_worldbuilding_tables.md   ← Profiles, world, conflict tables
-│   ├── childrens_book_craft.md             ← Ages 2–9, rhyming, illustration
-│   └── parallel_workflows.md              ← Background agent drafting/review
-└── assets/
-    └── book-memory-bank/                   ← Template directory (copied on init)
-        └── Core/Templates/
-            ├── chapter_outline_template.md
-            ├── master_outline_template.md
-            ├── chapter_titles_guide_template.md
-            ├── character_arcs_template.md
-            ├── themes_and_motifs_template.md
-            ├── scene_card_template.md
-            ├── pacing_blueprint_template.md
-            ├── research_tracker_template.md
-            └── beta_reader_log_template.md
+│   ├── USAGE.md            ← Usage guide with examples
+│   └── FEATURES.md         ← This file
+├── book-writer/            ← Skill folder
+│   ├── SKILL.md            ← Core instructions & 9 workflows
+│   ├── references/
+│   │   ├── author_rules.md                     Writing persona & historical rules
+│   │   ├── book_memory_protocol.md             Memory bank architecture & rules
+│   │   ├── memory_update_prompts.md            Update criteria & templates
+│   │   ├── story_forge.md                      Onboarding (15+ genres, North Star)
+│   │   ├── readme_template.md                  Auto-README template
+│   │   ├── chapter_craft.md                    Chapter formulas & engagement
+│   │   ├── revision_checklist.md               Quality gates & DO/DON'T lists
+│   │   ├── character_worldbuilding_tables.md   Profiles, world, conflict tables
+│   │   ├── childrens_book_craft.md             Ages 2–9, rhyming, illustration
+│   │   ├── parallel_workflows.md               Background agent drafting/review
+│   │   ├── punctuation_guide.md                Mark-by-mark punctuation rules
+│   │   ├── spinoff_guide.md                    Spinoff Forge & canon consistency
+│   │   ├── opening_chapter_checklist.md        Chapter 1 dedicated quality gates
+│   │   ├── query_letter_guide.md               Publishing toolkit
+│   │   └── chapter_titles_guide.md             Title → meaning → story connection
+│   └── assets/
+│       └── book-memory-bank/   ← Template directory (copied on init)
+│           └── Core/Templates/
+│               ├── chapter_outline_template.md
+│               ├── master_outline_template.md
+│               ├── chapter_titles_guide_template.md
+│               ├── character_arcs_template.md
+│               ├── themes_and_motifs_template.md
+│               ├── scene_card_template.md
+│               ├── pacing_blueprint_template.md
+│               ├── research_tracker_template.md
+│               └── beta_reader_log_template.md
 ```
 
 ---
@@ -223,11 +229,12 @@ book-writer/
 - ✦ **Research Flag Tracker** — Structured `[NEED RESEARCH]` log; open/resolved status tracking.
 - ✦ **Beta Reader Feedback Log** — Chapter-by-chapter external feedback with action items.
 - ✦ **Query Letter & Publishing Toolkit** — Blurb, synopsis, query letter, logline from memory bank.
-- ✦ **Chapter Titles Guide** extracted into its own reference file (SKILL.md -90 lines).
-- ✦ **Character Arc Matrix** — Added `character_arcs_template.md` to map emotional progression natively.
-- ✦ **Thematic & Motif Tracker** — Added `themes_and_motifs_template.md` for symbolism tracking.
-- ✦ **Scene Tension Mapping** — Structural pacing evaluation (1-10 scoring) added to chapter review workflow.
-- ✦ **Specialized Revision Passes** — Dedicated Dialogue, Sensory, Prose Polish, and Tension passes separated from general review.
+- ✦ **Chapter Titles Guide** extracted into its own reference file.
+- ✦ **Character Arc Matrix** — Chapter-by-chapter emotional progression tracking.
+- ✦ **Thematic & Motif Tracker** — Symbolism and motif evolution across chapters.
+- ✦ **Scene Tension Mapping** — Structural pacing evaluation (1–10 scoring) in chapter review.
+- ✦ **Specialized Revision Passes** — Dialogue, Sensory, Prose Polish, and Tension passes.
+- ✦ **Architecture** — `docs/` moved to repo root; SKILL.md trimmed from 194 → 137 lines.
 
 ### v1.6
 - ✦ **Advanced Prompt Instructions** — Strict Grammar & Punctuation rules (Em dashes, semicolons, Oxford commas).
