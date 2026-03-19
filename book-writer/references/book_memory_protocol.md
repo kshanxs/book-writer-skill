@@ -176,6 +176,33 @@ For EVERY major update, check EACH of these files for needed updates:
 - ☐ book-memory-bank/Core/activeContext.md - ALWAYS updated with current status
 - ☐ book-memory-bank/Core/progress.md - Updated completion status
 
+## File Size Management: When to Split Memory Bank Files
+
+### world_and_characters.md — Keep Whole Until It Gets Very Large
+
+`world_and_characters.md` is designed to grow continuously as chapters are written. **Growing is correct behaviour — do not split it prematurely.**
+
+**Why keep it whole:**
+- Characters bleed into every scene. A character's backstory, voice, and relationships are relevant any time they appear — you can't safely load only one character's section without risking missed cross-references.
+- The file is the primary continuity safety net. Splitting it increases the risk that a session loads partial truth and introduces contradictions.
+- Even a fully fleshed-out novel with 10+ characters typically stays under 50KB — well within modern context window limits.
+
+**When to split (threshold: file approaches 200–300KB or becomes unwieldy):**
+
+Split by **concern**, not by character. The recommended split is:
+
+```
+book-memory-bank/Core/
+  world_and_characters.md    ← characters + brief world overview (always loaded)
+  world_lore.md              ← deep lore: timelines, tech specs, factions, geography (loaded on demand)
+```
+
+- `world_and_characters.md` remains the always-loaded file every session.
+- `world_lore.md` is loaded only when a scene specifically requires deep world detail (e.g., technology specs, political history, cultural deep-dives).
+- Reference `world_lore.md` explicitly from `world_and_characters.md` with a note at the top: *"For deep lore, timelines, and reference material, see `world_lore.md`."*
+
+**Never split character profiles across multiple files** — always keep all character profiles in a single document to preserve cross-character relationship context.
+
 ## Additional Automatic Features
 
 1. Consistency verification: Automatically check for and flag contradictions

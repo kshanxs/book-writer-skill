@@ -10,7 +10,7 @@
 
 <br>
 
-[![Version](https://img.shields.io/badge/version-2.0-8957e5?style=for-the-badge&labelColor=161b22)](./docs/FEATURES.md)
+[![Version](https://img.shields.io/badge/version-2.0.1-8957e5?style=for-the-badge&labelColor=161b22)](./docs/FEATURES.md)
 [![Install](https://img.shields.io/badge/⚡_Install-npx_skills_add-0d1117?style=for-the-badge&labelColor=161b22)](https://github.com/kshanxs/book-writer-skill)
 [![License](https://img.shields.io/badge/License-MIT-2ea043?style=for-the-badge&labelColor=161b22)](./LICENSE)
 [![Docs](https://img.shields.io/badge/Docs-USAGE.md-f78166?style=for-the-badge&labelColor=161b22)](./docs/USAGE.md)
@@ -102,6 +102,16 @@ YourBookProject/
     ├── Core/                    Characters, world, plot, pacing blueprint
     └── Style/                   Voice, tone, language rules
 ```
+
+---
+
+## 📝 Changelog
+
+### v2.0.1 — 2026-03-19
+- **Memory Bank File Management:** Added guidance on when to split `world_and_characters.md`. Growing is expected — only split at ~200–300KB, and split by concern (characters vs. deep lore), never by character.
+
+### v2.0
+- Initial public release with full memory bank system, parallel drafting, spinoff support, and publishing toolkit.
 
 ---
 
