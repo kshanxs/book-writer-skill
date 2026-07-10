@@ -109,8 +109,8 @@ YourBookProject/
 
 `book-writer` integrates with specialized companion skills to cover the complete book-writing lifecycle:
 
-1. **Adversarial Research (Phase 0 — [Research Dojo](https://github.com/kshanxs/research-dojo)):** For narrative non-fiction, biographies, history, and popular science, run audits on complex research papers, verify timelines, and stress-test visual analogies using the Dojo's 7-step process.
-2. **Prose Polishing, Humanising & Proofreading (Phase 1 — Calligraph Sensei):** Install [Calligraph Sensei](https://github.com/kshanxs/calligraph-sensei) to polish your chapters, adjust sentence cadence (burstiness), inject sensory showing language, and perform stylistic audits in **Creative/Fiction** or **Non-fiction** modes, or execute a conservative **Proofreading** pass to fix grammar, spelling, and typos while keeping character dialects and the book's narrative voice completely intact.
+1. **Adversarial Research (Phase 0 — [Research Dojo](https://github.com/kshanxs/skill-dojo/tree/main/skills/research-dojo)):** For narrative non-fiction, biographies, history, and popular science, run audits on complex research papers, verify timelines, and stress-test visual analogies using the Dojo's 7-step process.
+2. **Prose Polishing, Humanising & Proofreading (Phase 1 — Calligraph Sensei):** Install [Calligraph Sensei](https://github.com/kshanxs/skill-dojo/tree/main/skills/calligraph-sensei) to polish your chapters, adjust sentence cadence (burstiness), inject sensory showing language, and perform stylistic audits in **Creative/Fiction** or **Non-fiction** modes, or execute a conservative **Proofreading** pass to fix grammar, spelling, and typos while keeping character dialects and the book's narrative voice completely intact.
 
 ---
 
