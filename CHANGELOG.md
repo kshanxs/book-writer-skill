@@ -8,13 +8,14 @@ All notable changes to the `book-writer` skill will be documented in this file.
 - **Manuscript order:** Prologue, Epilogue, numbered Interludes, and mixed file names now compile in reading order. Old copies are skipped with a warning, and duplicate chapter numbers stop the build.
 - **Export safety:** Failed builds no longer delete the previous manuscript or Word file. Unreadable chapters now stop the build.
 - **Word output:** Chapters start on new pages, and a `---` scene break can no longer turn the line above it into a heading.
+- **Empty and nested content:** Empty chapters are skipped with a warning, an all-empty book keeps the previous manuscript, and nested code fences no longer confuse scene breaks.
 - **Windows export:** Custom `reference.docx` files are kept, Microsoft Word is optional, and scripts run under the default execution policy.
 - **Memory:** Added the missing file index to `activeContext.md` and replaced conflicting read rules with one loading table per task.
 - **Onboarding, spinoffs, and publishing:** Fixed the fast-track step, duplicate genre question, spinoff links and inheritance rules, companion skill detection, and publishing guides that read missing files.
 - **Cover guidance:** Corrected the KDP portrait size and Midjourney aspect ratio.
 
 ### Added
-- Revision snapshots in `Revisions/` before chapters are overwritten.
+- Unique revision snapshots in `Revisions/` before chapters are overwritten, including neighboring chapters for parallel reviews.
 - A research-flag gate for final builds, with `--draft` for review copies.
 - Style precedence, so the author's choices override skill defaults.
 - Non-fiction genres in The Story Forge and an AI disclosure check before publishing.

@@ -42,7 +42,7 @@ Review and revision passes look for specific patterns (grammar, pacing, voice, s
 
 ### Workflow
 1. Verify all target chapters have completed drafts in `Chapters/`.
-2. Copy them to `Revisions/<YYYY-MM-DD_HHMM>/`. This is both the backup and the stable copy for continuity.
+2. Copy each target and the files immediately before and after it in reading order (Prologue, chapters, Interludes, Epilogue) to a new `Revisions/<YYYY-MM-DD_HHMMSS>/` folder. If that folder exists, add `-2`, `-3`, and so on. This is both the backup and the stable copy for continuity.
 3. Launch one background task per chapter. Each task edits only its own chapter.
 4. Once all review tasks finish, run a **Sequential Continuity Check** across the whole set.
 
@@ -58,8 +58,8 @@ EXPECTED OUTCOME: Improved draft preserving author's style, intent, and emotiona
 REQUIRED CONTEXT FILES TO READ:
 - Chapters/Chapter[NN].md (current draft)
 - Outlines/Chapter_Outlines/Chapter[NN]_Outline.md (original plan)
-- Revisions/<snapshot>/Chapter[NN-1].md (if it exists, for backward continuity)
-- Revisions/<snapshot>/Chapter[NN+1].md (if it exists, for forward continuity)
+- Revisions/<snapshot>/<previous file in reading order> (if any, for backward continuity)
+- Revisions/<snapshot>/<next file in reading order> (if any, for forward continuity)
 - book-memory-bank/Style/style_guide.md (voice and tone rules)
 - book-memory-bank/Core/world_and_characters.md (character consistency)
 

@@ -59,6 +59,8 @@ If the user says anything like:
 
 → **Immediately initialize with defaults and skip all Forge questions.**
 
+**Before leaving this step on either fast track:** if the request or provided material involves real historical figures, real events, or a real era, apply **Historical Genre Features** (see below) and record it in the project brief. Skipping questions never skips these rules.
+
 ---
 
 ### Step 1 — Draft Import
