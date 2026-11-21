@@ -1,0 +1,7 @@
+# Things the prose audit should stop flagging for this book.
+# Put one rule id or one character name on each line.
+#
+# Examples:
+# em_dash
+# tricolon
+# Elara

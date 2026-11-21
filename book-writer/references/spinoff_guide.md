@@ -131,6 +131,7 @@ For same-world new stories (no shared characters at all), the parent memory bank
 | `style_guide.md` | **Forked or Fresh** | Author's choice (Step 5 of Spinoff Forge). Copy parent style or start fresh. |
 | `projectbrief.md` | **Fresh** | New title, premise, protagonist. Reference parent title under "Connected Projects". |
 | `story_structure.md` | **Fresh** | New themes, arcs, emotional core. |
+| `continuity_ledger.md` | **Fresh** | List inherited characters and facts the spinoff depends on. |
 | `activeContext.md` | **Fresh** | Tracks spinoff-specific current status. |
 | `progress.md` | **Fresh** | Tracks spinoff chapter completion. |
 | `Outlines/` | **Fresh** | Spinoff-specific outlines only. |

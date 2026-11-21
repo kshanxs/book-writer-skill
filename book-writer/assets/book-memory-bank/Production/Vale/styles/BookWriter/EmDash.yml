@@ -1,0 +1,6 @@
+extends: existence
+message: "Check this dash. In narration, try a period, comma, or colon."
+level: warning
+nonword: true
+tokens:
+  - "—"

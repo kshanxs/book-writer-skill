@@ -218,6 +218,16 @@ Only ask this if conversation is flowing naturally. If the user seems in a hurry
 
 ---
 
+### Step 7b — Voice Sample (Optional)
+
+Ask only if the user has existing writing and the conversation is flowing:
+
+> "If you have about 1,500 words of your own writing, share a file and I'll match your style. Say 'skip' if not."
+
+After initialization, run `book.py voice <file>`. Use only writing by the author, never AI-generated text.
+
+---
+
 ### Step 8 — GitHub Visibility (Optional)
 
 Only ask if the user hasn't mentioned GitHub yet:
@@ -244,6 +254,7 @@ Protagonist: [name/description or TBD]
 Setting: [or TBD]
 Dialogue Language: [language or English]
 Style: [or TBD]
+Voice Sample: [provided / none]
 GitHub: [public / private / none]
 
 Ready to initialize? Say yes — or tell me anything to adjust.

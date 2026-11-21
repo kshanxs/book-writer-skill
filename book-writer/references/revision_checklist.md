@@ -32,7 +32,9 @@ Use this checklist after drafting a chapter (or set of chapters) to ensure quali
 
 - [ ] Consistent with the established voice/style guide
 - [ ] Free from AI-isms: no "revolutionary," "profound," "game-changing," "transformative"
-- [ ] No excessive exclamation points, em dashes, or bold/italic
+- [ ] No excessive exclamation points or bold/italic
+- [ ] `book.py audit` hits were read in context (see `references/humanizing_prose.md`)
+- [ ] Revision did not over-correct: no fragment overuse, fake mistakes, or flattened character voices
 - [ ] Passes the Hype Test: strong content speaks for itself without labels
 - [ ] Emphasis is earned through careful development, not manufactured
 - [ ] Writing sounds like teaching/storytelling, not performing
@@ -45,8 +47,8 @@ Use this checklist after drafting a chapter (or set of chapters) to ensure quali
 
 *(See `references/punctuation_guide.md` for the full rule set.)*
 
-- [ ] Em dashes (—) are used only for interruption, sharp thought shifts, or indispensable emphasis — not as general connectors
-- [ ] No more than 1–2 em dashes per page
+- [ ] AI-written narration has no em dashes, and dialogue dashes mark a speaker being cut off
+- [ ] The author's own dashes were left alone unless they asked otherwise
 - [ ] Ellipses (…) appear only in dialogue or internal monologue during emotionally charged moments — not in narrative prose
 - [ ] Short, impactful sentences use periods, not ellipses, for dramatic effect
 - [ ] Commas are not overloaded — long comma chains are restructured into shorter sentences

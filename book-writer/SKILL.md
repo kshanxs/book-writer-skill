@@ -9,7 +9,8 @@ description: |
  - "initialize memory bank", "update memory bank", "start a new book", "let's start building"
  - Planning book structure (MVB, short book, full book, literary novel, picture book)
  - Checking continuity or consistency across chapters
- - Compiling a manuscript or exporting it to Word
+ - Humanizing prose, removing AI-sounding patterns or em dashes, matching an author's voice, or running a cold read
+ - Compiling a manuscript or exporting it to Word or EPUB
  - Writing a blurb, synopsis, query letter, or logline
  - Starting a spinoff, companion book, prequel, or side story
  - Any request involving book chapters, manuscripts, or story development
@@ -38,6 +39,8 @@ This skill has many reference files. Do NOT pre-load them all. Use **lazy loadin
 | `references/childrens_book_craft.md` | Only for children's book projects |
 | `references/parallel_workflows.md` | Only when parallel drafting |
 | `references/punctuation_guide.md` | Running a punctuation pass or prose polish |
+| `references/humanizing_prose.md` | Drafting, polishing, or removing AI-sounding patterns |
+| `references/cold_reader.md` | Running a cold read on an important chapter |
 | `references/spinoff_guide.md` | Only for spinoff projects |
 | `references/opening_chapter_checklist.md` | Only when reviewing Chapter 1 |
 | `references/query_letter_guide.md` | Only when user asks for blurb, synopsis, or query letter |
@@ -58,6 +61,26 @@ This skill has many reference files. Do NOT pre-load them all. Use **lazy loadin
 **File names.** Use `Chapters/Prologue.md`, `Chapters/Chapter01.md`, `Chapters/Interlude01.md` (read after Chapter 1), and `Chapters/Epilogue.md`. Use `Outlines/Chapter_Outlines/Chapter01_Outline.md` for outlines.
 
 **Protect the author's text.** Before overwriting an existing chapter, copy it to `Revisions/<YYYY-MM-DD_HHMM>/`. Never store old versions in `Chapters/`. After saving, summarize what changed and name the snapshot so the author can restore it.
+
+## Book Tools
+
+Run one command from the project root. Use `python` or `py` if `python3` is unavailable. Run these yourself and explain the results in plain language. Authors should not need to learn them.
+
+```bash
+python3 book-memory-bank/Production/Scripts/book.py check
+```
+
+| Command | Use |
+|---|---|
+| `doctor` | Show what is set up and which optional tools are missing |
+| `check` | Run the prose audit, continuity check, and research check |
+| `audit 3` | Audit Chapter 3 for AI-sounding patterns |
+| `voice sample.md` | Learn the author's style from their own writing |
+| `continuity` | Compare the chapters with `Core/continuity_ledger.md` |
+| `lint` | Run Vale and Harper if installed |
+| `export docx`, `epub`, or `all` | Build the book. Add `--draft` to allow research flags |
+
+These commands never edit a chapter. Audit hits are prompts to read, not proof of AI writing, so never describe them as a detector result. If Python is unavailable, apply `references/humanizing_prose.md` by judgment.
 
 ## Workflows
 
@@ -90,28 +113,29 @@ When the user asks to outline or write chapters:
 2. Adopt the instructions in `references/author_rules.md` for generating high-quality narrative prose, realistic dialogue, and engaging scenes.
 3. Consult `references/chapter_craft.md` for chapter structure templates, opening/closing formulas, and engagement techniques appropriate to the book type.
 4. **For children's books (ages 2–9):** Also consult `references/childrens_book_craft.md` for age-appropriate vocabulary, rhyming/meter, illustration notes, and educational integration.
-5. Write outlines in the `Outlines/Chapter_Outlines/` directory.
+5. Write outlines in the `Outlines/Chapter_Outlines/` directory. For fiction, run the Story-Level Checks in `references/humanizing_prose.md` on the master outline before drafting.
 6. **After all chapter outlines are created**, auto-generate a `chapter-titles-guide.md` inside the `Outlines/` directory (see [Chapter Titles Guide](#chapter-titles-guide) below).
-7. Write chapters in the `Chapters/` directory using the file names in Project Conventions.
+7. Write chapters in the `Chapters/` directory using the file names in Project Conventions. Follow the Em Dash Rule in `references/humanizing_prose.md`. After drafting, run `book.py audit <chapter>`, fix real problems in your own draft, and update `Core/continuity_ledger.md`.
 8. **For multi-chapter workflows**, consult `references/parallel_workflows.md`. Recommend sequential drafting for prose chapters to preserve narrative continuity, and reserve parallel workflows (background agents) strictly for outlining, creating scene cards, and conducting edit/review passes.
 
 ### 3. Compilation
 If the user asks YOU (the AI) to compile or combine the book (rather than running the included scripts themselves):
 1. Determine the OS. On Mac/Linux run `book-memory-bank/Production/Scripts/combine_chapters.sh`. On Windows run `powershell -NoProfile -ExecutionPolicy Bypass -File book-memory-bank/Production/Scripts/combine_chapters.ps1`.
-2. For a Word file, run `generate_docx.sh --no-open` (Mac/Linux) or `generate_docx.bat --no-open` (Windows). A final build stops on open `[NEED RESEARCH]` flags. Use `--draft` only when the author wants a review copy, which is saved as `Manuscript/BOOK_DRAFT.docx`.
+2. For a finished file, run `book.py export docx`, `epub`, or `all`. A final build stops on open `[NEED RESEARCH]` flags. Use `--draft` only when the author wants a review copy, which is saved as `BOOK_DRAFT`.
 3. Report every warning the script prints, including skipped files and missing chapter numbers. If it stops on duplicate chapter numbers, ask the author which file is current.
 4. If the scripts cannot run, combine the files with a shell command in reading order and save `Manuscript/COMBINED.md`. **Never retype or regenerate the manuscript through the model**, because that can silently change or truncate the author's text.
 
 ### 4. Memory Updating Protocol (CRITICAL)
 Maintaining the Book Memory Bank is essential for consistency. You must seamlessly and *automatically* update the memory bank whenever substantive writing is done. No scripts or manual user steps should be required.
 1. Consult `references/book_memory_protocol.md` for the strict rules on how and when to update the memory bank files.
-2. Consult `references/memory_update_prompts.md` for specific criteria on what changes should trigger file modifications (e.g., character traits, plot developments, world-building).
-3. If the user explicitly says "update memory bank", perform a comprehensive audit and update across all memory files based on the most recent chapter or outline. Always provide a clear summary of which files were updated and what changed.
+2. Keep `Core/continuity_ledger.md` current with characters, deaths, promises, secrets, and fixed facts.
+3. Consult `references/memory_update_prompts.md` for specific criteria on what changes should trigger file modifications (e.g., character traits, plot developments, world-building).
+4. If the user explicitly says "update memory bank", perform a comprehensive audit and update across all memory files based on the most recent chapter or outline. Always provide a clear summary of which files were updated and what changed.
 
 ### 5. Chapter Review & Revision
 When the user asks to review, revise, or polish a chapter:
 1. Read the chapter draft, its outline, adjacent chapters (for continuity), `activeContext.md`, the style guide, and `world_and_characters.md`.
-2. Consult `references/revision_checklist.md` for the quality gates and review focus areas.
+2. Consult `references/revision_checklist.md` for the quality gates and review focus areas, and run `book.py audit <chapter>`.
 3. **If reviewing Chapter 1**, also load `references/opening_chapter_checklist.md` and run its additional gates.
 4. Conduct a **Scene Tension Map** analysis to ensure proper structural pacing.
 5. Review in this order: Language → Emotion → Dialogue → Pacing → Continuity.
@@ -124,7 +148,7 @@ When the user asks to review, revise, or polish a chapter:
 
 ### 6. Continuity Check
 When the user asks to "check continuity", "run continuity check", or "check for consistency":
-1. Follow the Continuity Diagnostic Report process in `references/book_memory_protocol.md`.
+1. Run `book.py continuity`, then follow the Continuity Diagnostic Report process in `references/book_memory_protocol.md`.
 2. Cross-check all chapters against the memory bank for timeline, character, worldbuilding, emotional, and thematic consistency.
 3. Generate a diagnostic report saved to `Research/continuity_diagnostic_report.md`.
 4. Use question-based language — flag issues, don't impose fixes.
@@ -138,7 +162,7 @@ When multiple chapters need drafting, outlining, or reviewing:
 
 ### 8. Complete & Present
 After all chapters are drafted, reviewed, and continuity-checked:
-1. Scan all chapter files for `[NEED RESEARCH]` flags and cross-reference against `Research/research_tracker.md`. All open items must be resolved or explicitly flagged before the manuscript is finalized.
+1. Run `book.py check`. Cross-reference any `[NEED RESEARCH]` flags against `Research/research_tracker.md`. All open items must be resolved or explicitly flagged before the manuscript is finalized.
 2. Present a final verification summary listing all created files:
  - Foundation files (Characters, Worldbuilding, Synopsis, Timeline, Conflict, Style)
  - Chapter outlines and chapter titles guide
@@ -157,6 +181,15 @@ When the user mentions "spinoff", "companion book", "same world, different story
  - Link shared characters and world sections from the parent's `world_and_characters.md` using relative Markdown links, rather than duplicating the entire content blocks.
 4. At the start of every subsequent spinoff session, read the spinoff's memory bank files and resolve/read any referenced sections of the parent's `world_and_characters.md` as needed.
 5. After every spinoff chapter, run the **Cross-Reference Protocol** to flag potential canon conflicts before saving.
+
+### 10. Humanizing & Voice
+When the user asks to humanize, de-AI, remove em dashes, match their voice, or asks why something "sounds like AI":
+1. Read `references/humanizing_prose.md`.
+2. If the author has their own writing available, run `book.py voice <file>` first. Never treat text the AI drafted as a voice sample.
+3. Run `book.py audit <chapter>` and read each hit in context. Ask whether the text is the author's before changing it.
+4. Snapshot the chapter, make the smallest useful edits, then audit again to confirm one pattern did not turn into another.
+5. For an important chapter, offer a cold read using `references/cold_reader.md`.
+6. Never promise that text will pass an AI detector, and never use these tools to hide AI use from a publisher.
 
 ## Boundary Protocol (Synergy with Research Dojo)
 When operating in a project with both `book-writer` and `research-dojo` installed:

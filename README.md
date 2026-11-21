@@ -6,7 +6,7 @@
 
 Plan it, draft it, revise it, and get it ready to publish, with characters and plots that stay consistent from the first chapter to the last.
 
-[![Version](https://img.shields.io/badge/version-2.5.0-8957e5?style=flat-square)](./CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-3.0.0-8957e5?style=flat-square)](./CHANGELOG.md)
 [![License](https://img.shields.io/badge/license-MIT-2ea043?style=flat-square)](./LICENSE)
 [![Docs](https://img.shields.io/badge/docs-usage_guide-f78166?style=flat-square)](./docs/USAGE.md)
 
@@ -43,8 +43,10 @@ It asks one question at a time, and you can skip any of them.
 - 🧠 **Lasting memory:** characters, plot, world, and progress carry across sessions.
 - ✍️ **Craft for your genre:** fiction, non-fiction, history, popular science, and children's books.
 - 🗺️ **Story planning:** outlines, pacing blueprints, scene cards, and character arcs.
-- 🔍 **Careful revision:** continuity checks and focused passes, with a backup before every edit.
-- 📦 **Ready to publish:** Word export, blurbs, synopses, query letters, and cover prompts.
+- 🪶 **Writing that sounds like you:** learns your voice and finds AI-sounding patterns.
+- 🧵 **Continuity checks:** catches plot holes, leaked secrets, and characters who return from the dead.
+- 🔍 **Careful revision:** cold reads and focused passes, with a backup before every edit.
+- 📦 **Ready to publish:** Word, EPUB, blurbs, synopses, query letters, and cover prompts.
 
 ## 🗣️ Things you can say
 
@@ -52,10 +54,11 @@ It asks one question at a time, and you can skip any of them.
 |---|---|
 | `Write chapter 3` | Drafts the chapter from your book's memory |
 | `Do a Dialogue Pass on chapter 2` | Sharpens subtext and character voices |
-| `Check continuity` | Flags contradictions across chapters |
-| `Update memory bank` | Brings the book's memory up to date |
-| `Write a query letter` | Builds a pitch from your story |
-| `Compile the book` | Combines your chapters into one manuscript |
+| `Learn my voice from ./sample.md` | Matches your natural style |
+| `Humanize chapter 4` | Removes AI-sounding patterns |
+| `Do a cold read of chapter 1` | Gets honest feedback from a fresh reader |
+| `Check the book` | Finds plot holes and prose problems |
+| `Export the book` | Builds your Word and EPUB files |
 
 ## 📁 Your project
 
@@ -76,7 +79,7 @@ YourBook/
 
 ## 📖 Learn more
 
-[Usage guide](./docs/USAGE.md) · [All features](./docs/FEATURES.md) · [Changelog](./CHANGELOG.md)
+[Usage guide](./docs/USAGE.md) · [All features](./docs/FEATURES.md) · [Changelog](./CHANGELOG.md) · [Credits](./book-writer/THIRD_PARTY_NOTICES.md)
 
 ---
 

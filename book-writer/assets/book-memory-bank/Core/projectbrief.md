@@ -15,6 +15,8 @@ This document serves as the foundation for your book project. It defines the cor
 
 **Category**: [Adult/YA/Middle Grade/etc.]
 
+**Language**: [Language code for the ebook, such as en, en-GB, hi, or fr]
+
 **High-Level Concept**: [1-2 sentence description of the core concept]
 
 **Premise**: [Single paragraph explanation of the story premise]

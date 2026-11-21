@@ -16,15 +16,15 @@ Prefer clear sentence construction and varied sentence length over heavy punctua
 
 ### Em Dash (—)
 
-**Use sparingly. Reserve it for:**
-- A sudden interruption in dialogue (one speaker cuts off another)
-- A sharp, unexpected shift in thought mid-sentence
-- Strong emphasis that no other punctuation can convey
+**In AI-written text, use it only for:**
+- A speaker being cut off or breaking off in dialogue
 
-**Avoid em dashes:**
-- In normal narrative flow to replace commas or colons
+**Do not use em dashes:**
+- In narration
+- To replace commas, colons, or periods
 - As a default "dramatic pause" tool
-- More than once or twice per page
+
+**The author's own dashes stay** unless they ask you to remove them. If their voice baseline uses dashes, match that rate.
 
 **Correct use:**
 > "I never said I was going to—"
@@ -104,7 +104,7 @@ Use very rarely. One well-placed exclamation point carries weight; five in a cha
 
 | Mark | Primary Use | Frequency |
 |------|-------------|-----------|
-| Em dash (—) | Interruption, sharp shift, rare strong emphasis | Sparingly (< 2 per page) |
+| Em dash (—) | Dialogue cut off mid-line | None in AI-written narration |
 | Comma (,) | Pause, clause separation, lists | As needed |
 | Period (.) | Clean endings, especially impactful moments | Liberally, including short sentences |
 | Colon (:) | Introduce explanations, lists, revelations | Purposefully |
@@ -118,8 +118,9 @@ Use very rarely. One well-placed exclamation point carries weight; five in a cha
 
 When revising or reviewing a chapter, check:
 
-- [ ] Em dashes are used only for interruption, sharp shifts, or indispensable emphasis — not as general connectors
-- [ ] No more than one or two em dashes per page
+- [ ] AI-written narration has no em dashes
+- [ ] Dialogue dashes mark a speaker being cut off
+- [ ] The author's own dashes were left alone
 - [ ] Ellipses appear only in dialogue or internal monologue during emotionally charged moments
 - [ ] Short, punchy sentences use periods — not ellipses — for dramatic effect
 - [ ] Commas are not overloaded (restructure long comma chains into shorter sentences)

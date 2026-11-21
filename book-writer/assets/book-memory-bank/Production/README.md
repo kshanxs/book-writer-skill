@@ -2,6 +2,33 @@
 
 Tools for turning your chapters into a finished manuscript.
 
+## The Easy Way
+
+Ask your assistant to "check the book" or "export the book", or run one command from your project folder:
+
+```bash
+python3 book-memory-bank/Production/Scripts/book.py check
+python3 book-memory-bank/Production/Scripts/book.py export all
+```
+
+On Windows, use `python` or `py` in place of `python3`.
+
+| Command | What it does |
+|---|---|
+| `doctor` | Shows what is set up and which optional tools are missing |
+| `check` | Runs the prose audit, continuity check, and research check |
+| `audit 3` | Finds AI-sounding patterns in Chapter 3 |
+| `voice my_writing.md` | Learns your style so your habits are not flagged |
+| `continuity` | Compares the chapters with `Core/continuity_ledger.md` |
+| `lint` | Runs Vale and Harper if you have them |
+| `export docx`, `epub`, or `all` | Builds the book. Add `--draft` to allow research flags |
+
+Checks never edit your chapters. To stop a check from flagging something, add its name to `Style/audit_ignore.txt`.
+
+Python 3.8+ is the only requirement for checks. Export needs [Pandoc](https://pandoc.org/installing.html). [Vale](https://vale.sh), [Harper](https://github.com/Automattic/harper), and [EPUBCheck](https://www.w3.org/publishing/epubcheck/) are optional.
+
+For an EPUB cover, save `cover.jpg` or `cover.png` in `Manuscript/`.
+
 ## Chapter File Names
 
 The scripts read chapters in this order:

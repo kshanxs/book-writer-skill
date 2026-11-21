@@ -21,7 +21,7 @@
 | **15+ Genre Options** | Literary, Fantasy, Sci-Fi, Historical, Thriller, Horror, Romance, YA, Children's |
 | **Book Size Planning** | MVB (15–20K) · Short (25–40K) · Full (50–80K) · Novel (60–100K) |
 | **Chapter Craft** | 6 opening/closing formulas, structure templates, engagement techniques |
-| **Anti-AI Writing** | Hype test, voice authenticity, DO/DON'T quick-scan |
+| **Humanized Writing** | Story-level de-AI checks, em dash rule, over-correction safeguards |
 | **Multi-Language Dialogue** | Hinglish, Hindi, Marathi, French, Spanish, Italian, German |
 
 </td>
@@ -33,6 +33,7 @@
 | **Book Memory Bank** | Persistent Markdown files — characters, plot, world, progress |
 | **Auto Updates** | Memory stays current after every chapter — zero manual work |
 | **Continuity Diagnostics** | Cross-chapter consistency checks with diagnostic reports |
+| **Continuity Ledger** | Catches dead characters returning, early payoffs, leaked secrets, and misspelled names |
 | **Historical Authenticity** | Verified dates, titles, events, title-timeline rules |
 | **Draft Import** | Paste existing notes — AI skips questions already answered |
 | **Auto GitHub README** | Generates polished project README on initialization |
@@ -79,7 +80,7 @@
 | **Synopsis & Timeline** | Full narrative beats + chronological event tracking |
 | **Thematic Tracker** | Matrix for tracking core themes and recurring motifs |
 | **Emotional Core** | North Star identification — the truth your story explores |
-| **Compilation** | Safe manuscript and Word export with chapter ordering checks |
+| **Compilation** | Safe manuscript, Word, and EPUB export with ordering checks |
 
 </td>
 <td width="50%">
@@ -94,6 +95,9 @@
 | **Opening Chapter Checklist** | Extra scrutiny for Chapter 1: hook, promise, exposition |
 | **Continuity Reports** | Question-based diagnostic — flags, never imposes |
 | **Revision Snapshots** | Chapters are backed up to `Revisions/` before edits |
+| **Prose Audit** | Finds AI-sounding patterns with line numbers, and never edits your book |
+| **Voice Baseline** | Learns the author's style so their real habits are not flagged |
+| **Cold Reader** | A fresh reader reports boredom, confusion, and what works |
 | **Title-Timeline Rule** | Correct historical address based on scene date |
 | **Contextual Address** | Different characters use different titles for same figure |
 | **`[FICTION]` Marking** | Explicit tagging of invented historical elements |
@@ -126,6 +130,11 @@
 | `"Log beta feedback"` | Opens Beta Reader Feedback Log |
 | `"Update memory bank"` | Full audit and update |
 | `"Check continuity"` | Cross-chapter diagnostic report |
+| `"Humanize chapter 3"` | Audits and gently revises AI-sounding prose |
+| `"Learn my voice from ./sample.md"` | Builds the author's style baseline |
+| `"Do a cold read of chapter 1"` | Blind reader feedback |
+| `"Check the book"` | Runs every automated book check |
+| `"Export the book"` | Builds Word and EPUB files |
 | `"Check for consistency"` | Flags contradictions across memory bank |
 | `"Compile the book"` | Merges all chapters into `Manuscript/` |
 | `"[FICTION] ..."` | Marks an invented element (historical genres) |
@@ -206,6 +215,8 @@ book-writer-skill/ ← Repo root
 │ │ ├── opening_chapter_checklist.md Chapter 1 dedicated quality gates
 │ │ ├── query_letter_guide.md Publishing toolkit
 │ │ ├── popscience_history_rules.md Popular science and tech history
+│ │ ├── humanizing_prose.md Voice, em dash, and de-AI rules
+│ │ ├── cold_reader.md Blind reader review
 │ │ └── chapter_titles_guide.md Title → meaning → story connection
 │ └── assets/
 │ └── book-memory-bank/ ← Template directory (copied on init)
