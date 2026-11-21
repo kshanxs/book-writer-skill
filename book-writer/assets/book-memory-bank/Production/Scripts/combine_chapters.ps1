@@ -1,89 +1,198 @@
-# PowerShell Script to Combine Chapter Files into a Complete Manuscript
-# This script assembles individual chapter Markdown files into a single complete manuscript.
+# Combine chapter files into Manuscript\COMBINED.md.
+#
+# Reading order: Prologue, Chapter 1..N (InterludeN follows ChapterN), Epilogue.
+# Names may use spaces, underscores, or hyphens: Chapter01.md, chapter-1.md,
+# "Chapter 1 - The Road.md". Old copies such as Chapter01_old.md are skipped.
+#
+# Usage: combine_chapters.ps1 [-Strict]
+#   -Strict  Stop if any chapter still contains a [NEED RESEARCH] flag.
+#
+# Exit codes: 0 success, 1 assembly error, 3 open research flags.
+# The previous COMBINED.md is only replaced after a complete, successful build.
 
-# Configuration variables - modify these for your project
-$scriptDir = $PSScriptRoot
-$projectRoot = (Get-Item $scriptDir).Parent.Parent.Parent.FullName
-$chaptersDir = Join-Path -Path $projectRoot -ChildPath "Chapters"  # Path to directory containing chapter files
-$manuscriptDir = Join-Path -Path $projectRoot -ChildPath "Manuscript"
-$outputFile = Join-Path -Path $manuscriptDir -ChildPath "COMBINED.md"  # Path for output file
-$frontMatterFile = Join-Path -Path $projectRoot -ChildPath "Front_Matter.md"  # Optional front matter file (title page, etc.)
-$backMatterFile = Join-Path -Path $projectRoot -ChildPath "Back_Matter.md"  # Optional back matter file (about author, etc.)
-$chapterPrefix = "Chapter"  # Filename prefix for chapter files
+param([switch]$Strict)
 
-function Write-Log {
-    param (
-        [string]$Message,
-        [string]$Color = "White"
-    )
-    Write-Host $Message -ForegroundColor $Color
+$ErrorActionPreference = 'Stop'
+
+$projectRoot = (Get-Item $PSScriptRoot).Parent.Parent.Parent.FullName
+$chaptersDir = Join-Path $projectRoot 'Chapters'
+$manuscriptDir = Join-Path $projectRoot 'Manuscript'
+$outputFile = Join-Path $manuscriptDir 'COMBINED.md'
+$frontMatterFile = Join-Path $projectRoot 'Front_Matter.md'
+$backMatterFile = Join-Path $projectRoot 'Back_Matter.md'
+$pageBreak = "<div style='page-break-before: always;'></div>"
+$flag = '[NEED RESEARCH'
+$utf8 = New-Object System.Text.UTF8Encoding($false)
+
+function Write-BookWarning([string]$Message) {
+    [Console]::Error.WriteLine("Warning: $Message")
 }
 
-function Create-CompleteManuscript {
-    Write-Log "Starting manuscript assembly process..." "Cyan"
-
-    # Check if chapters directory exists
-    if (-not (Test-Path $chaptersDir)) {
-        Write-Log "Error: Chapters directory not found at $chaptersDir" "Red"
-        exit 1
-    }
-
-    # Create Manuscript directory if it doesn't exist
-    if (-not (Test-Path $manuscriptDir)) {
-        Write-Log "Creating Manuscript directory at $manuscriptDir" "Cyan"
-        New-Item -ItemType Directory -Force -Path $manuscriptDir | Out-Null
-    }
-
-    # Get all chapter files and sort them numerically
-    $chapterFiles = Get-ChildItem -Path $chaptersDir -Filter "$chapterPrefix*.md" | 
-                    Sort-Object { [regex]::Match($_.Name, '\d+').Value -as [int] }
-    
-    if ($chapterFiles.Count -eq 0) {
-        Write-Log "Error: No chapter files found in $chaptersDir" "Red"
-        exit 1
-    }
-    
-    Write-Log "Found $($chapterFiles.Count) chapter files to process" "Green"
-
-    # Use a StringBuilder for efficient string concatenation
-    $manuscriptBuilder = New-Object System.Text.StringBuilder
-
-    # Add front matter if it exists
-    if (Test-Path $frontMatterFile) {
-        Write-Log "Adding front matter from $frontMatterFile" "Green"
-        $frontMatterContent = Get-Content $frontMatterFile -Encoding utf8 -Raw
-        $manuscriptBuilder.Append($frontMatterContent) | Out-Null
-    }
-
-    # Add each chapter to the StringBuilder
-    foreach ($file in $chapterFiles) {
-        Write-Log "Processing $($file.Name)..." "Cyan"
-        $manuscriptBuilder.Append("`n`n<div style='page-break-before: always;'></div>`n`n") | Out-Null
-        $chapterContent = Get-Content $file.FullName -Encoding utf8 -Raw
-        $manuscriptBuilder.Append($chapterContent) | Out-Null
-    }
-    
-    # Add back matter if it exists
-    if (Test-Path $backMatterFile) {
-        Write-Log "Adding back matter from $backMatterFile" "Green"
-        $manuscriptBuilder.Append("`n`n<div style='page-break-before: always;'></div>`n`n") | Out-Null
-        $backMatterContent = Get-Content $backMatterFile -Encoding utf8 -Raw
-        $manuscriptBuilder.Append($backMatterContent) | Out-Null
-    }
-    
-    # Write the entire manuscript to the output file in one operation
-    Write-Log "Writing complete manuscript to $outputFile..." "Cyan"
-    Set-Content -Path $outputFile -Value $manuscriptBuilder.ToString() -Encoding utf8 -Force
-    
-    Write-Log "Manuscript assembly complete! Output file: $outputFile" "Green"
-    Write-Log "Total chapters: $($chapterFiles.Count)" "Green"
-    Write-Log "Word count estimate: $((Get-Content $outputFile | Measure-Object -Word).Words) words" "Green"
+function Stop-Build([string]$Message, [int]$Code = 1) {
+    [Console]::Error.WriteLine("Error: $Message")
+    exit $Code
 }
 
-# Main execution
-try {
-    Create-CompleteManuscript
-} catch {
-    Write-Log "Error occurred during manuscript assembly: $_" "Red"
+# Returns section/number/order for a recognized name, 'retired' for an old
+# copy, and $null for a file that is not part of the book.
+function Get-ChapterKey([string]$Stem) {
+    $name = $Stem.ToLowerInvariant()
+    if ($name -match '^prologue(.*)$') {
+        $section = 0; $number = 0; $order = 0; $rest = $Matches[1]
+    } elseif ($name -match '^chapter[\s_.-]*(\d+)(.*)$') {
+        $section = 1; $number = [int]$Matches[1]; $order = 0; $rest = $Matches[2]
+    } elseif ($name -match '^interlude[\s_.-]*(\d+)(.*)$') {
+        $section = 1; $number = [int]$Matches[1]; $order = 1; $rest = $Matches[2]
+    } elseif ($name -match '^epilogue(.*)$') {
+        $section = 2; $number = 0; $order = 0; $rest = $Matches[1]
+    } else {
+        return $null
+    }
+
+    $rest = ($rest -replace '[()]', ' ') -replace '^[\s_.-]+', '' -replace '[\s_.-]+$', ''
+    if ($rest -match '^(old|draft|backup|bak|copy|wip|archive|prev|previous|v\d+|rev\d*)([\s_.-]*\d+)?$') {
+        return 'retired'
+    }
+    return [pscustomobject]@{ Section = $section; Number = $number; Order = $order }
+}
+
+# Puts blank lines around "---" so Pandoc reads a scene break, not a heading.
+function Format-SceneBreaks([string]$Text) {
+    $lines = @($Text -split "`r?`n")
+    if ($lines.Count -gt 0 -and $lines[-1] -eq '') {
+        if ($lines.Count -gt 1) { $lines = @($lines[0..($lines.Count - 2)]) } else { $lines = @() }
+    }
+    $out = New-Object System.Collections.Generic.List[string]
+    $fenceChar = ''
+    $fenceLength = 0
+    $inYaml = $false
+    $needBlank = $false
+    $previous = ''
+
+    for ($i = 0; $i -lt $lines.Count; $i++) {
+        $line = $lines[$i]
+        if ($i -eq 0 -and $line -match '^ *--- *$' -and $lines.Count -gt 1 -and $lines[1] -match '^[A-Za-z0-9_-]+:') {
+            $out.Add('---'); $inYaml = $true; continue
+        }
+        if ($inYaml) {
+            $out.Add($line)
+            if ($line -match '^(---|\.\.\.) *$') { $inYaml = $false; $previous = $line }
+            continue
+        }
+        $isFenceLine = $false
+        if ($line -match '^ {0,3}(`{3,}|~{3,})(.*)$') {
+            $marker = $Matches[1]
+            $rest = $Matches[2]
+            if ($fenceLength -eq 0) {
+                $fenceChar = $marker.Substring(0, 1)
+                $fenceLength = $marker.Length
+                $isFenceLine = $true
+            } elseif ($marker.Substring(0, 1) -eq $fenceChar -and $marker.Length -ge $fenceLength -and $rest -match '^\s*$') {
+                $fenceLength = 0
+                $isFenceLine = $true
+            }
+        }
+        if (-not $isFenceLine -and $fenceLength -eq 0 -and $line -match '^ *--- *$') {
+            if ($previous -ne '') { $out.Add('') }
+            $out.Add('---')
+            $previous = '---'
+            $needBlank = $true
+            continue
+        }
+        if ($needBlank -and $line -ne '') { $out.Add('') }
+        $needBlank = $false
+        $out.Add($line)
+        $previous = $line
+    }
+    return ($out -join "`n") + "`n"
+}
+
+if (-not (Test-Path -LiteralPath $chaptersDir -PathType Container)) {
+    Stop-Build "Chapters directory not found at $chaptersDir"
+}
+New-Item -ItemType Directory -Force -Path $manuscriptDir | Out-Null
+
+$entries = @()
+foreach ($file in Get-ChildItem -LiteralPath $chaptersDir -File | Where-Object { $_.Extension -eq '.md' }) {
+    $key = Get-ChapterKey $file.BaseName
+    if ($null -eq $key) {
+        Write-BookWarning "Skipping $($file.Name) (not a Prologue, Chapter, Interlude, or Epilogue name)"
+    } elseif ($key -is [string]) {
+        Write-BookWarning "Skipping $($file.Name) (looks like an old copy)"
+    } else {
+        $entries += [pscustomobject]@{ Section = $key.Section; Number = $key.Number; Order = $key.Order; File = $file }
+    }
+}
+
+if ($entries.Count -eq 0) { Stop-Build "No chapter files found in $chaptersDir" }
+
+$entries = @($entries | Sort-Object Section, Number, Order)
+
+$duplicates = @($entries | Group-Object Section, Number, Order | Where-Object { $_.Count -gt 1 })
+if ($duplicates.Count -gt 0) {
+    foreach ($group in $duplicates) {
+        [Console]::Error.WriteLine('Error: these files claim the same place in the book:')
+        foreach ($entry in $group.Group) { [Console]::Error.WriteLine("  $($entry.File.FullName)") }
+    }
     exit 1
+}
+
+$numbers = @($entries | Where-Object { $_.Section -eq 1 -and $_.Order -eq 0 } | ForEach-Object { $_.Number })
+$gaps = @()
+for ($i = 1; $i -lt $numbers.Count; $i++) {
+    if ($numbers[$i] -gt $numbers[$i - 1] + 1) { $gaps += "$($numbers[$i - 1] + 1)-$($numbers[$i] - 1)" }
+}
+if ($gaps.Count -gt 0) { Write-BookWarning "Chapter numbers are missing: $($gaps -join ' ')" }
+
+$sources = @()
+if (Test-Path -LiteralPath $frontMatterFile) { $sources += $frontMatterFile }
+$sources += @($entries | ForEach-Object { $_.File.FullName })
+if (Test-Path -LiteralPath $backMatterFile) { $sources += $backMatterFile }
+
+$tempOutput = Join-Path $manuscriptDir ('.combined.' + [guid]::NewGuid().ToString('N'))
+try {
+    $texts = @{}
+    $flagged = 0
+    foreach ($source in $sources) {
+        try {
+            $texts[$source] = [IO.File]::ReadAllText($source, $utf8)
+        } catch {
+            Stop-Build "Cannot read $source"
+        }
+        $count = ([regex]::Matches($texts[$source], [regex]::Escape($flag))).Count
+        if ($count -gt 0) {
+            Write-BookWarning "$(Split-Path -Leaf $source) has $count open [NEED RESEARCH] flag(s)"
+            $flagged += $count
+        }
+    }
+    if ($Strict -and $flagged -gt 0) {
+        Stop-Build "resolve $flagged research flag(s) before the final build." 3
+    }
+
+    Write-Host "Assembling $($entries.Count) chapter file(s)..."
+    $builder = New-Object System.Text.StringBuilder
+    foreach ($source in $sources) {
+        if ([string]::IsNullOrWhiteSpace($texts[$source])) {
+            Write-BookWarning "Skipping $(Split-Path -Leaf $source) (the file is empty)"
+            continue
+        }
+        if ($builder.Length -gt 0) { [void]$builder.Append("`n`n$pageBreak`n`n") }
+        [void]$builder.Append((Format-SceneBreaks $texts[$source]))
+    }
+    if ($builder.Length -eq 0) {
+        Stop-Build 'Every chapter file is empty. Your previous manuscript was kept.'
+    }
+
+    [IO.File]::WriteAllText($tempOutput, $builder.ToString(), $utf8)
+    Move-Item -LiteralPath $tempOutput -Destination $outputFile -Force
+
+    $plain = $builder.ToString().Replace($pageBreak, ' ')
+    $words = ([regex]::Matches($plain, '\S+')).Count
+    Write-Host "Manuscript complete: $outputFile"
+    Write-Host "Chapter files: $($entries.Count). Estimated words: $words."
+} catch {
+    [Console]::Error.WriteLine("Error: manuscript assembly failed: $_")
+    exit 1
+} finally {
+    if (Test-Path -LiteralPath $tempOutput) { Remove-Item -LiteralPath $tempOutput -Force }
 }

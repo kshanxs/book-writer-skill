@@ -1,9 +1,19 @@
 #!/usr/bin/env bash
+#
+# Combine chapter files into Manuscript/COMBINED.md.
+#
+# Reading order: Prologue, Chapter 1..N (InterludeN follows ChapterN), Epilogue.
+# Names may use spaces, underscores, or hyphens: Chapter01.md, chapter-1.md,
+# "Chapter 1 - The Road.md". Old copies such as Chapter01_old.md are skipped.
+#
+# Usage: combine_chapters.sh [--strict]
+#   --strict  Stop if any chapter still contains a [NEED RESEARCH] flag.
+#
+# Exit codes: 0 success, 1 assembly error, 2 bad usage, 3 open research flags.
+# The previous COMBINED.md is only replaced after a complete, successful build.
 
-# Bash Script to Combine Chapter Files into a Complete Manuscript
-# This script assembles individual chapter Markdown files into a single complete manuscript.
+set -euo pipefail
 
-# Configuration variables - modify these for your project
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_ROOT="$(cd "$SCRIPT_DIR/../../.." && pwd)"
 CHAPTERS_DIR="$PROJECT_ROOT/Chapters"
@@ -11,82 +21,182 @@ MANUSCRIPT_DIR="$PROJECT_ROOT/Manuscript"
 OUTPUT_FILE="$MANUSCRIPT_DIR/COMBINED.md"
 FRONT_MATTER_FILE="$PROJECT_ROOT/Front_Matter.md"
 BACK_MATTER_FILE="$PROJECT_ROOT/Back_Matter.md"
-CHAPTER_PREFIX="Chapter"
+PAGE_BREAK="<div style='page-break-before: always;'></div>"
+FLAG='[NEED RESEARCH'
 
-# Colors for log output
-CYAN='\033[0;36m'
-GREEN='\033[0;32m'
-RED='\033[0;31m'
-NC='\033[0m' # No Color
+STRICT=0
+for arg in "$@"; do
+    case "$arg" in
+        --strict) STRICT=1 ;;
+        -h|--help) sed -n '3,13p' "${BASH_SOURCE[0]}" | sed 's/^# \{0,1\}//'; exit 0 ;;
+        *) echo "Unknown option: $arg (try --help)" >&2; exit 2 ;;
+    esac
+done
 
-write_log() {
-    local message=$1
-    local color=$2
-    echo -e "${color}${message}${NC}"
+info() { echo "$1"; }
+warn() { echo "Warning: $1" >&2; }
+die() { echo "Error: $1" >&2; exit 1; }
+
+# Prints "section number order" for a recognized name, "retired" for an old
+# copy, and nothing for a file that is not part of the book.
+classify() {
+    local stem rest section number order
+    stem="$(printf '%s' "$1" | tr '[:upper:]' '[:lower:]')"
+    if [[ "$stem" =~ ^prologue(.*)$ ]]; then
+        section=0; number=0; order=0; rest="${BASH_REMATCH[1]}"
+    elif [[ "$stem" =~ ^chapter[[:space:]_.-]*([0-9]+)(.*)$ ]]; then
+        section=1; number=$((10#${BASH_REMATCH[1]})); order=0; rest="${BASH_REMATCH[2]}"
+    elif [[ "$stem" =~ ^interlude[[:space:]_.-]*([0-9]+)(.*)$ ]]; then
+        section=1; number=$((10#${BASH_REMATCH[1]})); order=1; rest="${BASH_REMATCH[2]}"
+    elif [[ "$stem" =~ ^epilogue(.*)$ ]]; then
+        section=2; number=0; order=0; rest="${BASH_REMATCH[1]}"
+    else
+        return 0
+    fi
+
+    rest="${rest//[()]/ }"
+    while [[ "$rest" =~ ^[[:space:]_.-](.*)$ ]]; do rest="${BASH_REMATCH[1]}"; done
+    while [[ "$rest" =~ ^(.*)[[:space:]_.-]$ ]]; do rest="${BASH_REMATCH[1]}"; done
+    if [[ "$rest" =~ ^(old|draft|backup|bak|copy|wip|archive|prev|previous|v[0-9]+|rev[0-9]*)([[:space:]_.-]*[0-9]+)?$ ]]; then
+        echo "retired"
+    else
+        echo "$section $number $order"
+    fi
 }
 
-create_complete_manuscript() {
-    write_log "Starting manuscript assembly process..." "$CYAN"
-
-    # Check if chapters directory exists
-    if [ ! -d "$CHAPTERS_DIR" ]; then
-        write_log "Error: Chapters directory not found at $CHAPTERS_DIR" "$RED"
-        exit 1
-    fi
-
-    # Create Manuscript directory if it doesn't exist
-    if [ ! -d "$MANUSCRIPT_DIR" ]; then
-        write_log "Creating Manuscript directory at $MANUSCRIPT_DIR" "$CYAN"
-        mkdir -p "$MANUSCRIPT_DIR"
-    fi
-
-    # Get all chapter files and sort them numerically
-    shopt -s nullglob
-    CHAPTER_FILES=("$CHAPTERS_DIR"/$CHAPTER_PREFIX*.md)
-    if [ ${#CHAPTER_FILES[@]} -eq 0 ]; then
-        write_log "Error: No chapter files found in $CHAPTERS_DIR" "$RED"
-        exit 1
-    fi
-
-    # Sort files numerically
-    IFS=$'\n' sorted_files=($(sort -V <<<"${CHAPTER_FILES[*]}"))
-    unset IFS
-
-    write_log "Found ${#sorted_files[@]} chapter files to process" "$GREEN"
-
-    # Clear or create the output file
-    > "$OUTPUT_FILE"
-
-    # Add front matter if it exists
-    if [ -f "$FRONT_MATTER_FILE" ]; then
-        write_log "Adding front matter from $FRONT_MATTER_FILE" "$GREEN"
-        cat "$FRONT_MATTER_FILE" >> "$OUTPUT_FILE"
-    fi
-
-    # Add each chapter to the output file
-    for file in "${sorted_files[@]}"; do
-        write_log "Processing $(basename "$file")..." "$CYAN"
-        printf "\n\n<div style='page-break-before: always;'></div>\n\n" >> "$OUTPUT_FILE"
-        cat "$file" >> "$OUTPUT_FILE"
-    done
-
-    # Add back matter if it exists
-    if [ -f "$BACK_MATTER_FILE" ]; then
-        write_log "Adding back matter from $BACK_MATTER_FILE" "$GREEN"
-        printf "\n\n<div style='page-break-before: always;'></div>\n\n" >> "$OUTPUT_FILE"
-        cat "$BACK_MATTER_FILE" >> "$OUTPUT_FILE"
-    fi
-
-    write_log "Manuscript assembly complete! Output file: $OUTPUT_FILE" "$GREEN"
-    write_log "Total chapters: ${#sorted_files[@]}" "$GREEN"
-    
-    # Simple word count estimate
-    word_count=$(wc -w < "$OUTPUT_FILE" | tr -d ' ')
-    write_log "Word count estimate: $word_count words" "$GREEN"
+# Puts blank lines around "---" so Pandoc reads a scene break, not a heading.
+normalize_scene_breaks() {
+    awk '
+    function emit(text) {
+        if (need_blank && text != "") print ""
+        need_blank = 0
+        print text
+        previous = text
+    }
+    function scene_break() {
+        if (previous != "") print ""
+        print "---"
+        previous = "---"
+        need_blank = 1
+    }
+    {
+        line = $0
+        sub(/\r$/, "", line)
+        if (NR == 1 && line ~ /^ *--- *$/) { pending = 1; next }
+        if (pending) {
+            pending = 0
+            if (line ~ /^[A-Za-z0-9_-]+:/) { print "---"; in_yaml = 1 } else scene_break()
+        }
+        if (in_yaml) {
+            print line
+            if (line ~ /^(---|\.\.\.) *$/) { in_yaml = 0; previous = line }
+            next
+        }
+        if (match(line, /^ ? ? ?(```+|~~~+)/)) {
+            marker = substr(line, RSTART, RLENGTH)
+            rest = substr(line, RSTART + RLENGTH)
+            gsub(/ /, "", marker)
+            if (!fence_length) {
+                fence_char = substr(marker, 1, 1)
+                fence_length = length(marker)
+                emit(line)
+                next
+            }
+            if (substr(marker, 1, 1) == fence_char && length(marker) >= fence_length && rest ~ /^[ \t]*$/) {
+                fence_length = 0
+                emit(line)
+                next
+            }
+        }
+        if (!fence_length && line ~ /^ *--- *$/) { scene_break(); next }
+        emit(line)
+    }
+    END { if (pending) print "---" }
+    ' "$1"
 }
 
-# Main execution
-create_complete_manuscript || {
-    write_log "Error occurred during manuscript assembly." "$RED"
+[ -d "$CHAPTERS_DIR" ] || die "Chapters directory not found at $CHAPTERS_DIR"
+mkdir -p "$MANUSCRIPT_DIR"
+
+INDEX="$(mktemp "$MANUSCRIPT_DIR/.chapters.XXXXXX")"
+TEMP_OUTPUT="$(mktemp "$MANUSCRIPT_DIR/.combined.XXXXXX")"
+SNAPSHOT_DIR="$(mktemp -d "$MANUSCRIPT_DIR/.sources.XXXXXX")"
+trap 'rm -rf "$INDEX" "$TEMP_OUTPUT" "$SNAPSHOT_DIR"' EXIT
+
+shopt -s nullglob
+for file in "$CHAPTERS_DIR"/*.md; do
+    name="$(basename "$file")"
+    key="$(classify "${name%.md}")"
+    case "$key" in
+        "") warn "Skipping $name (not a Prologue, Chapter, Interlude, or Epilogue name)" ;;
+        retired) warn "Skipping $name (looks like an old copy)" ;;
+        *) printf '%s\t%s\n' "$key" "$file" >> "$INDEX" ;;
+    esac
+done
+
+[ -s "$INDEX" ] || die "No chapter files found in $CHAPTERS_DIR"
+
+SORTED="$(LC_ALL=C sort -t ' ' -k1,1n -k2,2n -k3,3n "$INDEX")"
+
+DUPLICATES="$(printf '%s\n' "$SORTED" | cut -f1 | uniq -d)"
+if [ -n "$DUPLICATES" ]; then
+    while IFS= read -r key; do
+        echo "Error: these files claim the same place in the book:" >&2
+        printf '%s\n' "$SORTED" | awk -F '\t' -v k="$key" '$1 == k { print "  " $2 }' >&2
+    done <<< "$DUPLICATES"
     exit 1
-}
+fi
+
+FILES=()
+while IFS=$'\t' read -r _ file; do FILES+=("$file"); done <<< "$SORTED"
+
+GAPS="$(printf '%s\n' "$SORTED" | cut -f1 | awk '
+    $1 == 1 && $3 == 0 { if (seen && $2 > last + 1) printf "%d-%d ", last + 1, $2 - 1; last = $2; seen = 1 }')"
+[ -z "$GAPS" ] || warn "Chapter numbers are missing: $GAPS"
+
+SOURCES=()
+[ ! -f "$FRONT_MATTER_FILE" ] || SOURCES+=("$FRONT_MATTER_FILE")
+SOURCES+=("${FILES[@]}")
+[ ! -f "$BACK_MATTER_FILE" ] || SOURCES+=("$BACK_MATTER_FILE")
+
+# Check and assemble the same copy of each file, even if a chapter is edited mid-build.
+SNAPSHOTS=()
+for index in "${!SOURCES[@]}"; do
+    file="${SOURCES[$index]}"
+    [ -r "$file" ] || die "Cannot read $file"
+    cp "$file" "$SNAPSHOT_DIR/$index" || die "Cannot read $file"
+    SNAPSHOTS+=("$SNAPSHOT_DIR/$index")
+done
+
+FLAGGED=0
+for index in "${!SNAPSHOTS[@]}"; do
+    count="$(grep -Fc "$FLAG" "${SNAPSHOTS[$index]}" || true)"
+    if [ "$count" -gt 0 ]; then
+        warn "$(basename "${SOURCES[$index]}") has $count open [NEED RESEARCH] flag(s)"
+        FLAGGED=$((FLAGGED + count))
+    fi
+done
+if [ "$STRICT" -eq 1 ] && [ "$FLAGGED" -gt 0 ]; then
+    echo "Error: resolve $FLAGGED research flag(s) before the final build." >&2
+    exit 3
+fi
+
+info "Assembling ${#FILES[@]} chapter file(s)..."
+for index in "${!SNAPSHOTS[@]}"; do
+    if ! grep -q '[^[:space:]]' "${SNAPSHOTS[$index]}"; then
+        warn "Skipping $(basename "${SOURCES[$index]}") (the file is empty)"
+        continue
+    fi
+    if [ -s "$TEMP_OUTPUT" ]; then
+        printf '\n\n%s\n\n' "$PAGE_BREAK" >> "$TEMP_OUTPUT"
+    fi
+    normalize_scene_breaks "${SNAPSHOTS[$index]}" >> "$TEMP_OUTPUT"
+done
+
+[ -s "$TEMP_OUTPUT" ] || die "Every chapter file is empty. Your previous manuscript was kept."
+
+mv -f "$TEMP_OUTPUT" "$OUTPUT_FILE"
+
+WORDS="$({ grep -Fv "$PAGE_BREAK" "$OUTPUT_FILE" || true; } | wc -w | tr -d ' ')"
+info "Manuscript complete: $OUTPUT_FILE"
+info "Chapter files: ${#FILES[@]}. Estimated words: $WORDS."

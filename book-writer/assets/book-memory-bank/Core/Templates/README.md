@@ -1,41 +1,18 @@
-# Templates Directory
+# Templates
 
-This directory contains template files that serve as starting points for creating new story elements. These templates provide structured formats for consistent documentation across your project.
+Starting points for optional planning and tracking documents. Your assistant copies a template to its working location and fills it in when needed.
 
-## Available Templates
+| Template | Save as |
+|---|---|
+| `master_outline_template.md` | `Outlines/Master_Outline.md` |
+| `chapter_outline_template.md` | `Outlines/Chapter_Outlines/Chapter01_Outline.md` |
+| `chapter_titles_guide_template.md` | `Outlines/chapter-titles-guide.md` |
+| `scene_card_template.md` | Inside a chapter outline, or `Outlines/Scene_Cards/` |
+| `pacing_blueprint_template.md` | `book-memory-bank/Core/pacing_blueprint.md` |
+| `character_arcs_template.md` | `book-memory-bank/Core/character_arcs.md` |
+| `themes_and_motifs_template.md` | `book-memory-bank/Core/themes_and_motifs.md` |
+| `world_gita_template.md` | `book-memory-bank/Core/world_gita.md` |
+| `research_tracker_template.md` | `Research/research_tracker.md` |
+| `beta_reader_log_template.md` | `Research/beta_reader_log.md` |
 
-### Plot Templates
-
-- **master_outline_template.md** - High-level story structure template
-- **chapter_outline_template.md** - Detailed chapter planning template
-
-These templates provide comprehensive guidance for:
-- Structuring your overall narrative
-- Planning individual chapters with consistent detail
-- Maintaining narrative continuity across your story
-
-## How To Use Templates
-
-1. **Copy the template** to your working location (typically in the Outlines/ directory of your main project)
-2. **Rename the file** according to your project's naming convention (e.g., "Chapter01_Outline.md")
-3. **Fill in the sections** with your specific content
-4. **Save the completed file** in your project's working directory
-
-## Template Benefits
-
-- **Consistency**: Maintain the same level of detail across all chapters and planning documents
-- **Thoroughness**: Ensure you consider all important aspects of your story
-- **Organization**: Keep your planning documents structured and easily navigable
-- **Efficiency**: Save time by starting with a pre-built framework
-
-## Customizing Templates
-
-Feel free to modify these templates to better suit your specific writing process:
-
-1. Copy the template to a new file
-2. Add, remove, or modify sections as needed
-3. Save your customized template for future use
-
-## Integration with Memory Bank
-
-The templates are designed to work seamlessly with Cline's automated memory updating system. When you complete a chapter outline based on these templates, you can request Cline to analyze it and update all relevant memory bank files automatically.
+Feel free to add, remove, or change sections to suit your book.

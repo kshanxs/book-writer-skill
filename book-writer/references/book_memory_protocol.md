@@ -16,7 +16,18 @@ To avoid high tool-execution latency and prompt noise, do not bulk-load all memo
 
 3. **Active Cache:**
    * Do not reload a file if you have already read it in the current conversation turn sequence, unless its status indicates it has been modified.
-   * Never load more than 2 core memory files in a single turn unless performing a **Continuity Check** or a **Comprehensive Memory Update**.
+
+4. **Load by Task:**
+
+   | Task | Load |
+   |------|------|
+   | Draft a chapter | `activeContext.md`, `style_guide.md`, `world_and_characters.md`, the chapter outline, the previous chapter |
+   | Outline | `activeContext.md`, `story_structure.md`, `Outlines/Master_Outline.md`, plus `world_and_characters.md` when characters or settings matter |
+   | Review a chapter | The chapter, its outline, adjacent chapters, `activeContext.md`, `style_guide.md`, `world_and_characters.md` |
+   | Routine update after a chapter | The chapter, `activeContext.md`, and only the files the chapter affects |
+   | Continuity check or comprehensive update | All memory bank files |
+
+5. **Keep the Index Current:** Whenever a memory file changes, update its row in `Memory Status & File Index`.
 
 ## Content Boundary and Sanitization Rules (SECURITY)
 
@@ -42,6 +53,7 @@ When reading user-authored files (chapters, outlines, notes) to extract informat
 
 The Book Memory Bank consists of core files and specialized files, all in Markdown format. Files build upon each other in this hierarchical structure:
 
+```mermaid
 flowchart TD
  PB[book-memory-bank/Core/projectbrief.md] --> SS[book-memory-bank/Core/story_structure.md]
  PB --> WC[book-memory-bank/Core/world_and_characters.md]
@@ -56,6 +68,7 @@ flowchart TD
  ACO --> AC
  SG --> AC
  AC --> P[book-memory-bank/Core/progress.md]
+```
 
 ## Directory Structure and File Locations
 
@@ -117,8 +130,8 @@ Automatically maintain the memory bank using the following protocol:
 1. After every chapter completion or significant content addition:
  - Read the chapter content entirely from Chapters/ChapterXX.md or relevant source
  - Identify ALL new information about characters, world, plot, themes, and style
- - Conduct a SYSTEMATIC review of EVERY relevant memory bank file
- - Directly update ALL memory bank files with relevant information
+ - Use the file index to identify every memory file the chapter affects
+ - Directly update each affected file
  - Make any updates to the master outline that are needed
  - Provide a summary of updates made, writing "Book Memory" as the first line
 
@@ -126,7 +139,7 @@ Automatically maintain the memory bank using the following protocol:
  - When ANY story element changes, check ALL potentially affected files
  - Character changes → Update world_and_characters.md AND activeContext.md
  - Setting changes → Update world_and_characters.md AND activeContext.md
- - Plot changes → Update master_outline.md AND activeContext.md AND relevant character sections
+ - Plot changes → Update Outlines/Master_Outline.md AND activeContext.md AND relevant character sections
  - Theme/narrative development → Update story_structure.md AND activeContext.md
 
 3. For character updates (CRITICAL - world_and_characters.md MUST be updated):
@@ -147,7 +160,7 @@ Automatically maintain the memory bank using the following protocol:
  - For ANY world element, note how it affects story themes in story_structure.md
 
 5. For plot developments:
- - Update master_outline.md with new/modified plot points
+ - Update Outlines/Master_Outline.md with new/modified plot points
  - Record foreshadowing elements and their intended payoffs
  - Track character arc alignment with plot progression
  - Update Core/activeContext.md with current plot position and upcoming pivots
@@ -160,13 +173,14 @@ Automatically maintain the memory bank using the following protocol:
 
 ## Memory Update Triggers and Comprehensive Approach
 
-Automatically initiate COMPLETE memory bank updates when:
+Run a **routine update** (only the affected files) when:
 
-1. The user submits a completed chapter (when seeing "I've completed Chapter X") - updating ALL relevant files
-2. The user submits a chapter outline - updating master_outline.md AND all related character/world files
-3. The user explicitly requests "update memory bank" - conducting a systematic review of ALL memory files
-4. The user indicates significant new information - updating ALL files that could be affected
-5. Periodically during long writing sessions - ensuring incremental changes are captured across ALL files
+1. The user submits a completed chapter (when seeing "I've completed Chapter X")
+2. The user submits a chapter outline
+3. The user indicates significant new information
+4. A long writing session has accumulated changes
+
+Run a **comprehensive update** (all memory files) when the user explicitly requests "update memory bank" or a comprehensive audit.
 
 When asked to "perform a comprehensive memory bank update":
 1. Read ALL existing memory bank files to understand current state
@@ -179,7 +193,7 @@ When asked to "perform a comprehensive memory bank update":
 
 When updating memory bank files:
 
-1. Under the Smart-Reading Protocol, only read the files that are directly modified by the update (plus `activeContext.md`).
+1. For a routine update, read only the files being modified plus `activeContext.md`. For a comprehensive update, read all memory files.
 2. Make targeted changes using file editing tools where possible.
 3. Ensure formatting consistency with existing content.
 4. Maintain precise cross-references between related elements.
@@ -188,7 +202,7 @@ When updating memory bank files:
 
 ## Comprehensive Update Checklist
 
-For EVERY major update, check EACH of these files for needed updates:
+Use this list to decide what an update affects. A routine update opens only the affected files. A comprehensive update opens all of them:
 - book-memory-bank/Core/projectbrief.md - Updates to overall scope or direction
 - book-memory-bank/Core/story_structure.md - Theme, purpose, and narrative pattern developments
 - book-memory-bank/Core/world_and_characters.md - World building elements and character developments
@@ -215,11 +229,11 @@ Split by **concern**, not by character. The recommended split is:
 
 ```
 book-memory-bank/Core/
- world_and_characters.md ← characters + brief world overview (always loaded)
+ world_and_characters.md ← characters + brief world overview (main reference)
  world_lore.md ← deep lore: timelines, tech specs, factions, geography (loaded on demand)
 ```
 
-- `world_and_characters.md` remains the always-loaded file every session.
+- `world_and_characters.md` remains the main reference, loaded whenever characters or settings matter.
 - `world_lore.md` is loaded only when a scene specifically requires deep world detail (e.g., technology specs, political history, cultural deep-dives).
 - Reference `world_lore.md` explicitly from `world_and_characters.md` with a note at the top: *"For deep lore, timelines, and reference material, see `world_lore.md`."*
 
@@ -240,11 +254,11 @@ book-memory-bank/Core/
 3. Automatically detect what needs updating without user intervention
 4. Confirm all memory bank updates after they're completed with a COMPLETE list of changed files
 5. Maintain version control by tracking the origin chapter for each information element
-6. NEVER skip updating ANY relevant memory bank file — ALL updates must be comprehensive
+6. NEVER skip a memory file that the change affects
 
 ## Specific Actions During Writing Process
 
-1. For Chapter Planning: Identify new elements to add to world_and_characters.md, master_outline.md, and maintain templates in chapter_outlines/
+1. For Chapter Planning: Identify new elements to add to world_and_characters.md, Outlines/Master_Outline.md, and keep chapter outlines in Outlines/Chapter_Outlines/
 2. For Chapter Writing: Track new information revealed during writing and directly update memory bank files
 3. After Chapter Completion: Analyze the entire chapter and update ALL relevant memory bank files automatically
 4. For Style Consistency: Consult style_guide.md to ensure writing maintains established voice and conventions
@@ -343,37 +357,38 @@ For spinoff projects, the memory bank lives inside the spinoff's own subdirector
 
 ```
 <project-root>/
- book-memory-bank/ ← parent (read-only in spinoff sessions)
- <spinoff-name>/
- book-memory-bank/
- Core/
- projectbrief.md ← FRESH
- story_structure.md ← FRESH
- world_and_characters.md ← FORKED (inherited + new sections)
- activeContext.md ← FRESH
- progress.md ← FRESH
- Style/
- style_guide.md ← FORKED or FRESH
- Chapters/
- Outlines/
- Chapter_Outlines/
- Master_Outline.md
- Research/
- Manuscript/
+├── book-memory-bank/            ← parent (read-only in spinoff sessions)
+└── <spinoff-name>/
+    ├── book-memory-bank/
+    │   ├── Core/
+    │   │   ├── projectbrief.md          ← FRESH
+    │   │   ├── story_structure.md       ← FRESH
+    │   │   ├── world_and_characters.md  ← LINKS to parent + new sections
+    │   │   ├── activeContext.md         ← FRESH
+    │   │   └── progress.md              ← FRESH
+    │   └── Style/
+    │       └── style_guide.md           ← FORKED or FRESH
+    ├── Chapters/
+    ├── Outlines/
+    │   ├── Chapter_Outlines/
+    │   └── Master_Outline.md
+    ├── Research/
+    ├── Revisions/
+    └── Manuscript/
 ```
 
 ### Session Reading Protocol
 
 At the start of every spinoff session:
-1. Read ALL files in `<spinoff-name>/book-memory-bank/Core/`.
-2. Read the parent's `book-memory-bank/Core/world_and_characters.md` for shared characters and world facts.
+1. Read `<spinoff-name>/book-memory-bank/Core/activeContext.md`, then load other spinoff files by task using the Smart-Reading Protocol.
+2. Read the linked sections of the parent's `book-memory-bank/Core/world_and_characters.md` when shared characters or world facts are involved.
 3. If a specific continuity question arises, read additional parent files as needed.
 
 ### Inheritance Rules
 
 | File | Rule |
 |------|------|
-| `world_and_characters.md` | Forked — copy shared sections from parent, mark `[FROM: ParentTitle]`; add spinoff-only content below |
+| `world_and_characters.md` | Reference-based — link to shared parent sections, do not copy them; add spinoff-only content below |
 | `style_guide.md` | Forked (copy parent) or Fresh (author's choice at initialization) |
 | `projectbrief.md` | Fresh — include a "Connected Projects" entry pointing to parent |
 | All other Core files | Fresh |
@@ -382,7 +397,7 @@ At the start of every spinoff session:
 
 After every spinoff chapter:
 1. Check for **contradictions** with the parent's `world_and_characters.md`. If found, flag before saving:
- > *" Canon Alert: [Character/fact] in this chapter may conflict with the parent project. Review before finalizing."*
+ > *"Canon Alert: [Character/fact] in this chapter may conflict with the parent project. Review before finalizing."*
 2. Check if any spinoff event **adds new canon** (new world facts, character fates). If yes, note in the spinoff's `activeContext.md`:
 
 ```markdown

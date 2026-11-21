@@ -4,9 +4,9 @@ This document provides ready-to-use prompts that instruct the AI to automaticall
 
 ## Automatic Content Analysis Prompts
 
-###
+### Standard Update
 
-In theory, after major updates (new outline or chapter), the various changes should be updated in the the correct memory bank files. This does not alway work. You can instead use this manual prompt.
+Memory updates normally happen automatically after a new outline or chapter. If something was missed, use this prompt.
 Most of the time you will just ask to update memory bank - this should pick up all changes and update the correct files. If this is not working, you can use the other Automatic Content Analysis Prompts.
 
 ```
@@ -67,7 +67,7 @@ Please update the memory bank with these details about [specific element]:
 Use your file access to:
 1. Read the relevant memory bank files
 2. Determine where these updates should be placed
-3. Update the files directly using write_to_file or replace_in_file
+3. Update the files directly with your file editing tools
 4. Confirm what changes were made
 
 Focus particularly on updating [relevant file, e.g., Core/world_and_characters.md, Core/story_structure.md, etc.]

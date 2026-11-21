@@ -1,134 +1,85 @@
 <div align="center">
 
-<br>
+# 📚 Book Writer
 
-# ✦ book-writer ✦
+**An AI writing studio that remembers your whole book.**
 
-### *The Complete AI Writing Studio*
+Plan it, draft it, revise it, and get it ready to publish, with characters and plots that stay consistent from the first chapter to the last.
 
-*Master-class fiction · Automated story memory · Book-level pacing · Publishing toolkit*
-
-<br>
-
-[![Version](https://img.shields.io/badge/version-2.4.0-8957e5?style=for-the-badge&labelColor=161b22)](./docs/FEATURES.md)
-[![Install](https://img.shields.io/badge/⚡_Install-npx_skills_add-0d1117?style=for-the-badge&labelColor=161b22)](https://github.com/kshanxs/book-writer-skill)
-[![License](https://img.shields.io/badge/License-MIT-2ea043?style=for-the-badge&labelColor=161b22)](./LICENSE)
-[![Docs](https://img.shields.io/badge/Docs-USAGE.md-f78166?style=for-the-badge&labelColor=161b22)](./docs/USAGE.md)
-
-<br>
-
-*Most AI writing tools give you a chapter. This gives you a studio — characters that stay consistent,*
-*plots that don't contradict, worlds that remember their own rules, and a memory bank that never forgets.*
+[![Version](https://img.shields.io/badge/version-2.5.0-8957e5?style=flat-square)](./CHANGELOG.md)
+[![License](https://img.shields.io/badge/license-MIT-2ea043?style=flat-square)](./LICENSE)
+[![Docs](https://img.shields.io/badge/docs-usage_guide-f78166?style=flat-square)](./docs/USAGE.md)
 
 </div>
 
 ---
 
-## 🚀 Installation
+## 🚀 Install
 
 ```bash
 npx skills add https://github.com/kshanxs/book-writer-skill --skill book-writer
 ```
 
-### Update to latest version
+To update later:
 
 ```bash
 npx skills update book-writer
 ```
 
----
+## 💬 Start writing
 
-## 💬 Quick Start
+Just tell your AI assistant what you want:
 
+```text
+Let's start building a new book
+Write a rhyming picture book about a shy dragon for ages 4-6
+I have some notes already. Here's my outline: ./outline.md
 ```
-"Let's start building a new book"
-"Write a rhyming picture book about a shy dragon for ages 4-6"
-"I have some notes already — here's my outline: ./outline.md"
-```
 
-The AI guides you through setup one question at a time. Every question is skippable.
+It asks one question at a time, and you can skip any of them.
 
-**→ [Full usage guide with examples](./docs/USAGE.md)**
+## ✨ What you get
 
----
+- 🧠 **Lasting memory:** characters, plot, world, and progress carry across sessions.
+- ✍️ **Craft for your genre:** fiction, non-fiction, history, popular science, and children's books.
+- 🗺️ **Story planning:** outlines, pacing blueprints, scene cards, and character arcs.
+- 🔍 **Careful revision:** continuity checks and focused passes, with a backup before every edit.
+- 📦 **Ready to publish:** Word export, blurbs, synopses, query letters, and cover prompts.
 
-## ✨ Highlights
-
-| | |
-|---|---|
-| ✍️ **Master Author Voice** | Literary prose, cinematic dialogue, 15+ genres |
-| 🧠 **Book Memory Bank** | Auto-maintained context — characters, plot, world, progress |
-| 🧬 **Character Arc Matrix** | Chapter-by-chapter emotional progression tracking |
-| 🎭 **Thematic & Motif Tracker** | Core themes + evolving symbols mapped across chapters |
-| 📈 **Pacing Blueprint** | Book-level structural grid with tension curve before drafting |
-| 📊 **Scene Tension Map** | Per-chapter 1–10 pacing analysis with output table |
-| 🔬 **Specialized Revision Passes** | Dialogue, Sensory, Prose Polish, and Tension passes |
-| 📬 **Publishing Toolkit** | Blurb, synopsis, query letter, logline — from your memory bank |
-| 🏛️ **Historical Authenticity** | Title-timeline rules, verified facts, `[FICTION]` marking |
-
-**→ [See all 40+ features and commands](./docs/FEATURES.md)**
-
----
-
-## ⚡ Command Reference
+## 🗣️ Things you can say
 
 | Say this | What happens |
 |---|---|
-| `"Let's start building a new book"` | Runs The Story Forge onboarding |
-| `"Write chapter 3"` | Reads memory bank, writes the chapter |
-| `"Outline all chapters in parallel"` | Launches background agents for chapter outlines |
-| `"Do a Dialogue Pass on chapter 2"` | Focused revision pass on subtext & voice |
-| `"Review all chapters in parallel"` | Launches background agents to edit/review drafted chapters |
-| `"Write a query letter"` | Generates query letter from memory bank |
-| `"Write a back-cover blurb"` | Generates blurb from memory bank |
-| `"Check continuity"` | Cross-chapter diagnostic report |
-| `"Update memory bank"` | Full audit and update |
-| `"Compile the book"` | Merges all chapters into `Manuscript/` |
+| `Write chapter 3` | Drafts the chapter from your book's memory |
+| `Do a Dialogue Pass on chapter 2` | Sharpens subtext and character voices |
+| `Check continuity` | Flags contradictions across chapters |
+| `Update memory bank` | Brings the book's memory up to date |
+| `Write a query letter` | Builds a pitch from your story |
+| `Compile the book` | Combines your chapters into one manuscript |
 
-**→ [Full command reference](./docs/FEATURES.md#-command-reference)**
+## 📁 Your project
 
----
-
-## 📁 Project Structure
-
-```
-YourBookProject/
-├── README.md                    ← Auto-generated
-├── Chapters/                    ← Manuscript files
-├── Outlines/                    ← Chapter outlines + titles guide
-├── Research/                    ← Continuity reports + research tracker
-├── Manuscript/                  ← Compiled output
-└── book-memory-bank/            ← Auto-maintained by AI
-    ├── Core/                    Characters, world, plot, pacing blueprint
-    └── Style/                   Voice, tone, language rules
+```text
+YourBook/
+├── Chapters/          Your book
+├── Outlines/          Story and chapter plans
+├── Research/          Facts and continuity reports
+├── Revisions/         Automatic backups
+├── Manuscript/        Compiled book
+└── book-memory-bank/  What the AI remembers
 ```
 
----
+## 🤝 Companion skills
 
-## 🏛️ Synergistic Companions: Research Dojo & Calligraph Sensei
+- 🔬 **[Research Dojo](https://github.com/kshanxs/skill-dojo/tree/main/skills/research-dojo)** checks facts, dates, and sources for non-fiction.
+- 🖋️ **[Calligraph Sensei](https://github.com/kshanxs/skill-dojo/tree/main/skills/calligraph-sensei)** polishes and proofreads prose while keeping your voice.
 
-`book-writer` integrates with specialized companion skills to cover the complete book-writing lifecycle:
+## 📖 Learn more
 
-1. **Adversarial Research (Phase 0 — [Research Dojo](https://github.com/kshanxs/skill-dojo/tree/main/skills/research-dojo)):** For narrative non-fiction, biographies, history, and popular science, run audits on complex research papers, verify timelines, and stress-test visual analogies using the Dojo's 7-step process.
-2. **Prose Polishing, Humanising & Proofreading (Phase 1 — Calligraph Sensei):** Install [Calligraph Sensei](https://github.com/kshanxs/skill-dojo/tree/main/skills/calligraph-sensei) to polish your chapters, adjust sentence cadence (burstiness), inject sensory showing language, and perform stylistic audits in **Creative/Fiction** or **Non-fiction** modes, or execute a conservative **Proofreading** pass to fix grammar, spelling, and typos while keeping character dialects and the book's narrative voice completely intact.
-
----
-
-## 📝 Changelog
-
-See [CHANGELOG.md](./CHANGELOG.md) for details on all versions and releases.
+[Usage guide](./docs/USAGE.md) · [All features](./docs/FEATURES.md) · [Changelog](./CHANGELOG.md)
 
 ---
 
-## 📄 License
-
-This project is licensed under the [MIT License](LICENSE).
-
-Copyright © 2026 [Shubhanshu Shukla](https://github.com/kshanxs). All rights reserved.
-
----
-
-<p align="center">
-  <sub>MIT License &nbsp;•&nbsp; Permission to Modify & Distribute &nbsp;•&nbsp; No Warranty or Liability</sub><br>
-  <sub>Built with passion for authors who care about their craft.</sub>
-</p>
+<div align="center">
+<sub>MIT License · Made by <a href="https://github.com/kshanxs">Shubhanshu Shukla</a> for authors who care about their craft.</sub>
+</div>

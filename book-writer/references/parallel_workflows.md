@@ -32,18 +32,19 @@ Since outlining follows a top-down structure derived from `Master_Outline.md`, o
 ### Workflow
 1. Approve `Outlines/Master_Outline.md`.
 2. Launch one background agent per chapter to write detailed scene cards and chapter-level outlines.
-3. Save output to `Outlines/Chapter_Outlines/chapter-[N]-outline.md`.
+3. Save output to `Outlines/Chapter_Outlines/Chapter[NN]_Outline.md`.
 
 ---
 
 ## Parallel Chapter Review & Editing
 
-Review and revision passes are stateless operations looking for specific patterns (grammar, pacing, voice, sensory detail). They can be run concurrently across already-drafted chapters.
+Review and revision passes look for specific patterns (grammar, pacing, voice, sensory detail). They can run concurrently across already-drafted chapters when every agent reads the same frozen snapshot.
 
 ### Workflow
 1. Verify all target chapters have completed drafts in `Chapters/`.
-2. Launch one background task per chapter.
-3. Once all review tasks finish, run a **Sequential Continuity Check** across the whole set.
+2. Copy each target and the files immediately before and after it in reading order (Prologue, chapters, Interludes, Epilogue) to a new `Revisions/<YYYY-MM-DD_HHMMSS>/` folder. If that folder exists, add `-2`, `-3`, and so on. This is both the backup and the stable copy for continuity.
+3. Launch one background task per chapter. Each task edits only its own chapter.
+4. Once all review tasks finish, run a **Sequential Continuity Check** across the whole set.
 
 ### Background Task Template (Review & Edit)
 
@@ -55,10 +56,10 @@ TASK: Review and gently refine Chapter [N] draft.
 EXPECTED OUTCOME: Improved draft preserving author's style, intent, and emotional subtlety.
 
 REQUIRED CONTEXT FILES TO READ:
-- Chapters/chapter-[N].md (current draft)
-- Outlines/Chapter_Outlines/chapter-[N]-outline.md (original plan)
-- Chapters/chapter-[N-1].md (if N > 1, for backward continuity)
-- Chapters/chapter-[N+1].md (if exists, for forward continuity)
+- Chapters/Chapter[NN].md (current draft)
+- Outlines/Chapter_Outlines/Chapter[NN]_Outline.md (original plan)
+- Revisions/<snapshot>/<previous file in reading order> (if any, for backward continuity)
+- Revisions/<snapshot>/<next file in reading order> (if any, for forward continuity)
 - book-memory-bank/Style/style_guide.md (voice and tone rules)
 - book-memory-bank/Core/world_and_characters.md (character consistency)
 
@@ -76,7 +77,7 @@ REVISION PRINCIPLES:
 
 MUST DO: Cross-check with outline, prior/next chapters, and context files.
 MUST NOT: Introduce new scenes, events, or characters. Resolve future conflicts.
-OUTPUT: Save refined draft to Chapters/chapter-[N].md (overwrite existing).
+OUTPUT: Save refined draft to Chapters/Chapter[NN].md. Do not edit any other chapter.
 ```
 
 ---
@@ -85,7 +86,7 @@ OUTPUT: Save refined draft to Chapters/chapter-[N].md (overwrite existing).
 
 For prose writing, chapters must be drafted one by one:
 1. **Prepare Context:** Read the memory bank files, the approved Chapter N-1 prose, and the outline for Chapter N.
-2. **Draft Prose:** Write Chapter N and save to `Chapters/chapter-[N].md`.
+2. **Draft Prose:** Write Chapter N and save to `Chapters/Chapter[NN].md`.
 3. **Execute Memory Update:** Run the Memory Updating Protocol to record character additions, plot turns, and timeline events in the memory bank files.
 4. **Context Carryover:** Move to Chapter N+1 using the updated memory files and Chapter N's final prose.
 

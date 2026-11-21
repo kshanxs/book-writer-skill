@@ -5,7 +5,7 @@ This document defines the technology, magic, factions, lore, and physical rules 
 > **Design Rule**: Technology or magic in this world should feel integrated and lived-in. It operates in the background of characters' lives until it glitches, fails, or is pushed to its absolute limits.
 
 > **The Tech/Magic Introduction Rule (One-Sentence Context Rule)**:
-> Every named technology, magic system, or unique world concept gets **exactly one warm sentence** of context on its first appearance in the narrative — enough for the reader to picture it and understand what it does (e.g., *"The fusion-drive — a compact thermal reactor — hummed quietly in the hangar."*).
+> Every named technology, magic system, or unique world concept gets **exactly one warm sentence** of context on its first appearance in the narrative — enough for the reader to picture it and understand what it does (e.g., *"The fusion-drive, a compact thermal reactor, hummed quietly in the hangar."*).
 > - Do not include info-dumps or acronym expansions in the middle of active scenes. Provide name + identity + one clear image, then proceed.
 > - Normal/everyday technology or magic (e.g., standard doors, basic lights, common transportation) gets no introduction at all. Only unique, named systems get the one-sentence treatment.
 

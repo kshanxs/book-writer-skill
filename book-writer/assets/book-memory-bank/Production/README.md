@@ -1,55 +1,61 @@
-# Production Directory
+# Production
 
-This directory contains resources and tools for the book production process, including publication preparation, automation scripts, and AI-assisted generation tools.
+Tools for turning your chapters into a finished manuscript.
 
-## Structure
+## Chapter File Names
 
-- **AI_Generation/** - Templates and prompts for AI-assisted content generation
- - `cover_prompts.md` - Instructions for creating book covers with AI tools
+The scripts read chapters in this order:
 
-- **Scripts/** - Automation tools for manuscript preparation
- - `combine_chapters.ps1` - PowerShell script to assemble all chapters into a single document
- - `generate_docx.bat` - Batch script to convert markdown to properly formatted Word document
- - `prepare_word_template.ps1` - PowerShell script to configure Word document formatting
+| File | Position |
+|---|---|
+| `Prologue.md` | First |
+| `Chapter01.md`, `Chapter02.md`, ... | By number |
+| `Interlude02.md` | Right after Chapter 2 |
+| `Epilogue.md` | Last |
 
-## Usage
+Titles are fine, as in `Chapter 3 - The Road.md`. Copies such as `Chapter01_old.md` are skipped with a warning. Two files with the same chapter number stop the build so nothing is included by mistake.
 
-### Book Cover Generation
+Optional `Front_Matter.md` and `Back_Matter.md` in the project root are added at the start and end.
 
-The `AI_Generation/cover_prompts.md` file provides structured prompts for generating book covers with AI image generation tools. These prompts can be customized based on your book's genre, theme, and style.
+## Combine Chapters
 
-Example:
+Creates `Manuscript/COMBINED.md`.
+
+```bash
+# Mac / Linux
+book-memory-bank/Production/Scripts/combine_chapters.sh
 ```
-I want to generate a book cover for my [genre] novel titled "[TITLE]."
-The story involves [brief description of main elements].
-The mood is [describe the emotional tone and atmosphere].
+
+```powershell
+# Windows
+powershell -NoProfile -ExecutionPolicy Bypass -File book-memory-bank\Production\Scripts\combine_chapters.ps1
 ```
 
-### Publication Preparation
+## Create a Word Document
 
-### Main Script
+Requires [Pandoc](https://pandoc.org/installing.html). Creates `Manuscript/BOOK.docx`.
 
-Run generate_docx.bat to run the other scripts, which will create the Word file for your book
+```bash
+# Mac / Linux
+book-memory-bank/Production/Scripts/generate_docx.sh
+```
 
-### Manuscript Preparation
+```bat
+:: Windows
+book-memory-bank\Production\Scripts\generate_docx.bat
+```
 
-The scripts in the Scripts directory automate the process of preparing your manuscript for publication:
+| Option | Effect |
+|---|---|
+| `--draft` | Keeps open `[NEED RESEARCH]` flags and writes `BOOK_DRAFT.docx` |
+| `--no-open` | Does not open the finished file |
 
-1. **Combine Chapters**:
- ```powershell
- .\combine_chapters.ps1 -ChapterDir "..\Chapters" -OutputPath "..\Manuscript\COMBINED.md"
- ```
+A final build stops while research flags remain. Your previous document is only replaced after a successful build.
 
-2. **Generate Word Document**:
- ```batch
- generate_docx.bat "..\Manuscript\COMBINED.md" "..\Manuscript\BOOK.docx"
- ```
+## Word Styling
 
-3. **Prepare Word Template**:
- ```powershell
- .\prepare_word_template.ps1 -TemplateFile "reference.docx" -OutputFile "..\Manuscript\template.docx"
- ```
+Pandoc uses `Scripts/reference.docx` when it exists. On Windows with Microsoft Word installed, `prepare_word_template.ps1` creates one the first time you export and then leaves it alone, so your customizations are safe. Run it with `-Force` to rebuild it. Without a template, Pandoc's default styling is used.
 
-## Integration with Memory Bank
+## Book Covers
 
-These production tools work seamlessly with the memory bank's automatic update system. As you write new chapters, the memory bank maintains your book's context, and when you're ready to publish, these production tools help transform your writing into a professional manuscript.
+`AI_Generation/cover_prompts.md` has prompt templates and cover specifications for AI image tools.

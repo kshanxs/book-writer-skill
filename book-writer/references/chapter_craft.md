@@ -61,9 +61,9 @@ Best for: memoirs, authority books, narrative non-fiction.
 Best for: non-fiction, self-help, challenging conventional wisdom.
 
 ### 3. The Statistic Open
-> "87% of [audience] will never [achieve outcome]. Here's why you don't have to be one of them..."
+> "[Verified figure] of [audience] [documented outcome], according to [named source]. Here's why that matters..."
 
-Best for: data-driven arguments, health, business, social issues.
+Best for: data-driven arguments, health, business, social issues. Use only a real statistic with a source. If none is available, mark it `[NEED RESEARCH]` and never invent a number.
 
 ### 4. The Bold Claim Open
 > "This chapter contains the single most important concept in this entire book."

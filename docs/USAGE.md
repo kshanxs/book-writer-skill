@@ -34,16 +34,19 @@ When you start a new book, the AI runs **The Story Forge**: a short setup conver
 ```
 What genre best fits your book?
 
- 1. Literary Fiction 6. Thriller / Suspense
- 2. Historical Fiction 7. Horror
- 3. Narrative History 8. Romance
- 4. Fantasy (4a–4d) 9. Adventure / Action
- 5. Science Fiction 10. Mystery / Detective
- 11. Biographical / Memoir
- 12. Young Adult (YA)
- 13. Children's / Middle Grade
- 14. Short Story Collection
- 15. Other — describe it
+FICTION
+  1. Literary Fiction       7. Romance (7a–7c)
+  2. Historical Fiction     8. Adventure / Action
+  3. Fantasy (3a–3d)        9. Mystery / Detective
+  4. Science Fiction (4a–d) 10. Young Adult (YA)
+  5. Thriller (5a–5d)       11. Children's / Middle Grade
+  6. Horror (6a–6c)         12. Short Story Collection
+
+NON-FICTION
+ 13. Narrative History      15. Popular Science / Tech History
+ 14. Biography / Memoir     16. Business / Self-Help / How-To
+
+ 17. Other — describe it
 ```
 
 **You:** *"2 — Historical Fiction."*
@@ -147,7 +150,7 @@ Applies automatically when your genre is historical or you mention real figures.
 ### Flagging a fiction element
 
 ```
-"[FICTION] Bajirao to have a younger brother who fights at Palkhed."
+"[FICTION] Bajirao to have a childhood friend who fights at Palkhed."
 ```
 
 > **AI:** *"Added and marked `[FICTION]`. He won't be treated as a historical figure. Do you have a name, or shall I suggest a period-appropriate one?"*
@@ -203,7 +206,7 @@ The AI reads the scene's register and chooses automatically. But you can always 
 
 **You:** *"Write the outline for Chapter 3."*
 
-> AI reads all memory bank files silently. Returns a full outline.
+> AI reads the memory files this task needs. Returns a full outline.
 
 **You:** *"Add a scene where Bajirao scouts alone at night — quieter, more internal."*
 
@@ -237,7 +240,7 @@ The AI reads the scene's register and chooses automatically. But you can always 
 
 **You:** *"Yes, fix it."*
 
-> Chapter_02.md corrected. Memory bank note added.
+> `Chapter02.md` corrected, with the earlier version saved in `Revisions/`. Memory bank note added.
 
 ---
 
@@ -389,7 +392,7 @@ Flag uncertain facts inline while writing:
 
 **You:** *"Log this beta feedback from Riya: Chapter 2 felt slow, Chapter 5 great, wants more of Mastani."*
 
-> AI adds entries to `beta_reader_log.md` by chapter with Type, Priority, and Status.
+> AI adds entries to `Research/beta_reader_log.md` by chapter with Type, Priority, and Status.
 
 **You:** *"What are the high-priority beta notes I haven't addressed yet?"*
 
@@ -428,14 +431,14 @@ Once the manuscript is complete, generate all submission assets from your memory
 ```
 Continuity Diagnostic Report — Generated: Feb 2026
 
- Timeline consistent across Chapters 1–8
- Character behavior aligned with profiles
+✅ Timeline consistent across Chapters 1–8
+✅ Character behavior aligned with profiles
 
- Chapter 5, Scene 2: Bajirao is called "Peshwa Bajirao"
+⚠️ Chapter 5, Scene 2: Bajirao is called "Peshwa Bajirao"
  but scene is set in 1717, before his 1720 appointment.
  → Question: Should this be corrected to "Bajirao"?
 
- Chapter 7: Nizam-ul-Mulk references the Palkhed battle,
+⚠️ Chapter 7: Nizam-ul-Mulk references the Palkhed battle,
  which hasn't happened yet in the timeline.
  → Question: Is this foreshadowing, or a continuity slip?
 ```
@@ -446,7 +449,7 @@ Continuity Diagnostic Report — Generated: Feb 2026
 
 ## The Memory Bank
 
-The AI maintains context files in `book-memory-bank/` — it reads them at the start of every session and updates them automatically after writing. You never manage them manually.
+The AI maintains context files in `book-memory-bank/` — it starts each session from `activeContext.md`, loads what the task needs, and updates the files automatically after writing. You never manage them manually.
 
 ```
 book-memory-bank/
@@ -459,6 +462,18 @@ book-memory-bank/
 └── Style/
  └── style_guide.md ← prose voice, tone, stylistic rules
 ```
+
+---
+
+## Exporting Your Book
+
+**You:** *"Compile the book."*
+
+> AI combines Prologue, chapters, interludes, and Epilogue in reading order into `Manuscript/COMBINED.md`, and reports skipped files or missing chapter numbers.
+
+**You:** *"Export it to Word."*
+
+> AI creates `Manuscript/BOOK.docx` with Pandoc. A final build stops while `[NEED RESEARCH]` flags remain. Ask for a **draft export** to get `BOOK_DRAFT.docx` for beta readers.
 
 ---
 
@@ -514,7 +529,7 @@ A `README.md` is generated in your project root on initialization — title, bad
 - **Partial answers are fine** — say what you know; add more later
 - **Change your mind freely** — just tell the AI the new version, it updates the memory bank
 - **For historical books** — providing your primary sources upfront helps the AI flag uncertainties accurately
-- **Chapter review is non-destructive** — the AI never adds new plot or removes your intentional choices
+- **Chapter review is reversible** — the AI saves a snapshot in `Revisions/` before editing and never adds new plot
 
 ---
 

@@ -4,10 +4,10 @@ This document provides templates and examples for creating effective prompts for
 
 ## Technical Specifications
 
-For optimal KDP cover requirements:
-- Recommended dimensions: 2560 x 1600 pixels
-- Minimum: 1000 x 625 pixels
-- Aspect ratio: 1.6:1
+For KDP eBook covers (portrait):
+- Recommended: 2,560 pixels high x 1,600 pixels wide
+- Minimum: 1,000 pixels high x 625 pixels wide
+- Height-to-width ratio: 1.6:1
 - Format: RGB color space, JPEG or TIFF
 - Leave space at top and bottom for title and author name
 
@@ -110,7 +110,7 @@ Add these keywords to modify the style of any prompt:
 
 ### Midjourney
 - Use --stylize parameter to control artistic interpretation
-- Add --aspect 1.6:1 for proper KDP ratio
+- Add --ar 5:8 for the portrait KDP ratio (Midjourney requires whole numbers)
 - Use --quality parameter for higher detail
 - Consider --chaos parameter for more varied outputs
 
@@ -134,3 +134,5 @@ Add these keywords to modify the style of any prompt:
 3. Check the cover at thumbnail size to ensure readability
 4. Ensure your final image meets the technical requirements for your publishing platform
 5. Consider creating a series of consistent covers if planning multiple books
+6. Paperback and hardcover need a full wrap sized to trim and page count, so use KDP's cover calculator
+7. KDP requires disclosure of AI-generated covers and interior images when you publish

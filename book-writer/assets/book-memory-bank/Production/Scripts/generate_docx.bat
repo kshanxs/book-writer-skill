@@ -1,84 +1,85 @@
 @echo off
-echo ===============================================
-echo Manuscript to DOCX Converter for Book Projects
-echo ===============================================
-echo.
-echo This batch file will:
-echo 1. Clean up old manuscript files
-echo 2. Create a fresh Word template with custom formatting
-echo 3. Run the PowerShell script to combine all chapters
-echo 4. Convert the markdown file to DOCX using Pandoc
-echo 5. Open the final DOCX file in Microsoft Word
-echo.
-echo Prerequisites:
-echo - Pandoc must be installed (https://pandoc.org/installing.html)
-echo - Microsoft Word must be installed
-echo.
-echo Starting process...
-echo.
+setlocal
 
-echo Step 1: Cleaning up old files...
-if not exist "%~dp0..\..\..\Manuscript" mkdir "%~dp0..\..\..\Manuscript"
-if exist "%~dp0..\..\..\Manuscript\COMBINED.md" del "%~dp0..\..\..\Manuscript\COMBINED.md"
-if exist "%~dp0..\..\..\Manuscript\BOOK.docx" del "%~dp0..\..\..\Manuscript\BOOK.docx"
-if exist "%~dp0\reference.docx" del "%~dp0\reference.docx"
-echo Cleanup complete.
-echo.
+rem Build a Word document from the chapters.
+rem Usage: generate_docx.bat [--draft] [--no-open]
+rem   --draft    Allow open [NEED RESEARCH] flags and write BOOK_DRAFT.docx.
+rem   --no-open  Do not open the file or pause (use this for automated runs).
+rem The previous document is only replaced after a successful conversion.
 
-echo Step 2: Creating Word reference template...
-powershell -File "%~dp0\prepare_word_template.ps1"
-if %ERRORLEVEL% NEQ 0 (
-    echo Error creating Word template. Please make sure Microsoft Word is installed.
-    pause
-    exit /b 1
+set "SCRIPTS=%~dp0"
+set "MANUSCRIPT=%~dp0..\..\..\Manuscript"
+set "COMBINED=%MANUSCRIPT%\COMBINED.md"
+set "REFERENCE=%SCRIPTS%reference.docx"
+set "FILTER=%SCRIPTS%page_breaks.lua"
+set "OUTPUT=%MANUSCRIPT%\BOOK.docx"
+set "STRICT=-Strict"
+set "OPEN=1"
+
+:parse
+if "%~1"=="" goto parsed
+if /i "%~1"=="--draft" (
+    set "OUTPUT=%MANUSCRIPT%\BOOK_DRAFT.docx"
+    set "STRICT="
+    shift
+    goto parse
 )
-echo Word template created successfully.
-echo.
-
-echo Step 3: Running PowerShell script to combine chapters...
-powershell -File "%~dp0\combine_chapters.ps1"
-if %ERRORLEVEL% NEQ 0 (
-    echo Error running PowerShell script. Please check the script and try again.
-    pause
-    exit /b 1
+if /i "%~1"=="--no-open" (
+    set "OPEN=0"
+    shift
+    goto parse
 )
-echo PowerShell script completed successfully.
-echo.
+echo Unknown option: %~1
+set "CODE=2"
+goto fail
 
-echo Step 4: Checking if Pandoc is installed...
+:parsed
 where pandoc >nul 2>&1
-if %ERRORLEVEL% NEQ 0 (
-    echo Pandoc not found. Please install Pandoc from https://pandoc.org/installing.html
-    echo After installing, run this batch file again.
-    pause
-    exit /b 1
+if errorlevel 1 (
+    echo Error: Pandoc is not installed. Your existing files were not changed.
+    echo Install it from https://pandoc.org/installing.html
+    set "CODE=1"
+    goto fail
 )
-echo Pandoc found. Converting markdown to DOCX...
-pandoc -s "%~dp0..\..\..\Manuscript\COMBINED.md" -o "%~dp0..\..\..\Manuscript\BOOK.docx" --from markdown --to docx --reference-doc="%~dp0\reference.docx"
-if %ERRORLEVEL% NEQ 0 (
-    echo Error converting to DOCX. Please check if Manuscript\COMBINED.md exists.
-    pause
-    exit /b 1
-)
-echo Conversion to DOCX completed successfully.
-echo.
 
-echo Step 5: Opening DOCX file in Microsoft Word...
-start "" "%~dp0..\..\..\Manuscript\BOOK.docx"
-if %ERRORLEVEL% NEQ 0 (
-    echo Error opening DOCX file. Please open it manually.
+if not exist "%REFERENCE%" (
+    powershell -NoProfile -ExecutionPolicy Bypass -File "%SCRIPTS%prepare_word_template.ps1"
+    if errorlevel 1 echo Note: could not create a Word template, so Pandoc's default styling will be used.
 )
-echo.
 
-echo =============================================
-echo PROCESS COMPLETED SUCCESSFULLY
-echo =============================================
-echo.
-echo Next steps:
-echo 1. Review the Word document for formatting issues
-echo 2. Ensure chapter breaks and section formatting looks correct
-echo 3. Run the spell-checker and review any flagged content
-echo 4. Save the properly formatted document
-echo 5. Export to other formats as needed
-echo.
-pause
+powershell -NoProfile -ExecutionPolicy Bypass -File "%SCRIPTS%combine_chapters.ps1" %STRICT%
+set "CODE=%ERRORLEVEL%"
+if "%CODE%"=="3" echo For a review copy that keeps the flags, run: generate_docx.bat --draft
+if not "%CODE%"=="0" goto fail
+
+set "TEMP_DOCX=%MANUSCRIPT%\.book_%RANDOM%%RANDOM%.docx"
+if exist "%REFERENCE%" (
+    pandoc -s "%COMBINED%" -o "%TEMP_DOCX%" --from markdown --to docx --lua-filter="%FILTER%" --reference-doc="%REFERENCE%"
+) else (
+    pandoc -s "%COMBINED%" -o "%TEMP_DOCX%" --from markdown --to docx --lua-filter="%FILTER%"
+)
+if errorlevel 1 (
+    if exist "%TEMP_DOCX%" del "%TEMP_DOCX%"
+    echo Error: Pandoc could not build the document. Your previous document was kept.
+    set "CODE=1"
+    goto fail
+)
+
+move /y "%TEMP_DOCX%" "%OUTPUT%" >nul
+if errorlevel 1 (
+    if exist "%TEMP_DOCX%" del "%TEMP_DOCX%"
+    echo Error: could not replace the Word file. Close it in Word and try again.
+    set "CODE=1"
+    goto fail
+)
+
+echo Word document ready: %OUTPUT%
+if "%OPEN%"=="1" (
+    start "" "%OUTPUT%"
+    pause
+)
+exit /b 0
+
+:fail
+if "%OPEN%"=="1" pause
+exit /b %CODE%
