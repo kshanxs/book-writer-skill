@@ -63,7 +63,8 @@ function Format-SceneBreaks([string]$Text) {
         if ($lines.Count -gt 1) { $lines = @($lines[0..($lines.Count - 2)]) } else { $lines = @() }
     }
     $out = New-Object System.Collections.Generic.List[string]
-    $inFence = $false
+    $fenceChar = ''
+    $fenceLength = 0
     $inYaml = $false
     $needBlank = $false
     $previous = ''
@@ -78,8 +79,20 @@ function Format-SceneBreaks([string]$Text) {
             if ($line -match '^(---|\.\.\.) *$') { $inYaml = $false; $previous = $line }
             continue
         }
-        if ($line -match '^ {0,3}(```|~~~)') { $inFence = -not $inFence }
-        elseif (-not $inFence -and $line -match '^ *--- *$') {
+        $isFenceLine = $false
+        if ($line -match '^ {0,3}(`{3,}|~{3,})(.*)$') {
+            $marker = $Matches[1]
+            $rest = $Matches[2]
+            if ($fenceLength -eq 0) {
+                $fenceChar = $marker.Substring(0, 1)
+                $fenceLength = $marker.Length
+                $isFenceLine = $true
+            } elseif ($marker.Substring(0, 1) -eq $fenceChar -and $marker.Length -ge $fenceLength -and $rest -match '^\s*$') {
+                $fenceLength = 0
+                $isFenceLine = $true
+            }
+        }
+        if (-not $isFenceLine -and $fenceLength -eq 0 -and $line -match '^ *--- *$') {
             if ($previous -ne '') { $out.Add('') }
             $out.Add('---')
             $previous = '---'
@@ -159,8 +172,15 @@ try {
     Write-Host "Assembling $($entries.Count) chapter file(s)..."
     $builder = New-Object System.Text.StringBuilder
     foreach ($source in $sources) {
+        if ([string]::IsNullOrWhiteSpace($texts[$source])) {
+            Write-BookWarning "Skipping $(Split-Path -Leaf $source) (the file is empty)"
+            continue
+        }
         if ($builder.Length -gt 0) { [void]$builder.Append("`n`n$pageBreak`n`n") }
         [void]$builder.Append((Format-SceneBreaks $texts[$source]))
+    }
+    if ($builder.Length -eq 0) {
+        Stop-Build 'Every chapter file is empty. Your previous manuscript was kept.'
     }
 
     [IO.File]::WriteAllText($tempOutput, $builder.ToString(), $utf8)

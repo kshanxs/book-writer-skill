@@ -60,7 +60,7 @@ This skill has many reference files. Do NOT pre-load them all. Use **lazy loadin
 
 **File names.** Use `Chapters/Prologue.md`, `Chapters/Chapter01.md`, `Chapters/Interlude01.md` (read after Chapter 1), and `Chapters/Epilogue.md`. Use `Outlines/Chapter_Outlines/Chapter01_Outline.md` for outlines.
 
-**Protect the author's text.** Before overwriting an existing chapter, copy it to `Revisions/<YYYY-MM-DD_HHMM>/`. Never store old versions in `Chapters/`. After saving, summarize what changed and name the snapshot so the author can restore it.
+**Protect the author's text.** Before overwriting an existing chapter, copy it to a new `Revisions/<YYYY-MM-DD_HHMMSS>/` folder. If that folder already exists, add `-2`, `-3`, and so on. Never overwrite a snapshot or store old versions in `Chapters/`. After saving, summarize what changed and name the snapshot so the author can restore it.
 
 ## Book Tools
 
@@ -102,7 +102,7 @@ When the user asks to start a new book project or "initialize the memory bank", 
 4. Use `references/character_worldbuilding_tables.md` for structured character profiles and worldbuilding tables when building out characters and settings. Offer to create `character_arcs.md`, `themes_and_motifs.md`, or a `world_gita.md` (or `tech_gita.md` / `lore_gita.md` for detailed tech/magic/lore) using the templates in `assets/book-memory-bank/Core/Templates/`.
 5. **Offer the Pacing Blueprint.** Ask if the user wants to pre-plan the book's structural arc now using `assets/book-memory-bank/Core/Templates/pacing_blueprint_template.md`. Save the completed file as `Core/pacing_blueprint.md`. Recommended for novels — skippable for short projects.
 6. Record these elements into the newly created `book-memory-bank/Core/` and `book-memory-bank/Style/` Markdown files.
-7. **Generate the project README.** Read `references/readme_template.md`, fill all `{{TOKEN}}` placeholders using answers from The Story Forge and the newly written memory bank files, and write the completed file as `README.md` in the project root. Do not ask the user to review it — just create it silently.
+7. **Generate the project README.** Read `references/readme_template.md`, fill all `{{TOKEN}}` placeholders using answers from The Story Forge and the newly written memory bank files, and write the completed file as `README.md` in the project root. If `README.md` already exists, ask before replacing it. If the author declines, save the new file as `BOOK_README.md`. Do not otherwise ask the user to review it.
 
 ### 2. Writing & Outlining
 When the user asks to outline or write chapters:
@@ -134,7 +134,7 @@ Maintaining the Book Memory Bank is essential for consistency. You must seamless
 
 ### 5. Chapter Review & Revision
 When the user asks to review, revise, or polish a chapter:
-1. Read the chapter draft, its outline, adjacent chapters (for continuity), `activeContext.md`, the style guide, and `world_and_characters.md`.
+1. Read the chapter draft, its outline, the files before and after it in reading order (for continuity), `activeContext.md`, the style guide, and `world_and_characters.md`.
 2. Consult `references/revision_checklist.md` for the quality gates and review focus areas, and run `book.py audit <chapter>`.
 3. **If reviewing Chapter 1**, also load `references/opening_chapter_checklist.md` and run its additional gates.
 4. Conduct a **Scene Tension Map** analysis to ensure proper structural pacing.
@@ -157,7 +157,7 @@ When the user asks to "check continuity", "run continuity check", or "check for 
 When multiple chapters need drafting, outlining, or reviewing:
 1. Consult `references/parallel_workflows.md` for the full workflow constraints.
 2. **Drafting:** Prose drafting of sequential narrative chapters must be performed **sequentially** to preserve continuity. Parallel drafting is restricted strictly to non-sequential scene cards or outlining.
-3. **Review:** After chapters are drafted, offer parallel (using background agents) or sequential review and editing. Snapshot all target chapters first. Each agent edits only its own chapter and reads neighboring chapters from the snapshot.
+3. **Review:** After chapters are drafted, offer parallel (using background agents) or sequential review and editing. Snapshot all target chapters and their neighbors in reading order first. Each agent edits only its own chapter and reads neighboring chapters from the snapshot.
 4. Always explain the continuity requirements and ask the user for their preferred approach before launching background tasks.
 
 ### 8. Complete & Present

@@ -77,6 +77,28 @@ run_combine_suite() {
     check "line after scene break is blank" "$(sed -n 6p Manuscript/COMBINED.md)" ""
     check "code block untouched" "$(grep -A1 -F '```' Manuscript/COMBINED.md | sed -n 2p)" "---"
 
+    new_book "$label-fence"
+    write Chapter01 "~~~~\n~~~\n---\n~~~~\n\nFirst.\n---\nSecond.\n"
+    "${combine[@]}" >/dev/null 2>&1
+    check "shorter marker stays inside code block" "$(sed -n 2,4p Manuscript/COMBINED.md | tr '\n' ' ')" "~~~ --- ~~~~ "
+    check "scene break works after nested code block" "$(sed -n 6,10p Manuscript/COMBINED.md | tr '\n' '|')" "First.||---||Second.|"
+
+    new_book "$label-empty"
+    mkdir -p Manuscript; echo PREVIOUS > Manuscript/COMBINED.md
+    write Chapter01 ""; write Chapter02 "  \n\n"
+    "${combine[@]}" >/dev/null 2>&1
+    check "all-empty book is an error" "$?" "1"
+    check "all-empty book keeps previous output" "$(cat Manuscript/COMBINED.md)" "PREVIOUS"
+
+    new_book "$label-one-empty"
+    write Chapter01 "BODY-one\n"; write Chapter02 ""; write Chapter03 "BODY-three\n"
+    output="$("${combine[@]}" 2>&1)"
+    check "empty chapter does not stop the book" "$?" "0"
+    check "empty chapter skipped" "$(bodies)" "one three"
+    check "empty chapter adds no blank page" "$(grep -c 'page-break-before' Manuscript/COMBINED.md)" "1"
+    case "$output" in *"Chapter02.md (the file is empty)"*) pass "empty chapter is reported" ;; *) fail "empty chapter is reported" ;; esac
+    check "no temp files or folders left" "$(find Manuscript -name '.*' | wc -l | tr -d ' ')" "0"
+
     new_book "$label-unicode"
     write Chapter01 "Caf\xc3\xa9 \xe2\x80\x94 na\xc3\xafve\n"
     "${combine[@]}" >/dev/null 2>&1

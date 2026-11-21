@@ -92,8 +92,23 @@ normalize_scene_breaks() {
             if (line ~ /^(---|\.\.\.) *$/) { in_yaml = 0; previous = line }
             next
         }
-        if (line ~ /^ ? ? ?(```|~~~)/) { in_fence = !in_fence; emit(line); next }
-        if (!in_fence && line ~ /^ *--- *$/) { scene_break(); next }
+        if (match(line, /^ ? ? ?(```+|~~~+)/)) {
+            marker = substr(line, RSTART, RLENGTH)
+            rest = substr(line, RSTART + RLENGTH)
+            gsub(/ /, "", marker)
+            if (!fence_length) {
+                fence_char = substr(marker, 1, 1)
+                fence_length = length(marker)
+                emit(line)
+                next
+            }
+            if (substr(marker, 1, 1) == fence_char && length(marker) >= fence_length && rest ~ /^[ \t]*$/) {
+                fence_length = 0
+                emit(line)
+                next
+            }
+        }
+        if (!fence_length && line ~ /^ *--- *$/) { scene_break(); next }
         emit(line)
     }
     END { if (pending) print "---" }
@@ -105,7 +120,8 @@ mkdir -p "$MANUSCRIPT_DIR"
 
 INDEX="$(mktemp "$MANUSCRIPT_DIR/.chapters.XXXXXX")"
 TEMP_OUTPUT="$(mktemp "$MANUSCRIPT_DIR/.combined.XXXXXX")"
-trap 'rm -f "$INDEX" "$TEMP_OUTPUT"' EXIT
+SNAPSHOT_DIR="$(mktemp -d "$MANUSCRIPT_DIR/.sources.XXXXXX")"
+trap 'rm -rf "$INDEX" "$TEMP_OUTPUT" "$SNAPSHOT_DIR"' EXIT
 
 shopt -s nullglob
 for file in "$CHAPTERS_DIR"/*.md; do
@@ -143,15 +159,20 @@ SOURCES=()
 SOURCES+=("${FILES[@]}")
 [ ! -f "$BACK_MATTER_FILE" ] || SOURCES+=("$BACK_MATTER_FILE")
 
-for file in "${SOURCES[@]}"; do
+# Check and assemble the same copy of each file, even if a chapter is edited mid-build.
+SNAPSHOTS=()
+for index in "${!SOURCES[@]}"; do
+    file="${SOURCES[$index]}"
     [ -r "$file" ] || die "Cannot read $file"
+    cp "$file" "$SNAPSHOT_DIR/$index" || die "Cannot read $file"
+    SNAPSHOTS+=("$SNAPSHOT_DIR/$index")
 done
 
 FLAGGED=0
-for file in "${SOURCES[@]}"; do
-    count="$(grep -Fc "$FLAG" "$file" || true)"
+for index in "${!SNAPSHOTS[@]}"; do
+    count="$(grep -Fc "$FLAG" "${SNAPSHOTS[$index]}" || true)"
     if [ "$count" -gt 0 ]; then
-        warn "$(basename "$file") has $count open [NEED RESEARCH] flag(s)"
+        warn "$(basename "${SOURCES[$index]}") has $count open [NEED RESEARCH] flag(s)"
         FLAGGED=$((FLAGGED + count))
     fi
 done
@@ -161,15 +182,21 @@ if [ "$STRICT" -eq 1 ] && [ "$FLAGGED" -gt 0 ]; then
 fi
 
 info "Assembling ${#FILES[@]} chapter file(s)..."
-for file in "${SOURCES[@]}"; do
+for index in "${!SNAPSHOTS[@]}"; do
+    if ! grep -q '[^[:space:]]' "${SNAPSHOTS[$index]}"; then
+        warn "Skipping $(basename "${SOURCES[$index]}") (the file is empty)"
+        continue
+    fi
     if [ -s "$TEMP_OUTPUT" ]; then
         printf '\n\n%s\n\n' "$PAGE_BREAK" >> "$TEMP_OUTPUT"
     fi
-    normalize_scene_breaks "$file" >> "$TEMP_OUTPUT"
+    normalize_scene_breaks "${SNAPSHOTS[$index]}" >> "$TEMP_OUTPUT"
 done
+
+[ -s "$TEMP_OUTPUT" ] || die "Every chapter file is empty. Your previous manuscript was kept."
 
 mv -f "$TEMP_OUTPUT" "$OUTPUT_FILE"
 
-WORDS="$(grep -Fv "$PAGE_BREAK" "$OUTPUT_FILE" | wc -w | tr -d ' ')"
+WORDS="$({ grep -Fv "$PAGE_BREAK" "$OUTPUT_FILE" || true; } | wc -w | tr -d ' ')"
 info "Manuscript complete: $OUTPUT_FILE"
 info "Chapter files: ${#FILES[@]}. Estimated words: $WORDS."

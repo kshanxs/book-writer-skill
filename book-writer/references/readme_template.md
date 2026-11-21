@@ -8,7 +8,7 @@ This template is used by the AI to generate a `README.md` in the user's book pro
 3. Delete any section whose data is entirely TBD (except the Progress and Status sections — always include those)
 4. If GitHub visibility is `none`, remove the badges block entirely
 5. If GitHub visibility is `private`, keep badges but use `#` as the URL and add the note below the badges
-6. Write the completed README to `README.md` in the project root
+6. Write the completed README to `README.md` in the project root. If that file already exists, ask before replacing it. If the author declines, save it as `BOOK_README.md`
 7. After writing, do NOT ask the user to review it unless they ask — it is a living document they can edit anytime
 
 ---
