@@ -96,6 +96,12 @@ class AuditTests(Base):
         self.book.chapter("Chapter01", CLEAN + "\n\n---\n\n" + CLEAN + "\n\n```\nthis — is code\n```\n")
         self.assertNotIn("em_dash", self.book.rules())
 
+    def test_nested_code_fence_is_not_prose(self):
+        self.book.chapter("Chapter01", CLEAN + "\n\n~~~~\n~~~\nthis — is code\n~~~~\n\n" + CLEAN)
+        self.assertNotIn("em_dash", self.book.rules())
+        self.book.chapter("Chapter01", CLEAN + "\n\n~~~~\ncode\n~~~~\n\nThe door — open — waited.\n")
+        self.assertIn("em_dash", self.book.rules())
+
     def test_wisdom_closer_only_at_scene_end(self):
         self.book.chapter("Chapter01", CLEAN + "It would have to be enough.\n\n---\n\n" + CLEAN)
         self.assertIn("wisdom_closer", self.book.rules())

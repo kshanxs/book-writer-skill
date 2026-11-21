@@ -192,7 +192,7 @@ def parse_prose(text):
             index += 1
         index += 1
 
-    paragraphs, buffer, start, fenced = [], [], 0, False
+    paragraphs, buffer, start, fence = [], [], 0, None
 
     def flush(ends_scene=False):
         nonlocal buffer
@@ -210,11 +210,13 @@ def parse_prose(text):
         stripped = line.strip()
         number = index + 1
         index += 1
-        if re.match(r"^ {0,3}(```|~~~)", line):
+        marker = re.match(r"^ {0,3}(`{3,}|~{3,})(.*)$", line)
+        if fence:
+            if marker and marker.group(1)[0] == fence[0] and len(marker.group(1)) >= len(fence) and not marker.group(2).strip():
+                fence = None
+        elif marker:
             flush()
-            fenced = not fenced
-        elif fenced:
-            continue
+            fence = marker.group(1)
         elif re.fullmatch(r"-{3,}|\*{3,}|_{3,}", stripped):
             flush(ends_scene=True)
         elif not stripped or stripped.startswith(("#", "|", "<")):
