@@ -1,6 +1,6 @@
 # Writing Rules for Popular Science & Technology History
 
-This document defines the guidelines for writing and reviewing chapters in the popular-science, technical history, and biographical non-fiction genres. Read this file when working on projects like *The Papers That Built the Digital World*.
+This document defines the guidelines for writing and reviewing chapters in the popular-science, technical history, and biographical non-fiction genres. Read this file when working on books in these genres.
 
 ## 1. Voice & Tone
 - **Authoritative yet Accessible**: Write with the curiosity and storytelling energy of a master biographer (in the vein of Walter Isaacson, Jon Gertner, Steven Johnson, or Richard Rhodes). Avoid the dry, passive tone of academic journals or engineering specs.
@@ -10,7 +10,7 @@ This document defines the guidelines for writing and reviewing chapters in the p
 ## 2. Narrative vs. Explanatory Dual-Tense Split
 To guide the reader smoothly between historical storytelling and technical logic, use two distinct tenses:
 - **Past Tense (Narrative/Biographical)**: Use for all events, historical settings, actions, and biographical descriptions.
- - *Example*: "In June 1948, Claude Shannon published his groundbreaking paper, establishing the mathematical limits of communication."
+ - *Example*: "In June 1948, Claude Shannon published the paper establishing the mathematical limits of communication."
 - **Present Tense (Explanatory/Algorithmic)**: Use when explaining abstract logical rules, mathematical theorems, algorithms, or how a machine functions in principle.
  - *Example*: "A Turing machine reads a single symbol on a tape. If it sees a zero, it writes a one and moves the scanner one cell to the right."
 

@@ -1,6 +1,9 @@
 # PowerShell Script to Create Word Reference Template for Pandoc Conversion
 # This script generates a properly formatted Word document template with styles that
-# Pandoc will use when converting markdown to DOCX format
+# Pandoc will use when converting markdown to DOCX format.
+# An existing reference.docx is kept unless you pass -Force.
+
+param([switch]$Force)
 
 # Configuration variables - modify for your specific styling needs
 $scriptDir = $PSScriptRoot
@@ -20,22 +23,29 @@ function Write-Log {
 }
 
 function Create-WordTemplate {
+    if ((Test-Path -LiteralPath $templateFile) -and -not $Force) {
+        Write-Log "Keeping existing template: $templateFile" "Green"
+        return
+    }
+
     Write-Log "Creating Word reference template for formatting..." "Cyan"
-    
+
     # Check if Word is installed
     try {
         $word = New-Object -ComObject Word.Application
     } catch {
-        Write-Log "Error: Microsoft Word is not installed or cannot be accessed." "Red"
+        Write-Log "Microsoft Word is not available, so no template was created." "Yellow"
         exit 1
     }
-    
+
+    $doc = $null
+    try {
     # Make Word invisible
     $word.Visible = $false
-    
+
     # Create a new document
     $doc = $word.Documents.Add()
-    
+
     # Configure styles
     # Title style
     $titleStyle = $doc.Styles.Item("Title")
@@ -45,7 +55,7 @@ function Create-WordTemplate {
     $titleStyle.ParagraphFormat.Alignment = 1  # Center aligned
     $titleStyle.ParagraphFormat.SpaceAfter = 24  # Space after in points
     
-    # Heading 1 (Chapter Titles) - Always start on new page
+    # Heading 1 (Chapter Titles). page_breaks.lua adds the page break before each chapter.
     $h1Style = $doc.Styles.Item("Heading 1")
     $h1Style.Font.Name = $titleFont
     $h1Style.Font.Size = $headingBaseSize + 4  # 20pt
@@ -53,7 +63,6 @@ function Create-WordTemplate {
     $h1Style.ParagraphFormat.Alignment = 1  # Center aligned
     $h1Style.ParagraphFormat.SpaceAfter = 24  # Space after in points
     $h1Style.ParagraphFormat.SpaceBefore = 36  # Space before in points
-    $h1Style.ParagraphFormat.PageBreakBefore = $true  # Start chapter on new page
     
     # Heading 2 (Section Headings)
     $h2Style = $doc.Styles.Item("Heading 2")
@@ -82,9 +91,23 @@ function Create-WordTemplate {
     $normalStyle.ParagraphFormat.FirstLineIndent = 0  # No indent for new paragraphs
     $normalStyle.ParagraphFormat.Alignment = 3  # Justified text (3 = wdAlignParagraphJustify)
     
-    # Blockquote
+    # Pandoc's body paragraph styles
+    foreach ($bodyName in @("Body Text", "First Paragraph")) {
+        try {
+            $bodyStyle = $doc.Styles.Item($bodyName)
+        } catch {
+            $bodyStyle = $doc.Styles.Add($bodyName, 1)
+        }
+        $bodyStyle.BaseStyle = "Normal"
+    }
+
+    # Blockquote (Pandoc uses the "Block Text" style)
     try {
-        $blockStyle = $doc.Styles.Add("Blockquote")
+        try {
+            $blockStyle = $doc.Styles.Item("Block Text")
+        } catch {
+            $blockStyle = $doc.Styles.Add("Block Text", 1)
+        }
         $blockStyle.Font.Name = $fontFamily
         $blockStyle.Font.Size = $bodySize
         $blockStyle.Font.Italic = $true
@@ -96,9 +119,13 @@ function Create-WordTemplate {
         Write-Log "Blockquote style already exists or could not be created. Continuing..." "Yellow"
     }
     
-    # Code blocks
+    # Code blocks (Pandoc uses the "Source Code" style)
     try {
-        $codeStyle = $doc.Styles.Add("Code")
+        try {
+            $codeStyle = $doc.Styles.Item("Source Code")
+        } catch {
+            $codeStyle = $doc.Styles.Add("Source Code", 1)
+        }
         $codeStyle.Font.Name = "Consolas"
         $codeStyle.Font.Size = $bodySize - 2  # Slightly smaller
         $codeStyle.ParagraphFormat.LeftIndent = 36
@@ -134,15 +161,18 @@ function Create-WordTemplate {
     # Save the document
     $savePath = $templateFile.ToString()
     $doc.SaveAs($savePath, 16) # 16 = wdFormatDocumentDefault
-    $doc.Close()
-    $word.Quit()
-    
-    # Cleanup COM objects
-    [System.Runtime.Interopservices.Marshal]::ReleaseComObject($doc) | Out-Null
-    [System.Runtime.Interopservices.Marshal]::ReleaseComObject($word) | Out-Null
-    [System.GC]::Collect()
-    [System.GC]::WaitForPendingFinalizers()
-    
+    } finally {
+        # Always close Word, even when a step above fails
+        if ($doc) {
+            $doc.Close(0)
+            [System.Runtime.Interopservices.Marshal]::ReleaseComObject($doc) | Out-Null
+        }
+        $word.Quit()
+        [System.Runtime.Interopservices.Marshal]::ReleaseComObject($word) | Out-Null
+        [System.GC]::Collect()
+        [System.GC]::WaitForPendingFinalizers()
+    }
+
     Write-Log "Word reference template created successfully: $templateFile" "Green"
 }
 

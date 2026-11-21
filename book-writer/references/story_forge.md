@@ -1,12 +1,12 @@
-# Brainstorming Gate — New Book Initialization
+# The Story Forge — New Book Onboarding
 
 This file governs the onboarding conversation when a user starts a new book. **Read this file in full before asking the user a single question.**
 
 ---
 
-## When to Run This Gate
+## When to Run The Story Forge
 
-Run this gate ONLY when ONE of these triggers occurs AND the memory bank does not yet exist:
+Run the Forge ONLY when ONE of these triggers occurs AND the memory bank does not yet exist:
 
 - `"start a new book"`
 - `"initialize memory bank"`
@@ -14,7 +14,7 @@ Run this gate ONLY when ONE of these triggers occurs AND the memory bank does no
 - `"help me write a book"`
 - `"new book project"`
 
-**If the memory bank Core files already exist → skip this gate entirely.** The user has already onboarded. Just read the memory bank and assist.
+**If the memory bank Core files already exist → skip the Forge entirely.** The user has already onboarded. Just read the memory bank and assist.
 
 ---
 
@@ -22,14 +22,14 @@ Run this gate ONLY when ONE of these triggers occurs AND the memory bank does no
 
 1. **One question at a time.** Never stack multiple questions in one message.
 2. **Everything is optional.** If the user says "skip", "not sure", "doesn't matter", or gives a blank answer — accept it and move on.
-3. **Run once, never again.** After the gate completes and files are initialized, never repeat this onboarding process. In future sessions, read the memory bank silently and begin.
+3. **Run once, never again.** After the Forge completes and files are initialized, never repeat this onboarding process. In future sessions, read the memory bank silently and begin.
 4. **No repeated pinging.** If the user seems in a rush (e.g., says "just start", "skip everything", "initialize now") — skip all remaining questions, use reasonable defaults, and initialize immediately.
 5. **Draft-first.** If the user provides existing material (a draft, outline, notes, file path), extract everything you can from it and skip questions already answered by that material.
 6. **Respect the user's time.** Keep each question brief. If the user gives a short answer, accept it. Don't ask follow-ups unless something is genuinely ambiguous and important.
 
 ---
 
-## The Gate Flow
+## The Forge Flow
 
 ### Step 0a — Spinoff Check
 
@@ -43,13 +43,13 @@ Spinoff trigger phrases:
 - "prequel" (if cast or premise differs substantially)
 - "side story"
 
-If **any** trigger is present → **Stop this gate. Read `references/spinoff_guide.md` in full and follow the Spinoff Forge instead.** Do not run any steps below.
+If **any** trigger is present → **Stop this flow. Read `references/spinoff_guide.md` in full and follow the Spinoff Forge instead.** Do not run any steps below.
 
 ---
 
 ### Step 0b — Fast-Track Check
 
-Before asking anything, check if the user's initial message already contains enough information to start. If yes, skip to Step 6 (summary).
+Before asking anything, check if the user's initial message already contains enough information to start. If yes, skip to Step 9 (Summary & Approval).
 
 If the user says anything like:
 - "just start"
@@ -57,7 +57,7 @@ If the user says anything like:
 - "initialize now"
 - "I'll fill in details later"
 
-→ **Immediately initialize with defaults and skip all gate questions.**
+→ **Immediately initialize with defaults and skip all Forge questions.**
 
 ---
 
@@ -92,46 +92,57 @@ Present the following menu and ask the user to pick one (or describe their own):
 FICTION
  1. Literary Fiction — character-driven, prose-focused, realistic
  2. Historical Fiction — real era, may blend real + invented figures
- 3. Narrative History — non-fiction storytelling of real events
- 4. Fantasy — magic, mythological, or secondary world
- 4a. Epic / High Fantasy
- 4b. Mythological / Folk Fantasy
- 4c. Dark Fantasy
- 4d. Historical Fantasy — real era + fantastical elements
- 5. Science Fiction
- 5a. Hard Sci-Fi — grounded in science
- 5b. Space Opera — sweeping interstellar scope
- 5c. Dystopian / Post-Apoc
- 5d. Cyberpunk / Biopunk
- 6. Thriller / Suspense
- 6a. Political Thriller
- 6b. Spy / Espionage
- 6c. Crime / Noir
- 6d. Psychological Thriller
- 7. Horror
- 7a. Gothic Horror
- 7b. Folk / Cosmic Horror
- 7c. Psychological Horror
- 8. Romance
- 8a. Contemporary Romance
- 8b. Historical Romance
- 8c. Paranormal Romance
- 9. Adventure / Action
- 10. Mystery / Detective
- 11. Biographical / Memoir — real person's life, first or third person
- 12. Young Adult (YA) — any genre, YA lens
- 13. Children's / Middle Grade
- 14. Short Story Collection
- 15. Other — describe it
+ 3. Fantasy — magic, mythological, or secondary world
+ 3a. Epic / High Fantasy
+ 3b. Mythological / Folk Fantasy
+ 3c. Dark Fantasy
+ 3d. Historical Fantasy — real era + fantastical elements
+ 4. Science Fiction
+ 4a. Hard Sci-Fi — grounded in science
+ 4b. Space Opera — sweeping interstellar scope
+ 4c. Dystopian / Post-Apoc
+ 4d. Cyberpunk / Biopunk
+ 5. Thriller / Suspense
+ 5a. Political Thriller
+ 5b. Spy / Espionage
+ 5c. Crime / Noir
+ 5d. Psychological Thriller
+ 6. Horror
+ 6a. Gothic Horror
+ 6b. Folk / Cosmic Horror
+ 6c. Psychological Horror
+ 7. Romance
+ 7a. Contemporary Romance
+ 7b. Historical Romance
+ 7c. Paranormal Romance
+ 8. Adventure / Action
+ 9. Mystery / Detective
+ 10. Young Adult (YA) — any genre, YA lens
+ 11. Children's / Middle Grade
+ 12. Short Story Collection
+
+NON-FICTION
+ 13. Narrative History — storytelling of real events
+ 14. Biography / Memoir — a real person's life
+ 15. Popular Science / Technology History
+ 16. Business / Self-Help / How-To
+
+ 17. Other — describe it
 ```
 
 Accept any answer — a number, a genre name, a mix (e.g., "historical fantasy"), or a free description.
 
-**If the user picks 2, 3, 11, or mentions real historical figures/events, or describes a real era:**
+**If the user picks 2, 3d, 7b, 13, or 14 about a historical figure, or mentions real historical figures/events or a real era:**
 → Apply **Historical Genre Features** (see section below).
 
-**If the user picks a genre with subgenres (4–8) and hasn't specified one:**
+**If the user picks a genre with subgenres (3–7) and hasn't specified one:**
 → Ask ONE follow-up: *"Any particular subgenre — [list the subgenres for that number]? Or just say 'general' to keep it broad."*
+
+**If the user picks 11:** use `references/childrens_book_craft.md`.
+
+**If the user picks 13, 14, or 15:** use `references/popscience_history_rules.md` where it fits the book.
+
+**After the genre is settled:** make the one-time companion skill offer described in Workflow 1, step 0a of `SKILL.md`.
 
 ---
 
@@ -294,9 +305,9 @@ The AI applies the correct form of address based on where the narrative currentl
 
 ---
 
-## After the Gate — Never Repeat
+## After the Forge — Never Repeat
 
-Once the gate has run and the memory bank files exist:
-- **Do not run the gate again**, ever, in any session.
+Once the Forge has run and the memory bank files exist:
+- **Do not run the Forge again**, ever, in any session.
 - **Do not ask any of these setup questions** in future sessions.
 - In all future sessions: silently read memory bank files and assist with the current task.

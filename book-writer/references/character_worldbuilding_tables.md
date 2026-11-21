@@ -101,7 +101,7 @@ Map the layers of conflict in the story. Store in memory bank or outline files.
 
 ## Synopsis Template
 
-Use this structure to outline the full story arc. Store as `Synopsis.md` in the project or in the master outline.
+Use this structure to outline the full story arc. Store as `Outlines/Synopsis.md` or in the master outline.
 
 ### Beginning (Setup)
 > 2–3 paragraphs covering:
@@ -129,7 +129,7 @@ Use this structure to outline the full story arc. Store as `Synopsis.md` in the 
 
 ## Timeline Table
 
-Map the chronology of events. Store as `Timeline.md` or in the master outline.
+Map the chronology of events. Store as `Outlines/Timeline.md` or in the master outline.
 
 | Event | Timing | Chapter | Notes |
 |-------|--------|---------|-------|

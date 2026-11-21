@@ -4,7 +4,7 @@ This template is used by the AI to generate a `README.md` in the user's book pro
 
 **Instructions for the AI:**
 1. Read all `{{TOKEN}}` placeholders below
-2. Fill each one using answers from the brainstorming gate and the newly created memory bank files
+2. Fill each one using answers from the Story Forge and the newly created memory bank files
 3. Delete any section whose data is entirely TBD (except the Progress and Status sections — always include those)
 4. If GitHub visibility is `none`, remove the badges block entirely
 5. If GitHub visibility is `private`, keep badges but use `#` as the URL and add the note below the badges
@@ -69,6 +69,9 @@ Remove this table entirely if scope is TBD -->
 ├── Chapters/ # Finished literary chapters
 ├── Outlines/
 │ └── Master_Outline.md # Full story structure and chapter notes
+├── Research/ # Research tracker and continuity reports
+├── Revisions/ # Snapshots made before chapters are revised
+├── Manuscript/ # Compiled book output
 ├── book-memory-bank/ # AI writing memory bank (context continuity)
 │ ├── Core/ # Project brief, story structure, characters, progress
 │ └── Style/ # Style guide and voice conventions
@@ -85,7 +88,7 @@ Remove this table entirely if scope is TBD -->
 
 <!-- FIGURES_TABLE_ROWS format:
 | **{{CHARACTER_NAME}}** {{LIFE_DATES}} | {{CHARACTER_ROLE}} |
-Include protagonist, antagonist, and any key supporting figures gathered in the gate -->
+Include protagonist, antagonist, and any key supporting figures gathered in the Forge -->
 <!-- Remove this section if no characters were defined -->
 
 ---
@@ -120,13 +123,13 @@ If historical genre: Historical claims are hedged where evidence is uncertain. [
 Start with all chapters as Not started. AI updates this table on each chapter write.
 Format:
 | {{CHAPTER_NAME}} | {{STATUS_EMOJI}} {{STATUS_TEXT}} |
-Status options: Complete / Draft / Not yet written -->
+Status options: ✅ Complete / ✏️ Draft / ⬜ Not yet written -->
 
 ---
 
 {{SOURCES_SECTION}}
 
-<!-- SOURCES_SECTION: include only if user provided sources during gate.
+<!-- SOURCES_SECTION: include only if user provided sources during the Forge.
 Format:
 ## Sources
 
@@ -156,21 +159,21 @@ This book is actively being written. The repository serves as the living manuscr
 
 | Token | Source |
 |---|---|
-| `{{BOOK_EMOJI}}` | AI picks based on genre ( historical/war, sci-fi, fantasy, thriller, romance, literary) |
-| `{{BOOK_TITLE}}` | Gate Step 2 or draft import |
+| `{{BOOK_EMOJI}}` | AI picks based on genre (⚔️ historical/war, 🚀 sci-fi, 🐉 fantasy, 🔍 thriller, 💌 romance, 📖 literary) |
+| `{{BOOK_TITLE}}` | Forge Step 2 or draft import |
 | `{{BOOK_TAGLINE}}` | AI generates from premise; 8–12 words |
-| `{{REPO_URL}}` | Gate Step 7; use `#` if private, omit block if no GitHub |
+| `{{REPO_URL}}` | Forge Step 8; use `#` if private, omit block if no GitHub |
 | `{{CHAPTER_COUNT}}` | Start at 0; update on each chapter write |
 | `{{CHAPTERS_DIR}}` | `Chapters` (default) |
 | `{{GENRE_BADGE}}` | URL-encoded genre string (e.g., `historical%20fiction`) |
-| `{{PREMISE_PARAGRAPH}}` | Gate Step 4; expand to 2–3 sentences |
+| `{{PREMISE_PARAGRAPH}}` | Forge Step 4; expand to 2–3 sentences |
 | `{{OPENING_QUOTE}}` | Optional; from user's draft or AI-suggested; remove block if none |
 | `{{SCOPE_SUBTITLE}}` | Append `: {{YEAR_START}} – {{YEAR_END}}` if historical |
-| `{{SCOPE_TABLE_ROWS}}` | From gate Step 5 + user's outline if available |
+| `{{SCOPE_TABLE_ROWS}}` | From Forge Step 5 + user's outline if available |
 | `{{PROJECT_ROOT_NAME}}` | Name of the project directory |
-| `{{FIGURES_TABLE_ROWS}}` | Gate Step 5 characters; include life dates if historical |
-| `{{KEY_EVENTS_LIST}}` | Historical events or plot beats from gate/draft |
-| `{{WRITING_APPROACH_PARAGRAPH}}` | Gate Step 6 style reference + historical genre note |
+| `{{FIGURES_TABLE_ROWS}}` | Forge Step 5 characters; include life dates if historical |
+| `{{KEY_EVENTS_LIST}}` | Historical events or plot beats from the Forge or draft |
+| `{{WRITING_APPROACH_PARAGRAPH}}` | Forge Step 7 style reference + historical genre note |
 | `{{PROGRESS_TABLE_ROWS}}` | One row per chapter, all start as Not yet written |
-| `{{SOURCES_SECTION}}` | Gate Step 1 draft sources or user-mentioned sources |
+| `{{SOURCES_SECTION}}` | Forge Step 1 draft sources or user-mentioned sources |
 | `{{START_DATE}}` | Current month + year at time of initialization |

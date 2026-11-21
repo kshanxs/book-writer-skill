@@ -2,6 +2,21 @@
 
 This document tracks the current state of your book project. It should be updated frequently to reflect your current focus, recent changes, and active considerations. This is the file that most directly informs day-to-day work on the project.
 
+## Memory Status & File Index
+
+Update a row whenever its file changes. Agents use this table to decide what to load.
+
+| File | Last Updated | Through Chapter | Status |
+|------|--------------|-----------------|--------|
+| `Core/projectbrief.md` | [Date] | [N] | [Current / Needs update] |
+| `Core/story_structure.md` | [Date] | [N] | [Current / Needs update] |
+| `Core/world_and_characters.md` | [Date] | [N] | [Current / Needs update] |
+| `Core/progress.md` | [Date] | [N] | [Current / Needs update] |
+| `Style/style_guide.md` | [Date] | [N] | [Current / Needs update] |
+| `../Outlines/Master_Outline.md` | [Date] | [N] | [Current / Needs update] |
+
+Add a row for each optional file the project uses, such as `Core/world_gita.md`, `Core/character_arcs.md`, or `Core/pacing_blueprint.md`.
+
 ## Current Work Focus
 
 **Primary Focus**: [Current main task or chapter you're working on]

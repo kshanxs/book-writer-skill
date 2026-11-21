@@ -23,9 +23,9 @@ Use after the manuscript is complete and revised.
 ```
 
 **Data to pull from memory bank:**
-- `Core/Synopsis.md` → Premise and inciting incident
-- `Core/Characters.md` → Protagonist's core want and wound
-- `Core/Story_Structure.md` → Central dramatic question
+- `Core/projectbrief.md` → Premise and inciting incident
+- `Core/world_and_characters.md` → Protagonist's core want and wound
+- `Core/story_structure.md` → Central dramatic question
 
 ---
 
@@ -47,9 +47,9 @@ A synopsis tells the full story including the ending. Agents require this.
 - Each character introduced must be named in ALL CAPS on first mention (e.g., **BAJIRAO**)
 
 **Data to pull from memory bank:**
-- `Core/Synopsis.md` → Full narrative arc
-- `Core/Timeline.md` → Sequence of key events
-- `Core/Characters.md` → Character arcs and relationships
+- `Outlines/Master_Outline.md` → Full narrative arc (or `Outlines/Synopsis.md` if it exists)
+- `Outlines/Timeline.md` if it exists, otherwise the Master Outline → Sequence of key events
+- `Core/world_and_characters.md` → Character arcs and relationships
 
 ---
 
@@ -76,8 +76,7 @@ Example: "[TITLE] is a [WORD COUNT] [GENRE] in the tradition of [COMP TITLE 1] a
 - Do not describe the book as "a roller-coaster ride" or any other cliché
 
 **Data to pull from memory bank:**
-- `Core/projectbrief.md` → Genre, word count, and book concept
-- `Core/Synopsis.md` → Pitch paragraph material
+- `Core/projectbrief.md` → Genre, word count, book concept, and pitch paragraph material
 
 ---
 
@@ -91,5 +90,16 @@ A logline distills the entire book into one sentence. Used for pitches, social m
 
 ---
 
+## AI Disclosure Check
+
+Before the author submits or self-publishes, remind them to check the current rules of each destination:
+
+- **Amazon KDP** requires authors to disclose AI-generated text, images, and translations, even if they edited the result substantially. Content the author wrote and only refined with AI tools counts as AI-assisted and does not need disclosure. Confirm the current wording in [KDP's Content Guidelines](https://kdp.amazon.com/en_US/help/topic/G200672390).
+- **Agents, publishers, and contests** set their own AI policies. Check each submission page.
+
+Help the author identify which parts were AI-generated, but leave the disclosure decision to them.
+
+---
+
 ## Integration Notes for the AI
-*When the user says "write a query letter", "generate a blurb", "write a synopsis", or "create a logline", read `Core/Synopsis.md`, `Core/Characters.md`, and `Core/projectbrief.md` first, then follow the template for the requested format. Do not invent plot points not in the memory bank. Each output should feel like it was written by the author, not a generic AI — match the established tone from `Style/style_guide.md`.*
+*When the user says "write a query letter", "generate a blurb", "write a synopsis", or "create a logline", read `Core/projectbrief.md`, `Core/story_structure.md`, `Core/world_and_characters.md`, and `Outlines/Master_Outline.md` first, then follow the template for the requested format. Do not invent plot points not in the memory bank. Each output should feel like it was written by the author, not a generic AI — match the established tone from `Style/style_guide.md`.*

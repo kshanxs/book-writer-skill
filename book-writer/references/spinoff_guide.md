@@ -97,26 +97,26 @@ Spinoffs live as siblings to the parent project's content directories, under the
 
 ```
 <project-root>/
- Chapters/ ← parent chapters
- Outlines/ ← parent outlines
- book-memory-bank/ ← parent memory bank
-
- <spinoff-name>/
- Chapters/ ← spinoff chapters
- Outlines/
- Chapter_Outlines/
- Master_Outline.md
- book-memory-bank/
- Core/
- projectbrief.md ← FRESH
- story_structure.md ← FRESH
- activeContext.md ← FRESH
- progress.md ← FRESH
- world_and_characters.md ← FORKED (see inheritance model)
- Style/
- style_guide.md ← FORKED or FRESH (author's choice)
- Research/
- Manuscript/
+├── Chapters/                    ← parent chapters
+├── Outlines/                    ← parent outlines
+├── book-memory-bank/            ← parent memory bank
+└── <spinoff-name>/
+    ├── Chapters/                ← spinoff chapters
+    ├── Outlines/
+    │   ├── Chapter_Outlines/
+    │   └── Master_Outline.md
+    ├── book-memory-bank/
+    │   ├── Core/
+    │   │   ├── projectbrief.md          ← FRESH
+    │   │   ├── story_structure.md       ← FRESH
+    │   │   ├── activeContext.md         ← FRESH
+    │   │   ├── progress.md              ← FRESH
+    │   │   └── world_and_characters.md  ← LINKS to parent + new sections
+    │   └── Style/
+    │       └── style_guide.md           ← FORKED or FRESH
+    ├── Research/
+    ├── Revisions/
+    └── Manuscript/
 ```
 
 For same-world new stories (no shared characters at all), the parent memory bank still acts as the lore source — read it but don't copy it.
@@ -142,11 +142,13 @@ In the spinoff's `world_and_characters.md`, reference any character inherited fr
 
 ```markdown
 ## [Character Name]
-> *Inherited from: [[Parent Character Name]](file:///../book-memory-bank/Core/world_and_characters.md#L[StartLine]-L[EndLine])*
+> *Inherited from: [Parent Character Name](../../../book-memory-bank/Core/world_and_characters.md#character-heading)*
 
 ### Developments in [Spinoff Title]
 [Write ONLY spinoff-specific changes or actions here. Do not copy the base profile.]
 ```
+
+Link to the character's heading rather than line numbers, because the parent file keeps growing. Keep each inherited character under their own heading in the parent so the link stays valid.
 
 This avoids data duplication ("split-brain" syndrome) while allowing the writing agent to read the parent source of truth directly.
 
@@ -158,7 +160,7 @@ These rules prevent parent and spinoff from contradicting each other:
 
 1. **Parent canon is read-only in the spinoff by default.** The spinoff can expand on or reference parent events, but cannot retroactively change them.
 2. **Fate of inherited characters** — if the spinoff reveals a significant fate or change for a character who still has an open arc in the parent, flag it:
- > *" Canon Alert: [Character]'s fate in this spinoff may affect the parent's open arc. Confirm with author before writing."*
+ > *"Canon Alert: [Character]'s fate in this spinoff may affect the parent's open arc. Confirm with author before writing."*
 3. **Timeline consistency** — use the parent's timeline as the fixed reference. Note spinoff events relative to parent chapters.
 4. **Worldbuilding changes** — if the spinoff introduces new world facts (new factions, locations, technology), note them as `[SPINOFF ADDITION]` and optionally backport them to the parent's memory bank.
 
@@ -198,6 +200,6 @@ On approval of the Spinoff Forge summary:
 
 At the start of every spinoff session:
 
-1. Read `<spinoff-name>/book-memory-bank/Core/` files fully.
-2. Read the parent's `book-memory-bank/Core/world_and_characters.md` for shared character/world facts.
+1. Read `<spinoff-name>/book-memory-bank/Core/activeContext.md`, then load other spinoff files by task using the Smart-Reading Protocol.
+2. Read the linked sections of the parent's `book-memory-bank/Core/world_and_characters.md` when shared characters or world facts are involved.
 3. Do NOT re-read the entire parent's memory bank every session — only the world/character file unless a specific continuity question arises.

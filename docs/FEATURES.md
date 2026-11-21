@@ -2,7 +2,7 @@
 
 # book-writer — Features & Reference
 
-**v2.2** · *Complete feature list, command reference, and skill architecture*
+*Complete feature list, command reference, and skill architecture*
 
 </div>
 
@@ -79,7 +79,7 @@
 | **Synopsis & Timeline** | Full narrative beats + chronological event tracking |
 | **Thematic Tracker** | Matrix for tracking core themes and recurring motifs |
 | **Emotional Core** | North Star identification — the truth your story explores |
-| **Compilation** | Auto-combine all chapters into manuscript |
+| **Compilation** | Safe manuscript and Word export with chapter ordering checks |
 
 </td>
 <td width="50%">
@@ -93,6 +93,7 @@
 | **Specialized Passes** | Dedicated Dialogue, Sensory, Prose Polish, Tension passes |
 | **Opening Chapter Checklist** | Extra scrutiny for Chapter 1: hook, promise, exposition |
 | **Continuity Reports** | Question-based diagnostic — flags, never imposes |
+| **Revision Snapshots** | Chapters are backed up to `Revisions/` before edits |
 | **Title-Timeline Rule** | Correct historical address based on scene date |
 | **Contextual Address** | Different characters use different titles for same figure |
 | **`[FICTION]` Marking** | Explicit tagging of invented historical elements |
@@ -162,6 +163,8 @@ YourBookProject/
 ├── Research/ ← Continuity reports & notes
 │ └── continuity_diagnostic_report.md
 │
+├── Revisions/ ← Snapshots made before chapters are revised
+│
 ├── Manuscript/ ← Compiled book output
 │
 └── book-memory-bank/ ← Auto-maintained by the AI
@@ -191,17 +194,18 @@ book-writer-skill/ ← Repo root
 │ │ ├── author_rules.md Writing persona & historical rules
 │ │ ├── book_memory_protocol.md Memory bank architecture & rules
 │ │ ├── memory_update_prompts.md Update criteria & templates
-│ │ ├── story_forge.md Onboarding (15+ genres, North Star)
+│ │ ├── story_forge.md Onboarding (fiction + non-fiction, North Star)
 │ │ ├── readme_template.md Auto-README template
 │ │ ├── chapter_craft.md Chapter formulas & engagement
 │ │ ├── revision_checklist.md Quality gates & DO/DON'T lists
 │ │ ├── character_worldbuilding_tables.md Profiles, world, conflict tables
 │ │ ├── childrens_book_craft.md Ages 2–9, rhyming, illustration
-│ │ ├── parallel_workflows.md Background agent drafting/review
+│ │ ├── parallel_workflows.md Parallel outlining and review limits
 │ │ ├── punctuation_guide.md Mark-by-mark punctuation rules
 │ │ ├── spinoff_guide.md Spinoff Forge & canon consistency
 │ │ ├── opening_chapter_checklist.md Chapter 1 dedicated quality gates
 │ │ ├── query_letter_guide.md Publishing toolkit
+│ │ ├── popscience_history_rules.md Popular science and tech history
 │ │ └── chapter_titles_guide.md Title → meaning → story connection
 │ └── assets/
 │ └── book-memory-bank/ ← Template directory (copied on init)
@@ -221,46 +225,4 @@ book-writer-skill/ ← Repo root
 
 ## Changelog
 
-### v2.2 — Architectural Upgrades
-- **Sequential Prose Drafting Enforced:** Prohibited parallel prose drafting to resolve the narrative dependency paradox. Sequential drafting is now the default, restricting concurrent agents strictly to outlining, scene cards, and reviews.
-- **Smart-Reading Protocol:** Transitioned core workflow from bulk-loading all memory bank files to an on-demand protocol indexed via `activeContext.md` to prevent latency and prompt bloat.
-- **Reference-Based Spinoff Model:** Replaced copy-paste character inheritance in spinoffs with relative markdown link referencing, solving the "split-brain" data synchronization issue.
-
-### v2.1.1 — Popular Science & Tech History Support
-- **Popular Science & Tech History Support:** Added a new `popscience_history_rules.md` reference file to support popular science, technology history, and narrative non-fiction books.
-- **Checklist Quality Gates:** Integrated new checkpoints into `revision_checklist.md` to verify tense split, visual analogies, chronological tech accuracy, and paper quote formatting.
-
-### v2.1.0 — Story Gita Templates & Advanced Guidelines
-- **World & Tech Gita Template:** Added the new `world_gita_template.md` template file to support deep technology, magic systems, and lore documentation.
-- **Advanced Prose Style Guidelines:** Codified guidelines for Readability First, Narrator Warmth, Tech/Magic Introduction Rule, and Character Name/Number conventions in `author_rules.md`.
-- **Integrated Quality Gates:** Updated `revision_checklist.md` with checkpoints to verify readability, warmth, name usage, and tech/magic introductions during chapter reviews.
-- **Protocol & Workflow Updates:** Integrated World Gita files (`world_gita.md`) into the core memory bank flowcharts, update protocols, and review checklists.
-
-### v2.0 — The Full Writing Studio
-- **Context Efficiency Rule** — Lazy loading table in SKILL.md; never pre-loads all references.
-- **Scene Card Template** — Atomic scene planning (Goal-Conflict-Outcome-Aftermath).
-- **Book-Level Pacing Blueprint** — Structural grid and tension curve planned before drafting.
-- **Opening Chapter Checklist** — Dedicated extra scrutiny: hook, protagonist, reader promise.
-- **Research Flag Tracker** — Structured `[NEED RESEARCH]` log; open/resolved status tracking.
-- **Beta Reader Feedback Log** — Chapter-by-chapter external feedback with action items.
-- **Query Letter & Publishing Toolkit** — Blurb, synopsis, query letter, logline from memory bank.
-- **Chapter Titles Guide** extracted into its own reference file.
-- **Character Arc Matrix** — Chapter-by-chapter emotional progression tracking.
-- **Thematic & Motif Tracker** — Symbolism and motif evolution across chapters.
-- **Scene Tension Mapping** — Structural pacing evaluation (1–10 scoring) in chapter review.
-- **Specialized Revision Passes** — Dialogue, Sensory, Prose Polish, and Tension passes.
-- **Architecture** — `docs/` moved to repo root; SKILL.md trimmed from 194 → 137 lines.
-
-### v1.6
-- **Advanced Prompt Instructions** — Strict Grammar & Punctuation rules (Em dashes, semicolons, Oxford commas).
-- **Number Formatting Rules** — Clear distinction between prose vs data numbers.
-- **Enhanced Voice & Tone Rules** — Strict POV shifts and implicit internal monologue rules.
-- **Spinoff Architecture** — Rules for maintaining canon consistency for spinoffs.
-- **Story Gitas** — Proactive creation of domain-specific ultimate truth reference docs (`tech_gita.md`, `lore_gita.md`) for complex lore and world-building.
-
-### v1.5
-- **Children's Book Craft** — Age-based writing, rhyming/meter, illustration notes, phonics, values framework
-- **Parallel Workflows** — Simultaneous chapter drafting and review via background agents
-- **Chapter Titles Guide** — Auto-generated title meaning & story connection reference
-- **Complete & Present** — Final verification summary workflow
-- **Project Completion Summary** — Checklist of all created files with next steps
+See [CHANGELOG.md](../CHANGELOG.md) for every release.

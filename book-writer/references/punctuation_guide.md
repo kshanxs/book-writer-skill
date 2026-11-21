@@ -26,11 +26,11 @@ Prefer clear sentence construction and varied sentence length over heavy punctua
 - As a default "dramatic pause" tool
 - More than once or twice per page
 
-** Correct use:**
+**Correct use:**
 > "I never said I was going to—"
 > "Stop." Lev's voice was flat.
 
-** Overuse:**
+**Overuse:**
 > She was tired — exhausted, really — and the city — this vast, indifferent city — felt like it was pressing down on her.
 
 ---
@@ -51,7 +51,7 @@ Do not use commas as substitutes for stronger punctuation when a full stop would
 
 Use periods to create strong, clean sentence endings — especially for dramatic, impactful, or emotionally significant moments. A short sentence ending in a period lands harder than the same thought buried in a comma-heavy construction.
 
-** Use deliberate short sentences for impact:**
+**Use deliberate short sentences for impact:**
 > The door was open. She hadn't left it that way.
 
 ---
@@ -84,10 +84,10 @@ Use ellipses **only** for:
 - A voice that loses courage mid-sentence
 - An unfinished thought in a moment of grief, fear, or vulnerability
 
-** Correct use:**
+**Correct use:**
 > "I just thought that maybe… I don't know."
 
-** Avoid:**
+**Avoid:**
 > The stars were beautiful… the night was quiet… everything felt still…
 
 Ellipses in narrative prose (outside dialogue or internal thought) typically weaken pacing. Prefer restructuring the sentence.
