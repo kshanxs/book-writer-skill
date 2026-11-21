@@ -1,0 +1,14 @@
+extends: existence
+message: "'%s' is a stock phrase. Try something specific to this scene."
+level: suggestion
+ignorecase: true
+tokens:
+  - hung in the air
+  - silence stretched
+  - a beat passed
+  - something shifted
+  - let out a breath
+  - for what felt like
+  - the ghost of a smile
+  - smile didn't reach
+  - would have to be enough

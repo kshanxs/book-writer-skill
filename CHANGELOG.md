@@ -2,6 +2,29 @@
 
 All notable changes to the `book-writer` skill will be documented in this file.
 
+## v3.0.0 — 2026-11-21
+
+A major release focused on writing that sounds human, stories that stay consistent, and tools any author can use.
+
+### Added
+- **Book Tools:** one dependency-free command (`book.py`) for checks and exports on Mac, Linux, and Windows.
+- **Prose Audit:** finds AI-sounding patterns with line numbers and suggested fixes, without editing the book.
+- **Voice Baseline:** learns from the author's own writing so their real style is not flagged.
+- **Humanizing guide:** word, rhythm, and story-level checks, plus safeguards against over-correction.
+- **Cold Reader:** a blind review that reports where a chapter hooks, bores, or confuses.
+- **Continuity Ledger:** checks deaths, promises, secrets, fixed facts, and name spelling.
+- **EPUB export:** includes cover support, with validation when EPUBCheck is installed.
+- **Optional integrations:** a Vale style pack and Harper grammar checks.
+- **Credits:** `THIRD_PARTY_NOTICES.md` lists the open-source projects that inspired this release.
+
+### Changed
+- AI-written narration no longer uses em dashes. Dialogue may use one when a speaker is cut off, and the author's own dashes are left alone.
+- Drafting, review, continuity, and final checks now use Book Tools.
+
+### Upgrading an existing book
+- Copy the new `Production/` folder, `Core/continuity_ledger.md`, and `Style/audit_ignore.txt` into your memory bank, or ask your assistant to do it.
+- Your chapters and existing memory files do not need to change.
+
 ## v2.5.0 — 2026-11-21
 
 ### Fixed

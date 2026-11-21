@@ -10,14 +10,17 @@ book-memory-bank/
 │   ├── projectbrief.md          Concept, scope, and goals
 │   ├── story_structure.md       Themes, structure, and narrative patterns
 │   ├── world_and_characters.md  World rules and character profiles
+│   ├── continuity_ledger.md     Facts the tools can check
 │   ├── activeContext.md         Current focus and memory file index
 │   ├── progress.md              Completion tracking
 │   └── Templates/               Starting points for optional documents
 ├── Style/
-│   └── style_guide.md           Voice, tone, and formatting rules
+│   ├── style_guide.md           Voice, tone, and formatting rules
+│   └── audit_ignore.txt         Things the prose audit should skip
 └── Production/
     ├── AI_Generation/           Cover prompt templates
-    └── Scripts/                 Manuscript and Word export tools
+    ├── Scripts/                 Book Tools, plus Word and EPUB export
+    └── Vale/                    Optional style rules for Vale
 ```
 
 Your actual book lives outside this folder:
@@ -40,11 +43,12 @@ Write the outline for Chapter 1
 Write Chapter 1
 Update memory bank
 Check continuity
-Compile the book
+Humanize Chapter 3
+Export the book
 ```
 
 A good rhythm is outline, review, draft, review, then update memory. Read each chapter as it is written, because early corrections are much easier than late ones.
 
 ## Exporting Your Book
 
-See [Production/README.md](Production/README.md) for the manuscript and Word export commands.
+See [Production/README.md](Production/README.md) for the checks and for Word and EPUB export.

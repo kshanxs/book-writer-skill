@@ -1,0 +1,18 @@
+extends: existence
+message: "'%s' is overused in AI writing. Is there a plainer word?"
+level: suggestion
+ignorecase: true
+tokens:
+  - delve
+  - delves
+  - delved
+  - delving
+  - tapestry
+  - testament
+  - underscores
+  - pivotal
+  - intricate
+  - meticulous
+  - meticulously
+  - showcasing
+  - interplay

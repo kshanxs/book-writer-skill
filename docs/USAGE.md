@@ -457,10 +457,47 @@ book-memory-bank/
 │ ├── projectbrief.md ← concept & goals
 │ ├── story_structure.md ← themes, arcs, narrative patterns
 │ ├── world_and_characters.md ← all characters, locations, world rules
+│ ├── continuity_ledger.md ← facts the tools can check
 │ ├── activeContext.md ← current session focus
 │ └── progress.md ← chapter completion tracking
-└── Style/
- └── style_guide.md ← prose voice, tone, stylistic rules
+├── Style/
+│ ├── style_guide.md ← prose voice, tone, stylistic rules
+│ └── audit_ignore.txt ← patterns the audit should skip
+└── Production/ ← Book Tools and export
+```
+
+---
+
+## Humanizing Your Writing
+
+**You:** *"Learn my voice from `./my_short_story.md`."*
+
+> AI measures your natural style, so your real habits are not flagged later.
+
+**You:** *"Humanize Chapter 4."*
+
+> AI audits the chapter, reads each hit in context, snapshots the chapter, makes small edits, and shows what changed. It removes em dashes from AI-written narration and leaves yours alone.
+
+**You:** *"Do a cold read of Chapter 1."*
+
+> A fresh reader who has not seen your plan reports where it hooked them, where they got bored, and whether they would keep reading.
+
+These tools improve the writing. They cannot prove who wrote a text, and you should still follow your publisher's AI disclosure rules.
+
+---
+
+## Book Checks
+
+**You:** *"Check the book."*
+
+> AI runs the prose audit, continuity check, and research check, then explains anything worth fixing.
+
+The continuity ledger catches characters who return after dying, payoffs before setups, characters who know secrets too early, changed eye colors, and misspelled names.
+
+You can also run it yourself:
+
+```bash
+python3 book-memory-bank/Production/Scripts/book.py check
 ```
 
 ---
@@ -471,9 +508,9 @@ book-memory-bank/
 
 > AI combines Prologue, chapters, interludes, and Epilogue in reading order into `Manuscript/COMBINED.md`, and reports skipped files or missing chapter numbers.
 
-**You:** *"Export it to Word."*
+**You:** *"Export it to Word and EPUB."*
 
-> AI creates `Manuscript/BOOK.docx` with Pandoc. A final build stops while `[NEED RESEARCH]` flags remain. Ask for a **draft export** to get `BOOK_DRAFT.docx` for beta readers.
+> AI creates `Manuscript/BOOK.docx` and `BOOK.epub` with Pandoc. A final build stops while `[NEED RESEARCH]` flags remain. Ask for a **draft export** to get a `BOOK_DRAFT` copy for beta readers.
 
 ---
 
@@ -509,7 +546,12 @@ A `README.md` is generated in your project root on initialization — title, bad
 | `"Do a Tension Pass on chapter [N]"` | Structural pacing revision pass |
 | `"Outline all chapters in parallel"` | Launches background agents for chapter outlines |
 | `"Review all chapters in parallel"` | Launches background agents to edit/review drafted chapters |
-| `"Compile the book"` | AI merges all chapters and saves to `Manuscript/` |
+| `"Compile the book"` | AI combines chapters in reading order and saves to `Manuscript/` |
+| `"Export the book"` | Builds Word and EPUB files |
+| `"Check the book"` | Runs every automated check |
+| `"Humanize chapter [N]"` | Audits and gently revises AI-sounding prose |
+| `"Learn my voice from ./file.md"` | Builds your style baseline |
+| `"Do a cold read of chapter [N]"` | Blind reader feedback |
 | `"Update memory bank"` | Full audit and update of all memory files |
 | `"Check continuity"` / `"Run continuity check"` | Cross-chapter consistency diagnostic |
 | `"Log beta feedback"` | Adds reader notes to Beta Reader Feedback Log |
@@ -550,14 +592,14 @@ Everything this skill can do, at a glance:
 | **Conflict** | External/internal/thematic conflict mapping with stakes, opposition, and growth tracking |
 | **Outlining** | Master outline, chapter beat sheets, chapter goals, emotional arcs, hooks, Chapter Titles Guide |
 | **Writing** | Chapter opening/closing formulas, structure templates, read-aloud rhythm, engagement techniques |
-| **Quality** | Anti-AI writing rules, Hype Test, revision checklists (story/prose/voice/character/continuity), Opening Chapter Checklist, Scene Tension Map |
+| **Quality** | Prose Audit, Voice Baseline, Cold Reader, story-level de-AI checks, Hype Test, revision checklists (story/prose/voice/character/continuity), Opening Chapter Checklist, Scene Tension Map |
 | **Review** | Structured chapter review (Language → Emotion → Dialogue → Pacing → Continuity), 4 Specialized Revision Passes |
-| **Continuity** | Cross-chapter diagnostic reports, timeline/character/worldbuilding checks, question-based flagging |
+| **Continuity** | Continuity Ledger, cross-chapter diagnostic reports, timeline/character/worldbuilding checks, question-based flagging |
 | **Research** | Research Flag Tracker — structured `[NEED RESEARCH]` log with open/resolved status |
 | **Beta Readers** | Beta Reader Feedback Log — chapter-by-chapter notes with priority, type, and action tracking |
 | **Publishing** | Query letter, back-cover blurb, 1-page synopsis, logline — all auto-generated from memory bank |
 | **Memory** | Automatic Book Memory Bank — projectbrief, story structure, characters/world, active context, progress, style guide |
 | **Updates** | Auto-triggered after chapters, outlines, or on-demand; comprehensive audit with file-by-file change reports |
-| **Compilation** | Auto-combine chapters into manuscript, cross-platform scripts (bash/PowerShell) |
+| **Compilation** | Safe Word and EPUB export on Mac, Linux, and Windows |
 | **Documentation** | Auto-generated README with badges, progress tracking, scope table, character list, sources |
 

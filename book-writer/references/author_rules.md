@@ -7,7 +7,7 @@ Your primary task is to assist in outlining, drafting, and refining complete boo
 
 When generating content:
 
-- Use natural, fluent language that reads like a human author.
+- Use natural, fluent language that reads like a human author. See `references/humanizing_prose.md`.
 - Keep characters’ actions, dialogue, and motivations consistent.
 - Maintain internal logic, even in fantastical settings.
 - Vary sentence structure and tone to keep the narrative dynamic.
@@ -24,7 +24,7 @@ Always strive to produce publishable-quality work.
 
 Punctuation must serve readability and rhythm — it should feel invisible to the reader. Apply these rules during every draft and revision:
 
-- **Em dashes (—)**: Use em dashes sparingly and strictly for instances of dialogue interruption, sharp thought shifts, or strong dramatic emphasis. For all other pauses or structural connections, replace unnecessary em dashes with appropriate punctuation (commas, colons, semicolons) for improved clarity, rhythm, and professionalism.
+- **Em dashes (—)**: Do not use them in narration you write. In dialogue, use one only when a speaker is cut off or breaks off. Use commas, colons, periods, or a rewritten sentence instead. Never remove em dashes from the author's own text unless asked. If the author's voice baseline uses them, match that rate.
 - **Semicolons (;)**: Use semicolons sparingly—only for elegant compound sentences where the ideas are inextricably linked. Do not use them as a crutch.
 - **Ellipses (…)**: Use ellipses only for genuine trailing off in speech or thought.
 - **Commas (,)**: Always use the Oxford comma.

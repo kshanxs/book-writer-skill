@@ -11,6 +11,7 @@ Update a row whenever its file changes. Agents use this table to decide what to 
 | `Core/projectbrief.md` | [Date] | [N] | [Current / Needs update] |
 | `Core/story_structure.md` | [Date] | [N] | [Current / Needs update] |
 | `Core/world_and_characters.md` | [Date] | [N] | [Current / Needs update] |
+| `Core/continuity_ledger.md` | [Date] | [N] | [Current / Needs update] |
 | `Core/progress.md` | [Date] | [N] | [Current / Needs update] |
 | `Style/style_guide.md` | [Date] | [N] | [Current / Needs update] |
 | `../Outlines/Master_Outline.md` | [Date] | [N] | [Current / Needs update] |

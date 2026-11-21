@@ -24,7 +24,7 @@ To avoid high tool-execution latency and prompt noise, do not bulk-load all memo
    | Draft a chapter | `activeContext.md`, `style_guide.md`, `world_and_characters.md`, the chapter outline, the previous chapter |
    | Outline | `activeContext.md`, `story_structure.md`, `Outlines/Master_Outline.md`, plus `world_and_characters.md` when characters or settings matter |
    | Review a chapter | The chapter, its outline, adjacent chapters, `activeContext.md`, `style_guide.md`, `world_and_characters.md` |
-   | Routine update after a chapter | The chapter, `activeContext.md`, and only the files the chapter affects |
+   | Routine update after a chapter | The chapter, `activeContext.md`, `continuity_ledger.md`, and only the other files the chapter affects |
    | Continuity check or comprehensive update | All memory bank files |
 
 5. **Keep the Index Current:** Whenever a memory file changes, update its row in `Memory Status & File Index`.
@@ -95,6 +95,7 @@ Core files:
  - book-memory-bank/Core/story_structure.md (purpose and narrative patterns)
  - book-memory-bank/Core/world_and_characters.md (setting and character profiles)
  - book-memory-bank/Core/world_gita.md (optional world tech/magic/lore bible)
+ - book-memory-bank/Core/continuity_ledger.md (checkable characters, deaths, promises, secrets, and facts)
  - book-memory-bank/Core/activeContext.md (current status)
  - book-memory-bank/Core/progress.md (completion tracker)
 
@@ -209,6 +210,7 @@ Use this list to decide what an update affects. A routine update opens only the 
 - book-memory-bank/Core/world_gita.md (or tech_gita.md) - Updates to technology, magic, or lore (if used)
 - Outlines/Master_Outline.md - Plot changes or confirmations
 - book-memory-bank/Style/style_guide.md - Stylistic choices emerging
+- book-memory-bank/Core/continuity_ledger.md - New characters, deaths, promises, payoffs, secrets, and fixed facts
 - book-memory-bank/Core/activeContext.md - ALWAYS updated with current status
 - book-memory-bank/Core/progress.md - Updated completion status
 
@@ -273,9 +275,10 @@ When triggered, the AI performs a systematic cross-chapter consistency check and
 
 ### Process
 
-1. **Load all files:**
+1. **Run `book.py continuity`, then load all files:**
  - All chapter files in `Chapters/`
  - `book-memory-bank/Core/world_and_characters.md`
+ - `book-memory-bank/Core/continuity_ledger.md`
  - `book-memory-bank/Core/story_structure.md`
  - `Outlines/Master_Outline.md`
  - `book-memory-bank/Core/activeContext.md`
@@ -390,6 +393,7 @@ At the start of every spinoff session:
 |------|------|
 | `world_and_characters.md` | Reference-based — link to shared parent sections, do not copy them; add spinoff-only content below |
 | `style_guide.md` | Forked (copy parent) or Fresh (author's choice at initialization) |
+| `continuity_ledger.md` | Fresh — list inherited characters and facts the spinoff depends on |
 | `projectbrief.md` | Fresh — include a "Connected Projects" entry pointing to parent |
 | All other Core files | Fresh |
 
