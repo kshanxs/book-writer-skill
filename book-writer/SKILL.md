@@ -37,7 +37,7 @@ This skill has many reference files. Do NOT pre-load them all. Use **lazy loadin
 | `references/readme_template.md` | Only when generating the project README |
 | `references/character_worldbuilding_tables.md` | Building character profiles or worldbuilding tables |
 | `references/childrens_book_craft.md` | Only for children's book projects |
-| `references/parallel_workflows.md` | Only when parallel drafting |
+| `references/parallel_workflows.md` | Only for parallel outlining or review |
 | `references/punctuation_guide.md` | Running a punctuation pass or prose polish |
 | `references/humanizing_prose.md` | Drafting, polishing, or removing AI-sounding patterns |
 | `references/cold_reader.md` | Running a cold read on an important chapter |

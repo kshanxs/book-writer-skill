@@ -19,7 +19,8 @@ book-memory-bank/
 │   └── audit_ignore.txt         Things the prose audit should skip
 └── Production/
     ├── AI_Generation/           Cover prompt templates
-    └── Scripts/                 Manuscript and Word export tools
+    ├── Scripts/                 Book Tools, plus Word and EPUB export
+    └── Vale/                    Optional style rules for Vale
 ```
 
 Your actual book lives outside this folder:

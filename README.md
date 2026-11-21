@@ -14,6 +14,13 @@ Plan it, draft it, revise it, and get it ready to publish, with characters and p
 
 ---
 
+## 🎉 New in 3.0
+
+- 🪶 **Sounds like you:** learns your style and flags AI-sounding patterns.
+- 🧵 **Stays consistent:** checks deaths, secrets, promises, facts, and names.
+- 👁️ **Honest feedback:** a fresh cold reader tells you where a chapter drags.
+- 📖 **Ready for readers:** exports safely to Word and EPUB.
+
 ## 🚀 Install
 
 ```bash
@@ -38,15 +45,15 @@ I have some notes already. Here's my outline: ./outline.md
 
 It asks one question at a time, and you can skip any of them.
 
+Python 3.8+ powers the book checks, and [Pandoc](https://pandoc.org/installing.html) handles export. Your assistant can tell you if anything is missing.
+
 ## ✨ What you get
 
 - 🧠 **Lasting memory:** characters, plot, world, and progress carry across sessions.
 - ✍️ **Craft for your genre:** fiction, non-fiction, history, popular science, and children's books.
 - 🗺️ **Story planning:** outlines, pacing blueprints, scene cards, and character arcs.
-- 🪶 **Writing that sounds like you:** learns your voice and finds AI-sounding patterns.
-- 🧵 **Continuity checks:** catches plot holes, leaked secrets, and characters who return from the dead.
-- 🔍 **Careful revision:** cold reads and focused passes, with a backup before every edit.
-- 📦 **Ready to publish:** Word, EPUB, blurbs, synopses, query letters, and cover prompts.
+- 🔍 **Careful revision:** focused passes, with a backup before every edit.
+- 📦 **Publishing kit:** blurbs, synopses, query letters, and cover prompts.
 
 ## 🗣️ Things you can say
 

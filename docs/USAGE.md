@@ -457,10 +457,13 @@ book-memory-bank/
 │ ├── projectbrief.md ← concept & goals
 │ ├── story_structure.md ← themes, arcs, narrative patterns
 │ ├── world_and_characters.md ← all characters, locations, world rules
+│ ├── continuity_ledger.md ← facts the tools can check
 │ ├── activeContext.md ← current session focus
 │ └── progress.md ← chapter completion tracking
-└── Style/
- └── style_guide.md ← prose voice, tone, stylistic rules
+├── Style/
+│ ├── style_guide.md ← prose voice, tone, stylistic rules
+│ └── audit_ignore.txt ← patterns the audit should skip
+└── Production/ ← Book Tools and export
 ```
 
 ---
@@ -543,7 +546,7 @@ A `README.md` is generated in your project root on initialization — title, bad
 | `"Do a Tension Pass on chapter [N]"` | Structural pacing revision pass |
 | `"Outline all chapters in parallel"` | Launches background agents for chapter outlines |
 | `"Review all chapters in parallel"` | Launches background agents to edit/review drafted chapters |
-| `"Compile the book"` | AI merges all chapters and saves to `Manuscript/` |
+| `"Compile the book"` | AI combines chapters in reading order and saves to `Manuscript/` |
 | `"Export the book"` | Builds Word and EPUB files |
 | `"Check the book"` | Runs every automated check |
 | `"Humanize chapter [N]"` | Audits and gently revises AI-sounding prose |

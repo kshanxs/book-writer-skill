@@ -2,7 +2,7 @@
 
 # book-writer — Features & Reference
 
-*Complete feature list, command reference, and skill architecture*
+**v3.0.0** · *Complete feature list, command reference, and skill architecture*
 
 </div>
 
@@ -136,7 +136,7 @@
 | `"Check the book"` | Runs every automated book check |
 | `"Export the book"` | Builds Word and EPUB files |
 | `"Check for consistency"` | Flags contradictions across memory bank |
-| `"Compile the book"` | Merges all chapters into `Manuscript/` |
+| `"Compile the book"` | Combines chapters in reading order into `Manuscript/` |
 | `"[FICTION] ..."` | Marks an invented element (historical genres) |
 
 ---
@@ -181,11 +181,17 @@ YourBookProject/
  │ ├── projectbrief.md High-level concept & goals
  │ ├── story_structure.md Narrative patterns & themes
  │ ├── world_and_characters.md Characters, world, relationships
+ │ ├── continuity_ledger.md Facts the tools can check
  │ ├── activeContext.md Current session focus
  │ ├── progress.md Completion tracking
- │ └── Templates/ Chapter, outline, titles guide templates
- └── Style/
- └── style_guide.md Voice, tone, language rules
+ │ └── Templates/ Planning and tracking templates
+ ├── Style/
+ │ ├── style_guide.md Voice, tone, language rules
+ │ └── audit_ignore.txt Patterns the audit should skip
+ └── Production/
+ ├── Scripts/ Book Tools, Word and EPUB export
+ ├── Vale/ Optional style rules
+ └── AI_Generation/ Cover prompts
 ```
 
 ---
@@ -197,8 +203,11 @@ book-writer-skill/ ← Repo root
 ├── docs/
 │ ├── USAGE.md ← Usage guide with examples
 │ └── FEATURES.md ← This file
+├── tests/ ← Script and Book Tools tests
+├── scripts/ ← Repository checks
 ├── book-writer/ ← Skill folder
-│ ├── SKILL.md ← Core instructions & 9 workflows
+│ ├── SKILL.md ← Core instructions & 10 workflows
+│ ├── THIRD_PARTY_NOTICES.md ← Open-source credits
 │ ├── references/
 │ │ ├── author_rules.md Writing persona & historical rules
 │ │ ├── book_memory_protocol.md Memory bank architecture & rules
@@ -220,12 +229,14 @@ book-writer-skill/ ← Repo root
 │ │ └── chapter_titles_guide.md Title → meaning → story connection
 │ └── assets/
 │ └── book-memory-bank/ ← Template directory (copied on init)
+│ ├── Production/Scripts/book.py ← Checks and export
 │ └── Core/Templates/
 │ ├── chapter_outline_template.md
 │ ├── master_outline_template.md
 │ ├── chapter_titles_guide_template.md
 │ ├── character_arcs_template.md
 │ ├── themes_and_motifs_template.md
+│ ├── world_gita_template.md
 │ ├── scene_card_template.md
 │ ├── pacing_blueprint_template.md
 │ ├── research_tracker_template.md
